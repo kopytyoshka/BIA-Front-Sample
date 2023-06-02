@@ -1,0 +1,7 @@
+{
+  "name": "sovkomFront",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}

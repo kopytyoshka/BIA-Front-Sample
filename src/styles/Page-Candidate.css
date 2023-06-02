@@ -1,0 +1,82 @@
+.candidate-image-thumbnail {
+    --size: 220px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.14), 0 3px 4px rgba(0, 0, 0, 0.12), 0 1px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    max-height: 250px;
+    max-width: 250px;
+}
+
+.candidate-image {
+    border-radius: 20px;
+}
+
+.candidate-data {
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+}
+
+.candidate-card {
+    margin-left: 20px;
+    --border-radius: 20px;
+}
+
+.ion-card {
+    --border-radius: 20px;
+}
+
+.response-vacancy-header {
+    margin-left: 40px;
+}
+
+.vacancy-cards {
+    /* TODO: относительные величины пожалуйста 🥺*/
+    min-width: 300px;
+    max-width: 500px;
+    margin-right: 20px;
+    align-items: start;
+    transition: all .2s ease-in-out
+}
+
+.vacancy-cards:hover {
+    animation-duration: 1s;
+    transform: scale(1.05);
+    box-shadow: 0 11px 11px rgba(33,33,33,.2)
+}
+/*.vacancy-cards-list {*/
+/*    margin-left: 20px;*/
+/*}*/
+
+@media (max-width: 640px)
+{
+    .candidate-image-thumbnail
+    {
+        display: none;
+    }
+    .email-description-card
+    {
+        display: none;
+    }
+    .phone-description-card
+    {
+        display: none;
+    }
+    .candidate-data
+    {
+        font-size: 5px; !important;
+        padding: 10px;
+        margin: 0;
+    }
+}
+
+@media (max-width: 1300px)
+{
+    .vacancy-cards
+    {
+        min-width: 300px;
+        max-width: 500px;
+        margin-right: 20px;
+        align-items: start;
+        transition: all .2s ease-in-out
+    }
+}

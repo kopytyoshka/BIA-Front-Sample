@@ -1,0 +1,96 @@
+ion-item {
+    --padding-start: 16px;
+}
+
+.popup-menu-items {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.card-size{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 0;
+}
+
+/*.pic-size{*/
+/*    width: 5vh;*/
+/*    height: 5vh;*/
+/*}*/
+
+.text{
+    /*font-family: 'Roboto', sans-serif;*/
+    /*font-style: normal;*/
+    font-weight: 600;
+    width: 40%;
+    /*line-height: 24px;*/
+}
+
+.hr-card-vacansii{
+    width: 45vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hr-card-vacansii-plus_button{
+    padding: 0;
+}
+
+.hr-card-vacansii-plus_button-max-width{
+    max-width: 70%;
+    flex-direction: column;
+}
+
+.search-button{
+    width: 100%;
+}
+
+.search-and-vacansii{
+    display: flex;
+    flex-direction: row;
+    /*justify-content: space-between;*/
+    align-items: center;
+}
+
+
+/*.vacancy-cards-list {*/
+/*    margin: 0px;*/
+/*    padding: revert;*/
+/*}*/
+
+.plus-icon{
+    margin: 0px;
+}
+
+.text-vacansii{
+    max-width: 150px;
+}
+
+.flex-list{
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-cards{
+    max-width: 50%;
+}
+
+.vacancy-cards {
+    min-width: 300px;
+    max-width: 500px;
+    margin-right: 20px;
+    align-items: start;
+    transition: all .2s ease-in-out
+}
+
+.vacancy-cards:hover {
+    animation-duration: 1s;
+    transform: scale(1.05);
+    box-shadow: 0 11px 11px rgba(33,33,33,.2)
+}
