@@ -19,18 +19,18 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import PageCandidate from "./pages/Page-Candidate";
-import PageHR from "./pages/Page-HR";
+import PageCandidate from "./pages/candidate-pages/Page-Candidate";
+import PageHR from "./pages/hr-pages/Page-HR";
 import React, {useState} from "react";
-import PageCandidateTasks from "./pages/Page-Candidate-Tasks";
-import CandidateTestForm from "./pages/Candidate-Test-Form";
-import CandidateCardForHR from "./pages/Candidate-Card-For-HR";
-import ListCandidates from "./pages/List-Of-Candidates";
-import VacancyPageForHR from "./pages/Vacancy-Page-For-HR";
+import PageCandidateTasks from "./pages/candidate-pages/Page-Candidate-Tasks";
+import CandidateTestForm from "./pages/candidate-pages/Candidate-Test-Form";
+import CandidateCardForHR from "./pages/hr-pages/Candidate-Card-For-HR";
+import ListCandidates from "./pages/hr-pages/List-Of-Candidates";
+import VacancyPageForHR from "./pages/hr-pages/Vacancy-Page-For-HR";
 import MainPageByRole from "./scripts/MainPageLoader";
-import Registration from "./pages/Registration";
-import Login from "./pages/Login";
-import AllVacancyCards from "./pages/Page-HR";
+import Registration from "./pages/login-pages/Registration";
+import Login from "./pages/login-pages/Login";
+import AllVacancyCards from "./pages/hr-pages/Page-HR";
 
 setupIonicReact();
 const App: React.FC = () => (

@@ -1,4 +1,4 @@
-import '../styles/Page-Candidate.css'
+import '../../styles/Page-Candidate.css'
 import moment from 'moment';
 import {
     IonBadge, IonButton,
@@ -13,7 +13,7 @@ import {
     IonToolbar
 } from "@ionic/react";
 import React, {useEffect, useState} from 'react';
-import PopupMenu from "./Popup-Menu";
+import PopupMenu from "../sidebar-menu/Popup-Menu";
 import {useHistory, useParams} from "react-router";
 
 interface Stage {

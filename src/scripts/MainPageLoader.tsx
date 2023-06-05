@@ -1,8 +1,8 @@
-import PageHR from "../pages/Page-HR";
-import PageCandidate from "../pages/Page-Candidate";
+import PageHR from "../pages/hr-pages/Page-HR";
+import PageCandidate from "../pages/candidate-pages/Page-Candidate";
 import React, {useEffect, useState} from "react";
-import Login from "../pages/Login";
-import Registration from "../pages/Registration";
+import Login from "../pages/login-pages/Login";
+import Registration from "../pages/login-pages/Registration";
 
 function MainPageByRole() {
     const [role, setRole] = useState("")

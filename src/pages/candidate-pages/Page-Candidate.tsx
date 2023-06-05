@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import '../styles/Popup-Menu-Style.css'
-import '../styles/Page-Candidate.css'
+import '../../styles/Popup-Menu-Style.css'
+import '../../styles/Page-Candidate.css'
 import {
     IonBadge, IonButton,
     IonButtons, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol,
@@ -12,7 +12,7 @@ import {
     IonTitle,
     IonToolbar
 } from '@ionic/react';
-import PopupMenuCandidate from "./Popup-Menu-Candidate";
+import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 // import VacancyListShow from "../scripts/VacancyCardComponent.js"
 
 function PageCandidate() {

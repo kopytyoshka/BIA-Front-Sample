@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import '../styles/Popup-Menu-Style.css'
-import '../styles/Page-Candidate.css'
+import '../../styles/Popup-Menu-Style.css'
+import '../../styles/Page-Candidate.css'
 import {
     IonBadge, IonButton,
     IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol,
@@ -12,10 +12,10 @@ import {
     IonTitle,
     IonToolbar
 } from '@ionic/react';
-import PopupMenuCandidate from "./Popup-Menu-Candidate";
+import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import moment from 'moment';
 import {AddToCalendarButton} from 'add-to-calendar-button-react';
-import {openExternalSite, redirectToExternalSite} from "../scripts/utils";
+import {openExternalSite, redirectToExternalSite} from "../../scripts/utils";
 
 interface Stage {
     name: string;

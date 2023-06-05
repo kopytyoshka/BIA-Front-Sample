@@ -12,9 +12,9 @@ import {
 } from "@ionic/react";
 import React, {useState} from "react";
 import {Redirect, Route} from "react-router-dom";
-import PopupMenuCandidate from "./Popup-Menu-Candidate";
-import "../styles/Test-Form.css"
-import {openExternalSite, redirectToExternalSite} from "../scripts/utils";
+import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
+import "../../styles/Test-Form.css"
+import {openExternalSite, redirectToExternalSite} from "../../scripts/utils";
 
 function Registration() {
     const [email, setEmail] = React.useState("");

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import '../styles/Page-HR.css'
+import '../../styles/Page-HR.css'
 import {
     IonBadge, IonButton,
     IonButtons,
@@ -11,7 +11,7 @@ import {
     IonTitle,
     IonToolbar
 } from '@ionic/react';
-import PopupMenu from "./Popup-Menu-Candidate";
+import PopupMenu from "../sidebar-menu/Popup-Menu-Candidate";
 import {useHistory} from "react-router";
 
 const PageHR = () => {

@@ -10,9 +10,9 @@ import {
     IonToolbar
 } from "@ionic/react";
 import React from "react";
-import PopupMenuCandidate from "./Popup-Menu-Candidate";
-import "../styles/Test-Form.css"
-import PopupMenu from "./Popup-Menu";
+import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
+import "../../styles/Test-Form.css"
+import PopupMenu from "../sidebar-menu/Popup-Menu";
 
 function CandidateTestForm() {
 

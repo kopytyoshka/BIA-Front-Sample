@@ -1,5 +1,5 @@
-import PopupMenu from "./Popup-Menu";
-import '../styles/Page-Candidate.css'
+import PopupMenu from "../sidebar-menu/Popup-Menu";
+import '../../styles/Page-Candidate.css'
 import {
     IonBadge,
     IonButton,

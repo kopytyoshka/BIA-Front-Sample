@@ -10,8 +10,8 @@ import {
     IonToolbar
 } from "@ionic/react";
 import React, {useEffect, useState} from "react";
-import PopupMenuCandidate from "./Popup-Menu-Candidate";
-import "../styles/Test-Form.css"
+import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
+import "../../styles/Test-Form.css"
 
 function Login() {
     const [email, setEmail] = React.useState("");

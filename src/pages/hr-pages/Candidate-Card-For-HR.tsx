@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from 'react';
-import '../styles/Page-HR.css'
+import '../../styles/Page-HR.css'
 import {
     IonBadge, IonButton,
     IonButtons,
@@ -13,7 +13,7 @@ import {
     IonTitle,
     IonToolbar
 } from '@ionic/react';
-import PopupMenu from "./Popup-Menu";
+import PopupMenu from "../sidebar-menu/Popup-Menu";
 import {useParams} from "react-router";
 
 interface Stage {
