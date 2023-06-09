@@ -13,12 +13,10 @@ main:
     - IMAGE_NAME="$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
     - docker build -t $IMAGE_NAME .
     - docker push $IMAGE_NAME
-  rules:
-    - if: $CI_COMMIT_BRANCH == 'main'
-      when: never
-    - if: $CI_COMMIT_BRANCH == 'development'
-      when: never
-    - when: always
+  only:
+    - master
+    - development
+
 
 
 # deploy-production:
