@@ -5,7 +5,7 @@ before_script:
 
 stages:
   - build-image
-  # - deploy
+  - deploy
 
 main:
   stage: build-image
@@ -33,15 +33,15 @@ main:
 #       when: manual
 
 
-# deploy-development:
-#   stage: deploy
-#   script:
-#     - IMAGE_NAME="$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
-#     - docker pull $IMAGE_NAME
-#     - ./deploy/development/deploy.sh $IMAGE_NAME
-#   environment:
-#     name: development
-#     url: https://dev.ckhr.biacorp.ru
-#   except:
-#     - master
+deploy-development:
+  stage: deploy
+  script:
+    - IMAGE_NAME="$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
+    - docker pull $IMAGE_NAME
+    - ./deploy/development/deploy.sh $IMAGE_NAME
+  environment:
+    name: development
+    url: https://dev.ckhr.biacorp.ru
+  except:
+    - main
 
