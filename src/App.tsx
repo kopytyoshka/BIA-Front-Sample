@@ -34,6 +34,7 @@ import AllVacancyCards from "./pages/hr-pages/Page-HR";
 import HR6VacancyCardForView from "./pages/hr-pages/HR6-Vacancy-Card-For-View-For-HR";
 import HR7EditVacancyCard from "./pages/hr-pages/HR7-Edit-Vacancy-Card";
 import HR8AllVacancies from "./pages/hr-pages/HR8-All-Vacancies";
+import * as path from "path";
 
 setupIonicReact();
 const App: React.FC = () => (
@@ -50,12 +51,6 @@ const App: React.FC = () => (
                 <Route exact path="/register">
                     <Registration/>
                 </Route>
-                <Route exact path="/login">
-                    <Login/>
-                </Route>
-                {/*<Route exact path="/login">*/}
-                {/*    <Login></Login>*/}
-                {/*</Route>*/}
                 <Route exact path="/home">
                     <MainPageByRole/>
                 </Route>
@@ -80,6 +75,7 @@ const App: React.FC = () => (
                 <Route exact path="/hr8-all-vacancies">
                     <HR8AllVacancies/>
                 </Route>
+                <Route path="/login" component={Login} />
                 <Route path="/list-candidates/:id" component={ListCandidates} />
                 <Route path="/candidate-card/:id" component={CandidateCardForHR} />
             </IonRouterOutlet>
