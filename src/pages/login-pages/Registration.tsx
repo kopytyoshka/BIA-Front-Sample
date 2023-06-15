@@ -11,11 +11,8 @@ import {
     IonToolbar
 } from "@ionic/react";
 import React, {useState} from "react";
-import {Redirect, Route} from "react-router-dom";
-import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import "../../styles/Test-Form.css"
 import {openExternalSite, redirectToExternalSite} from "../../scripts/utils";
-
 function Registration() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -31,13 +28,26 @@ function Registration() {
     const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
     };
-    const handleChangePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPhone(event.target.value);
+    const handleChangePhone = (event: { target: { value: string; }; }) => {
+        const result = event.target.value.replace(/[^0-9]/gi, '');
+        setPhone(result);
     };
 
 
-    const [isTouched, setIsTouched] = useState(false);
+    console.log(phone)
+
+
+
+    const [isTouchedPhone, setIsTouchedPhone] = useState(false);    const [isTouched, setIsTouched] = useState(false);
     const [isValid, setIsValid] = useState<boolean>();
+    const [isValidPassword, setIsValidPassword] = useState<boolean>();
+    const [isValidPhone, setIsValidPhone] = useState<boolean>();
+
+    const validatePassword = (password: string) => {
+        return password.match(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
+        )
+    }
 
     const validateEmail = (email: string) => {
         return email.match(
@@ -45,7 +55,7 @@ function Registration() {
         );
     };
 
-    const validate = (ev: Event) => {
+    const validateEm = (ev: Event) => {
         const value = (ev.target as HTMLInputElement).value;
 
         setIsValid(undefined);
@@ -55,13 +65,38 @@ function Registration() {
         validateEmail(value) !== null ? setIsValid(true) : setIsValid(false);
     };
 
+    const validatePass = (ev: Event) => {
+        const value = (ev.target as HTMLInputElement).value;
+
+        setIsValidPassword(undefined);
+
+        if (value === '') return;
+        validatePassword(value) !== null ? setIsValidPassword(true) : setIsValidPassword(false);
+    };
+
+    const isPhoneNumber = (phone: string) => {
+        return phone.match(
+            /^\+7[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}$/
+        );
+    }
+
+    const validatePhoneNumber = (phone: Event) => {
+        const value = (phone.target as HTMLInputElement).value;
+
+        setIsValidPhone(undefined);
+
+        if (value === '') return;
+
+        isPhoneNumber(value) !== null ? setIsValidPhone(true) : setIsValidPhone(false);
+    };
+
     const markTouched = () => {
         setIsTouched(true);
     };
 
 
     async function jsonReg() {
-        if (validateEmail(email) && password != "" && name != "" && phone != "") {
+        if (validateEmail(email) && password != "" && name != "" && phone != "" && password.length >= 8) {
             let jsonRegisterData = {
                 email: email,
                 password: password,
@@ -92,7 +127,6 @@ function Registration() {
 
     return (
         <>
-            <PopupMenuCandidate/>
             <IonPage id="main-content">
                 {/*Header and Timer*/}
                 <IonHeader>
@@ -119,7 +153,7 @@ function Registration() {
                                                   helperText="Введите корректный e-mail"
                                                   errorText="Неверный формат e-mail"
                                                   onInput={(e: any) => handleChangeEmail(e)}
-                                                  onIonInput={(event) => validate(event)}
+                                                  onIonInput={(event) => validateEm(event)}
                                                   onIonBlur={() => markTouched()}
                                         ></IonInput>
                                     </IonItem>
@@ -127,17 +161,17 @@ function Registration() {
                                 <IonCard style={{borderRadius: '20px'}}>
                                     <IonItem style={{margin: '30px 10px'}}>
                                         <IonInput style={{borderRadius: '20px'}}
+                                                  className={`${isValidPassword && 'ion-valid'} ${isValidPassword === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
                                                   type="password"
                                                   fill="solid"
                                                   label="Password"
                                                   labelPlacement="floating"
                                                   helperText="Введите пароль"
-                                                  errorText="Password"
+                                                  errorText="Пароль должен содержать заглавные буквы, прописные буквы, цифры. Длина должна быть не менее 8 символов."
                                                   onIonBlur={() => markTouched()}
                                                   counter={true}
                                                   maxlength={20}
-                                                  minlength={6}
-
+                                                  onIonInput={(event) => validatePass(event)}
                                                   onInput={(e: any) => handleChangePassword(e)}
                                         ></IonInput>
                                     </IonItem>
@@ -148,10 +182,10 @@ function Registration() {
                                                   fill="solid"
                                                   label="Name"
                                                   labelPlacement="floating"
-                                                  helperText="Введите имя"
+                                                  helperText="Введите фамилию и имя"
                                                   onIonBlur={() => markTouched()}
                                                   counter={true}
-
+                                                  inputMode="tel"
                                                   onInput={(e: any) => handleChangeName(e)}
                                         ></IonInput>
                                     </IonItem>
@@ -159,14 +193,17 @@ function Registration() {
                                 <IonCard style={{borderRadius: '20px'}}>
                                     <IonItem style={{margin: '30px 10px'}}>
                                         <IonInput style={{borderRadius: '20px'}}
+                                                  className={`${isValidPhone && 'ion-valid'} ${isValidPhone === false && 'ion-invalid'} ${isTouchedPhone && 'ion-touched'}`}
                                                   fill="solid"
+                                                  placeholder="+7"
                                                   label="Phone"
                                                   labelPlacement="floating"
                                                   helperText="Введите номер телефона"
                                                   onIonBlur={() => markTouched()}
                                                   counter={true}
-
+                                                  errorText="Неверный формат номера телефона"
                                                   onInput={(e: any) => handleChangePhone(e)}
+                                                  onIonInput={(event) => validatePhoneNumber(event)}
                                         ></IonInput>
                                     </IonItem>
                                 </IonCard>
