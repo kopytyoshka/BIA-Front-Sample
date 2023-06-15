@@ -73,13 +73,6 @@ const ListCandidates = () => {
                         <IonButtons slot="start">
                             <IonMenuButton></IonMenuButton>
                         </IonButtons>
-                        {/*<IonButtons slot="end">*/}
-                        {/*    <IonMenuToggle>*/}
-                        {/*        <IonItem lines="none" routerLink="/logout">*/}
-                        {/*            <IonTitle>Выйти</IonTitle>*/}
-                        {/*        </IonItem>*/}
-                        {/*    </IonMenuToggle>*/}
-                        {/*</IonButtons>*/}
                         <IonTitle>Список кандидатов</IonTitle>
                     </IonToolbar>
                 </IonHeader>
