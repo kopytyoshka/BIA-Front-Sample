@@ -82,6 +82,13 @@ function PageCandidate() {
                         <IonButtons slot="start">
                             <IonMenuButton></IonMenuButton>
                         </IonButtons>
+                        {/*<IonButtons slot="end">*/}
+                        {/*    <IonMenuToggle>*/}
+                        {/*        <IonItem lines="none" routerLink="/logout">*/}
+                        {/*            <IonTitle>Выйти</IonTitle>*/}
+                        {/*        </IonItem>*/}
+                        {/*    </IonMenuToggle>*/}
+                        {/*</IonButtons>*/}
                         <IonTitle>Личные Данные</IonTitle>
                     </IonToolbar>
                 </IonHeader>

@@ -14,7 +14,7 @@ import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import "../../styles/Test-Form.css"
 import PopupMenu from "../sidebar-menu/Popup-Menu";
 
-function PageCandidateTestForm() {
+function CandidateTestForm() {
 
     const [checked, setChecked] = React.useState("");
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,4 +100,4 @@ function PageCandidateTestForm() {
     );
 }
 
-export default PageCandidateTestForm;
+export default CandidateTestForm;
