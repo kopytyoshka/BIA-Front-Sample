@@ -23,7 +23,7 @@ import PageCandidate from "./pages/candidate-pages/Page-Candidate";
 import PageHR from "./pages/hr-pages/Page-HR";
 import React, {useState} from "react";
 import PageCandidateTasks from "./pages/candidate-pages/Page-Candidate-Tasks";
-import PageCandidateTestForm from "./pages/candidate-pages/Page-Candidate-Test-Form";
+import CandidateTestForm from "./pages/candidate-pages/Candidate-Test-Form";
 import CandidateCardForHR from "./pages/hr-pages/Candidate-Card-For-HR";
 import ListCandidates from "./pages/hr-pages/List-Of-Candidates";
 import VacancyPageForHR from "./pages/hr-pages/Vacancy-Page-For-HR";
@@ -31,8 +31,6 @@ import MainPageByRole from "./scripts/MainPageLoader";
 import Registration from "./pages/login-pages/Registration";
 import Login from "./pages/login-pages/Login";
 import AllVacancyCards from "./pages/hr-pages/Page-HR";
-import PageCandidateVacancyInfo from "./pages/candidate-pages/Page-Candidate-Vacancy-Info";
-import PageCandidateVacancyList from "./pages/candidate-pages/Page-Candidate-Vacancy-List";
 import HR6VacancyCardForView from "./pages/hr-pages/HR6-Vacancy-Card-For-View-For-HR";
 import HR7EditVacancyCard from "./pages/hr-pages/HR7-Edit-Vacancy-Card";
 import HR8AllVacancies from "./pages/hr-pages/HR8-All-Vacancies";
@@ -52,9 +50,12 @@ const App: React.FC = () => (
                 <Route exact path="/register">
                     <Registration/>
                 </Route>
-                <Route exact path="/vacancy-huiacancy">
-                    <PageCandidateVacancyList/>
+                <Route exact path="/login">
+                    <Login/>
                 </Route>
+                {/*<Route exact path="/login">*/}
+                {/*    <Login></Login>*/}
+                {/*</Route>*/}
                 <Route exact path="/home">
                     <MainPageByRole/>
                 </Route>
@@ -68,9 +69,8 @@ const App: React.FC = () => (
                     <Redirect to="/home"/>
                 </Route>
                 <Route exact path="/candidate-test">
-                    <PageCandidateTestForm/>
+                    <CandidateTestForm/>
                 </Route>
-                <Route path="/login" component={Login} />
                 <Route exact path="/hr6-vacancy-card">
                     <HR6VacancyCardForView/>
                 </Route>
