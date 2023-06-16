@@ -75,7 +75,6 @@ const App: React.FC = () => (
                 <Route exact path="/hr8-all-vacancies">
                     <HR8AllVacancies/>
                 </Route>
-                <Route path="/login" component={Login} />
                 <Route path="/list-candidates/:id" component={ListCandidates} />
                 <Route path="/candidate-card/:id" component={CandidateCardForHR} />
             </IonRouterOutlet>
