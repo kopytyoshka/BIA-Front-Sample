@@ -23,7 +23,7 @@ import PageCandidate from "./pages/candidate-pages/Page-Candidate";
 import PageHR from "./pages/hr-pages/Page-HR";
 import React, {useState} from "react";
 import PageCandidateTasks from "./pages/candidate-pages/Page-Candidate-Tasks";
-import CandidateTestForm from "./pages/candidate-pages/Candidate-Test-Form";
+import PageCandidateTestForm from "./pages/candidate-pages/Page-Candidate-Test-Form";
 import CandidateCardForHR from "./pages/hr-pages/Candidate-Card-For-HR";
 import ListCandidates from "./pages/hr-pages/List-Of-Candidates";
 import VacancyPageForHR from "./pages/hr-pages/Vacancy-Page-For-HR";
@@ -64,7 +64,7 @@ const App: React.FC = () => (
                     <Redirect to="/home"/>
                 </Route>
                 <Route exact path="/candidate-test">
-                    <CandidateTestForm/>
+                    <PageCandidateTestForm/>
                 </Route>
                 <Route exact path="/hr6-vacancy-card">
                     <HR6VacancyCardForView/>
