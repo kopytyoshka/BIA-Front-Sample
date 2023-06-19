@@ -1,0 +1,1 @@
+window.BACKEND_API_ENDPOINT = 'https://dev.ckhr.biacorp.ru/api';
