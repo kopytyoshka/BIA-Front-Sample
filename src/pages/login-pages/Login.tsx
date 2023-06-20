@@ -12,6 +12,7 @@ import {
 import React, {useEffect, useState} from "react";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import "../../styles/Test-Form.css"
+import {redirectToExternalSite} from "../../scripts/utils";
 
 function Login() {
     const [email, setEmail] = React.useState("");
@@ -56,8 +57,7 @@ function Login() {
         }
         console.log(jsonLoginData)
         let loginBackData = JSON.stringify(jsonLoginData);
-        fetch("/login", {
-            // mode: "no-cors",
+        fetch("/api/login/login", {
             method: 'POST',
             headers: {
                 'Origin': '*',
@@ -67,10 +67,14 @@ function Login() {
             body: loginBackData
         })
             .then(function (response) {
+                redirectToExternalSite('/home')
                 return response.text();
             })
             .then(function (text) {
                 console.log(text);
+            })
+            .catch((error) => {
+                console.error(error);
             })
     }
 
@@ -78,7 +82,6 @@ function Login() {
         <>
             <PopupMenuCandidate/>
             <IonPage id="main-content">
-                {/*Header and Timer*/}
                 <IonHeader>
                     <IonToolbar>
                         <IonButtons slot="start">
