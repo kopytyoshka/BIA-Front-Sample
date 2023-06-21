@@ -6,9 +6,8 @@ import Registration from "../pages/login-pages/Registration";
 
 function MainPageByRole() {
     const [role, setRole] = useState("")
-
     const fetchData = () => {
-        fetch("/api/userInfo/getUserInformation")
+        fetch("/api/userInfo/getUserInformation/")
             .then(response => {
                 return response.json()
             })

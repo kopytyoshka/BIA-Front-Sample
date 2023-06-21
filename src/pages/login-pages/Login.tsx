@@ -13,6 +13,7 @@ import React, {useEffect, useState} from "react";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import "../../styles/Test-Form.css"
 import {redirectToExternalSite} from "../../scripts/utils";
+import jwtDecode from "jwt-decode";
 
 function Login() {
     const [email, setEmail] = React.useState("");
@@ -70,12 +71,10 @@ function Login() {
 
             if (response.ok) {
                     const responseData = await response.json();
-                    const token = responseData.token; // Assuming the token is received in the response
-                    const expirationDate = new Date();  // Create a new Date object
-                    expirationDate.setDate(expirationDate.getDate() + 7);  // Set the expiration date to 7 days from now
-                    document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}; path=/`;
+                    const token = responseData.token;
+                    const decoded = jwtDecode(token);
                     redirectToExternalSite('/home');
-                    console.log(token)
+                    console.log(decoded)
             } else if (response.status === 403) {
                 // Handle 403 Forbidden error
                 setMessage('Неправильное имя пользователя или пароль. Попробуйте ещё раз!')
