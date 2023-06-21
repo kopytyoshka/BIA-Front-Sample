@@ -17,7 +17,8 @@ import {redirectToExternalSite} from "../../scripts/utils";
 function Login() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-    const [showErrorModal, setShowErrorModal] = useState(false);
+    const [showErrorPopup, setShowErrorPopup] = useState(false);
+    const [message, setMessage] = useState("")
 
     const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
@@ -68,21 +69,22 @@ function Login() {
             });
 
             if (response.ok) {
-                redirectToExternalSite('/home'); // Redirect to the home page
+                setTimeout(() => {
+                    redirectToExternalSite('/home'); // Delayed redirect to the home page
+                }, 2000); // Redirect to the home page
             } else if (response.status === 403) {
                 // Handle 403 Forbidden error
-                console.error('Authorization failed. Invalid username or password.');
+                setMessage('Неправильное имя пользователя или пароль. Попробуйте ещё раз!')
                 // Display an error message or take appropriate action
-                setShowErrorModal(true);
+                setShowErrorPopup(true);
             } else {
                 // Handle other error codes
-                console.error('An error occurred during authorization.');
+                setMessage('Произошла ошибка со стороны сервиса. Попробуйте позже.')
                 // Display an error message or take appropriate action
-                setShowErrorModal(true);
+                setShowErrorPopup(true);
             }
         } catch (error) {
-            console.error('An error occurred during authorization.', error);
-            // Display an error message or take appropriate action
+            console.error('Error', error);
         }
     }
 
@@ -98,7 +100,12 @@ function Login() {
                         <IonTitle>Войти в систему</IonTitle>
                     </IonToolbar>
                 </IonHeader>
-
+                <IonToast
+                    isOpen={showErrorPopup}
+                    message={message}
+                    onDidDismiss={() => setShowErrorPopup(false)}
+                    duration={5000}
+                />
                 <IonGrid style={{margin: "10px"}}>
                     <IonRow style={{marginLeft: "0px", maxWidth: "600px"}}>
                         <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="10" sizeXl="10"
@@ -138,7 +145,7 @@ function Login() {
                                 </IonItem>
                             </IonCard>
                             <IonButton expand="block" fill="clear" color="tertiary"
-                                       onClick={() => jsonLog()} href={'/login'}>Войти</IonButton>
+                                       onClick={() => jsonLog()}>Войти</IonButton>
                             <IonItem lines="none" color="transparent">
                                 <IonLabel slot="start">Нет аккаунта?</IonLabel>
                                 <IonButton slot="end"
@@ -147,19 +154,6 @@ function Login() {
                         </IonCol>
                     </IonRow>
                 </IonGrid>
-                <IonModal isOpen={showErrorModal}>
-                    <IonToolbar>
-                        <h2>Authorization Failed</h2>
-                    </IonToolbar>
-                    <IonToolbar>
-                        <p>Invalid username or password.</p>
-                    </IonToolbar>
-                    <IonToolbar>
-                        <IonButton expand="full" onClick={() => setShowErrorModal(false)}>
-                            OK
-                        </IonButton>
-                    </IonToolbar>
-                </IonModal>
             </IonPage>
         </>
     );
