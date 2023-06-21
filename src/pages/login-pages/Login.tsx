@@ -49,33 +49,38 @@ function Login() {
         setIsTouched(true);
     };
 
-
     async function jsonLog() {
         let jsonLoginData = {
             username: email,
             password: password,
+        };
+
+        try {
+            let response = await fetch("/api/login/login", {
+                method: 'POST',
+                headers: {
+                    'Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(jsonLoginData)
+            });
+
+            if (response.ok) {
+                redirectToExternalSite('/home'); // Redirect to the home page
+            } else if (response.status === 403) {
+                // Handle 403 Forbidden error
+                console.error('Authorization failed. Invalid username or password.');
+                // Display an error message or take appropriate action
+            } else {
+                // Handle other error codes
+                console.error('An error occurred during authorization.');
+                // Display an error message or take appropriate action
+            }
+        } catch (error) {
+            console.error('An error occurred during authorization.', error);
+            // Display an error message or take appropriate action
         }
-        console.log(jsonLoginData)
-        let loginBackData = JSON.stringify(jsonLoginData);
-        fetch("/api/login/login", {
-            method: 'POST',
-            headers: {
-                'Origin': '*',
-                'Content-type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: loginBackData
-        })
-            .then(function (response) {
-                redirectToExternalSite('/home')
-                return response.text();
-            })
-            .then(function (text) {
-                console.log(text);
-            })
-            .catch((error) => {
-                console.error(error);
-            })
     }
 
     return (
