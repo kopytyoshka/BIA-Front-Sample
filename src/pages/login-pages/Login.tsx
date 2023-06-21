@@ -4,7 +4,7 @@ import {
     IonHeader, IonIcon, IonImg, IonInput,
     IonItem, IonLabel, IonList,
     IonMenuButton,
-    IonMenuToggle, IonPage,
+    IonMenuToggle, IonModal, IonPage,
     IonRadio,
     IonRadioGroup, IonRow, IonTextarea, IonTitle, IonToast,
     IonToolbar
@@ -17,7 +17,7 @@ import {redirectToExternalSite} from "../../scripts/utils";
 function Login() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-    const [showErrorPopup, setShowErrorPopup] = useState(false);
+    const [showErrorModal, setShowErrorModal] = useState(false);
 
     const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
@@ -73,11 +73,12 @@ function Login() {
                 // Handle 403 Forbidden error
                 console.error('Authorization failed. Invalid username or password.');
                 // Display an error message or take appropriate action
+                setShowErrorModal(true);
             } else {
                 // Handle other error codes
                 console.error('An error occurred during authorization.');
                 // Display an error message or take appropriate action
-                setShowErrorPopup(true);
+                setShowErrorModal(true);
             }
         } catch (error) {
             console.error('An error occurred during authorization.', error);
@@ -146,12 +147,19 @@ function Login() {
                         </IonCol>
                     </IonRow>
                 </IonGrid>
-                <IonToast
-                    isOpen={showErrorPopup}
-                    message="Authorization failed. Invalid username or password."
-                    onDidDismiss={() => setShowErrorPopup(false)}
-                    duration={3000}
-                />
+                <IonModal isOpen={showErrorModal}>
+                    <IonToolbar>
+                        <h2>Authorization Failed</h2>
+                    </IonToolbar>
+                    <IonToolbar>
+                        <p>Invalid username or password.</p>
+                    </IonToolbar>
+                    <IonToolbar>
+                        <IonButton expand="full" onClick={() => setShowErrorModal(false)}>
+                            OK
+                        </IonButton>
+                    </IonToolbar>
+                </IonModal>
             </IonPage>
         </>
     );
