@@ -40,7 +40,7 @@ function MainPageByRole() {
                 return response.json()
             })
             .then(data => {
-                setRole(data.role.name)
+                setRole(data.role)
             })
     }
 
