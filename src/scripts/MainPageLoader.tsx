@@ -35,7 +35,7 @@ function MainPageByRole() {
     }, []);
 
     const fetchData = () => {
-        fetch("/api/userInfo/getUserInfo?userId=" + userId)
+        fetch("/api/userInfo/getUsersInfo?userId=" + userId)
             .then(response => {
                 return response.json()
             })
