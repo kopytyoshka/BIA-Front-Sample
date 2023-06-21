@@ -69,9 +69,13 @@ function Login() {
             });
 
             if (response.ok) {
-                setTimeout(() => {
-                    redirectToExternalSite('/home'); // Delayed redirect to the home page
-                }, 2000); // Redirect to the home page
+                    const responseData = await response.json();
+                    const token = responseData.token; // Assuming the token is received in the response
+                    const expirationDate = new Date();  // Create a new Date object
+                    expirationDate.setDate(expirationDate.getDate() + 7);  // Set the expiration date to 7 days from now
+                    document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}; path=/`;
+                    redirectToExternalSite('/home');
+                    console.log(token)
             } else if (response.status === 403) {
                 // Handle 403 Forbidden error
                 setMessage('Неправильное имя пользователя или пароль. Попробуйте ещё раз!')
