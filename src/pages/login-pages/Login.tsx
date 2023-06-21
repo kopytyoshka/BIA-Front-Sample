@@ -6,7 +6,7 @@ import {
     IonMenuButton,
     IonMenuToggle, IonPage,
     IonRadio,
-    IonRadioGroup, IonRow, IonTextarea, IonTitle,
+    IonRadioGroup, IonRow, IonTextarea, IonTitle, IonToast,
     IonToolbar
 } from "@ionic/react";
 import React, {useEffect, useState} from "react";
@@ -17,6 +17,7 @@ import {redirectToExternalSite} from "../../scripts/utils";
 function Login() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [showErrorPopup, setShowErrorPopup] = useState(false);
 
     const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
@@ -76,6 +77,7 @@ function Login() {
                 // Handle other error codes
                 console.error('An error occurred during authorization.');
                 // Display an error message or take appropriate action
+                setShowErrorPopup(true);
             }
         } catch (error) {
             console.error('An error occurred during authorization.', error);
@@ -144,6 +146,12 @@ function Login() {
                         </IonCol>
                     </IonRow>
                 </IonGrid>
+                <IonToast
+                    isOpen={showErrorPopup}
+                    message="Authorization failed. Invalid username or password."
+                    onDidDismiss={() => setShowErrorPopup(false)}
+                    duration={3000}
+                />
             </IonPage>
         </>
     );
