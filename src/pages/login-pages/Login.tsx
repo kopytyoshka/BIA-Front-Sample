@@ -51,7 +51,7 @@ function Login() {
 
     async function jsonLog() {
         let jsonLoginData = {
-            username: email,
+            email: email,
             password: password,
         };
 
