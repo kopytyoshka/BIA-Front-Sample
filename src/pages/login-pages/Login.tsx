@@ -153,7 +153,7 @@ function Login() {
                             <IonItem lines="none" color="transparent">
                                 <IonLabel slot="start">Нет аккаунта?</IonLabel>
                                 <IonButton slot="end"
-                                           color="tertiary">Зарегистрироваться</IonButton>
+                                           onClick={() => redirectToExternalSite('/register')}>Зарегистрироваться</IonButton>
                             </IonItem>
                         </IonCol>
                     </IonRow>
