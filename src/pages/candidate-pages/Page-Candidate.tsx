@@ -13,6 +13,7 @@ import {
     IonToolbar
 } from '@ionic/react';
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
+import handleToken from "../../scripts/CookiesToken";
 
 function PageCandidate() {
 
@@ -25,6 +26,7 @@ function PageCandidate() {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [image, setImage] = useState('')
+    const userId = handleToken();
 
 
     const fetchDataVacancies = () => {
