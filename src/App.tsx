@@ -35,11 +35,11 @@ import HR6VacancyCardForView from "./pages/hr-pages/HR6-Vacancy-Card-For-View-Fo
 import HR7EditVacancyCard from "./pages/hr-pages/HR7-Edit-Vacancy-Card";
 import HR8AllVacancies from "./pages/hr-pages/HR8-All-Vacancies";
 import * as path from "path";
-import HR4TestPage from "./pages/hr-pages/HR4-Test-Page";
 import HR4TestPageTest from "./pages/hr-pages/test";
 
 import handleToken from "./scripts/CookiesToken";
 import login from "./pages/login-pages/Login";
+import HR4TestPage from "./pages/hr-pages/HR4-Test-Page";
 const userRole = handleToken();
 setupIonicReact();
 const App: React.FC = () => (
