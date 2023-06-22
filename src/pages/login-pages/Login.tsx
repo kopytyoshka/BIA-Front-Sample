@@ -15,9 +15,6 @@ import "../../styles/Test-Form.css"
 import {redirectToExternalSite} from "../../scripts/utils";
 import jwtDecode from "jwt-decode";
 
-declare global {
-    let userId: string;
-}
 function Login() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -73,16 +70,15 @@ function Login() {
             });
 
             if (response.ok) {
-                    const responseData = await response.json();
-                    const token = responseData.token;
-                    const decoded = jwtDecode(token) as { sub: string };
-                    console.log(decoded)
-                    userId = decoded['sub'];
-                    console.log(userId)
-                    const expirationDate = new Date();  // Create a new Date object
-                    expirationDate.setDate(expirationDate.getDate() + 7);  // Set the expiration date to 7 days from now
-                    document.cookie = `userId=${userId}; expires=${expirationDate.toUTCString()}; path=/`
-                    redirectToExternalSite('/home');
+                const responseData = await response.json();
+                const token = responseData.token;
+                // const decoded = jwtDecode(token) as { sub: string };
+                // const userId = decoded['sub'];
+
+                const expirationDate = new Date();  // Create a new Date object
+                expirationDate.setDate(expirationDate.getDate() + 7);  // Set the expiration date to 7 days from now
+                document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}; path=/token`
+                redirectToExternalSite('/home');
             } else if (response.status === 403) {
                 // Handle 403 Forbidden error
                 setMessage('Неправильное имя пользователя или пароль. Попробуйте ещё раз!')
