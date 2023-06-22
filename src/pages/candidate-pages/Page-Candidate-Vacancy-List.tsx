@@ -21,7 +21,7 @@ interface WorkExperienceProps {
 }
 
 function formatWorkExperience(workExperience: string): string {
-    return workExperience === "WithoutExp" ? "Без опыта работы" : workExperience;
+    return workExperience === "WithoutExperience" ? "Без опыта работы" : workExperience;
 }
 
 
