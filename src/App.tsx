@@ -30,15 +30,10 @@ import VacancyPageForHR from "./pages/hr-pages/Vacancy-Page-For-HR";
 import MainPageByRole from "./scripts/MainPageLoader";
 import Registration from "./pages/login-pages/Registration";
 import Login from "./pages/login-pages/Login";
-import AllVacancyCards from "./pages/hr-pages/Page-HR";
 import HR6VacancyCardForView from "./pages/hr-pages/HR6-Vacancy-Card-For-View-For-HR";
 import HR7EditVacancyCard from "./pages/hr-pages/HR7-Edit-Vacancy-Card";
 import HR8AllVacancies from "./pages/hr-pages/HR8-All-Vacancies";
-import * as path from "path";
-import HR4TestPageTest from "./pages/hr-pages/test";
-
 import handleToken from "./scripts/CookiesToken";
-import login from "./pages/login-pages/Login";
 import HR4TestPage from "./pages/hr-pages/HR4-Test-Page";
 const userRole = handleToken();
 setupIonicReact();
