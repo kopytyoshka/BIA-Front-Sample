@@ -35,7 +35,10 @@ import HR6VacancyCardForView from "./pages/hr-pages/HR6-Vacancy-Card-For-View-Fo
 import HR7EditVacancyCard from "./pages/hr-pages/HR7-Edit-Vacancy-Card";
 import HR8AllVacancies from "./pages/hr-pages/HR8-All-Vacancies";
 import * as path from "path";
+import handleToken from "./scripts/CookiesToken";
+import ProtectedRoute from "./scripts/ProtectedRouting";
 
+const userRole = handleToken();
 setupIonicReact();
 const App: React.FC = () => (
 
@@ -51,9 +54,9 @@ const App: React.FC = () => (
                 <Route exact path="/register">
                     <Registration/>
                 </Route>
-                <Route exact path="/home">
-                    <MainPageByRole/>
-                </Route>
+                {/*<Route exact path="/home">*/}
+                {/*    <MainPageByRole/>*/}
+                {/*</Route>*/}
                 <Route exact path="/hr-page">
                     <PageHR/>
                 </Route>
@@ -75,6 +78,20 @@ const App: React.FC = () => (
                 <Route exact path="/hr8-all-vacancies">
                     <HR8AllVacancies/>
                 </Route>
+                <ProtectedRoute
+                    path="/admin"
+                    component={PageHR}
+                    allowedRoles={["HR"]}
+                    userRole={userRole}
+                    redirectPath="/login"
+                />
+                <ProtectedRoute
+                    path="/user"
+                    component={PageCandidate}
+                    allowedRoles={["USER"]}
+                    userRole={userRole}
+                    redirectPath="/login"
+                />
                 <Route path="/login" component={Login}/>
                 <Route path="/list-candidates/:id" component={ListCandidates} />
                 <Route path="/candidate-card/:id" component={CandidateCardForHR} />
