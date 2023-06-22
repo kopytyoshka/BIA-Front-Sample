@@ -15,7 +15,6 @@ import {warning} from "ionicons/icons";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import PageCandidateVacancyInfo from "./Page-Candidate-Vacancy-Info";
 
-const [vacancy, setVacancy] = useState<any[]>([])
 
 interface WorkExperienceProps {
     workExperience: string;
@@ -25,21 +24,27 @@ function formatWorkExperience(workExperience: string): string {
     return workExperience === "WithoutExp" ? "Без опыта работы" : workExperience;
 }
 
-const fetchDataVacancies = () => {
-    fetch("/api/vacancy/allVacanciesForUser")
-        .then(response => {
-            return response.json()
-        })
-        .then(data => {
-            setVacancy(data)
-            console.log(vacancy)
-        })
-}
 
-useEffect(() => {
-    fetchDataVacancies()
-}, [])
-const PageCandidateVacancyList = () => {
+function PageCandidateVacancyList() {
+    interface WorkExperienceProps {
+        workExperience: string;
+    }
+
+    const [vacancy, setVacancy] = useState<any[]>([])
+    const fetchDataVacancies = () => {
+        fetch("/api/vacancy/allVacanciesForUser")
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setVacancy(data)
+                console.log(vacancy)
+            })
+    }
+    useEffect(() => {
+        fetchDataVacancies()
+    }, [])
+
 
     return (
         <>
