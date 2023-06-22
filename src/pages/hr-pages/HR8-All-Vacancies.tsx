@@ -5,7 +5,7 @@ import {
     IonButtons,
     IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol,
     IonContent, IonFab, IonFabButton, IonGrid,
-    IonHeader, IonIcon, IonItem,
+    IonHeader, IonIcon, IonItem, IonLabel,
     IonMenuButton,
     IonPage, IonRow, IonSearchbar, IonText, IonTextarea,
     IonTitle,
@@ -15,6 +15,18 @@ import '../../styles/Page-HR.css'
 import PopupMenu from "../sidebar-menu/Popup-Menu";
 
 const HR8AllVacancies = () => {
+
+    const [vacancy, setVacancy] = useState<any[]>([])
+    const fetchData = () => {
+        fetch("/api/vacancy/allVacanciesForHR")
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setVacancy(data)
+            })
+    }
+
     return (
         <>
             <PopupMenu/>
@@ -44,40 +56,59 @@ const HR8AllVacancies = () => {
 
                     <IonGrid>
                         <IonRow>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                <IonCard style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonTitle>
-                                            Backend-разработчик C#
-                                        </IonTitle>
-                                    </IonCardHeader>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            Краткое описание
-                                        </IonItem>
-                                        <IonButton
-                                            expand="block" fill="clear" color="transparent">Просмотреть вакансию
-                                        </IonButton>
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                <IonCard style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonTitle>
-                                            Backend-разработчик C#
-                                        </IonTitle>
-                                    </IonCardHeader>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            Краткое описание
-                                        </IonItem>
-                                        <IonButton
-                                            expand="block" fill="clear" color="transparent">Просмотреть вакансию
-                                        </IonButton>
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
+                            {vacancy.map(vac => (
+                                <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
+                                    <IonCard style={{borderRadius: '20px'}}>
+                                        <IonCardHeader>
+                                            <IonTitle>
+                                                {vac.vacancyName}
+                                            </IonTitle>
+                                        </IonCardHeader>
+                                        <IonCardContent>
+                                            <IonItem>
+                                                {vac.description}
+                                            </IonItem>
+                                            <IonButton
+                                                expand="block" fill="clear" color="transparent">Просмотреть вакансию
+                                            </IonButton>
+                                        </IonCardContent>
+                                    </IonCard>
+                                </IonCol>
+                            ))}
+                            {/*<IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">*/}
+                            {/*    <IonCard style={{borderRadius: '20px'}}>*/}
+                            {/*        <IonCardHeader>*/}
+                            {/*            <IonTitle>*/}
+                            {/*                Backend-разработчик C#*/}
+                            {/*            </IonTitle>*/}
+                            {/*        </IonCardHeader>*/}
+                            {/*        <IonCardContent>*/}
+                            {/*            <IonItem>*/}
+                            {/*                Краткое описание*/}
+                            {/*            </IonItem>*/}
+                            {/*            <IonButton*/}
+                            {/*                expand="block" fill="clear" color="transparent">Просмотреть вакансию*/}
+                            {/*            </IonButton>*/}
+                            {/*        </IonCardContent>*/}
+                            {/*    </IonCard>*/}
+                            {/*</IonCol>*/}
+                            {/*<IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">*/}
+                            {/*    <IonCard style={{borderRadius: '20px'}}>*/}
+                            {/*        <IonCardHeader>*/}
+                            {/*            <IonTitle>*/}
+                            {/*                Backend-разработчик C#*/}
+                            {/*            </IonTitle>*/}
+                            {/*        </IonCardHeader>*/}
+                            {/*        <IonCardContent>*/}
+                            {/*            <IonItem>*/}
+                            {/*                Краткое описание*/}
+                            {/*            </IonItem>*/}
+                            {/*            <IonButton*/}
+                            {/*                expand="block" fill="clear" color="transparent">Просмотреть вакансию*/}
+                            {/*            </IonButton>*/}
+                            {/*        </IonCardContent>*/}
+                            {/*    </IonCard>*/}
+                            {/*</IonCol>*/}
                         </IonRow>
                     </IonGrid>
                 </IonContent>

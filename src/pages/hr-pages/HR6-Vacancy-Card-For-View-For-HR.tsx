@@ -202,7 +202,7 @@ const HR6VacancyCardForView = () => {
                             <IonCol>
                                 <IonCard style={{borderRadius: '20px', marginTop: '120px'}}>
                                     <IonCardContent>
-                                        <IonButton
+                                        <IonButton routerLink="/hr-test-page"
                                             expand="block" fill="clear" color="transparent">Добавить этап
                                         </IonButton>
                                     </IonCardContent>
