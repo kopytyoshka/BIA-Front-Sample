@@ -27,8 +27,8 @@ ssh $REMOTE_USER@$REMOTE_HOST "mkdir -p $target_folder"
 # --------------------------------------------------------
 echo "[INFO] Remote host $REMOTE_HOST -> copy files"
 cat $DEPLOY_DIR/docker-compose.template.yml | envsubst '${DOCKER_IMAGE}' | ssh $REMOTE_USER@$REMOTE_HOST "cat > $target_folder/docker-compose.yml"
-# scp $DEPLOY_DIR/config.js $REMOTE_USER@$REMOTE_HOST:$target_folder/
-# scp $DEPLOY_DIR/default.conf $REMOTE_USER@$REMOTE_HOST:$target_folder/
+scp $DEPLOY_DIR/config.js $REMOTE_USER@$REMOTE_HOST:$target_folder/
+scp $DEPLOY_DIR/default.conf $REMOTE_USER@$REMOTE_HOST:$target_folder/
 # --------------------------------------------------------
 echo "[INFO] Remote host $REMOTE_HOST -> run deploy"
 

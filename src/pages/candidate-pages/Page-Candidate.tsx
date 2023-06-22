@@ -13,7 +13,7 @@ import {
     IonToolbar
 } from '@ionic/react';
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
-// import VacancyListShow from "../scripts/VacancyCardComponent.js"
+import handleToken from "../../scripts/CookiesToken";
 
 function PageCandidate() {
 
@@ -26,10 +26,11 @@ function PageCandidate() {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [image, setImage] = useState('')
+    const userId = handleToken();
 
 
     const fetchDataVacancies = () => {
-        fetch("/api/vacancy/allVacancies")
+        fetch("/api/vacancy/allVacanciesForUser")
             .then(response => {
                 return response.json()
             })
@@ -40,7 +41,7 @@ function PageCandidate() {
     }
 
     const fetchDataOtkliki = () => {
-        fetch('/api/userInfo/getUsersResponses')
+        fetch('/api/userInfo/getUsersResponses?userId=' + userId)
             .then(response => {
                 return response.json()
             })
@@ -51,7 +52,7 @@ function PageCandidate() {
     }
 
     const fetchUserData = () => {
-        fetch("/api/userInfo/getUserInformation")
+        fetch("/api/userInfo/getUsersInfo?userId=" + userId)
             .then(response => {
                 return response.json()
             })
@@ -68,8 +69,6 @@ function PageCandidate() {
         fetchDataVacancies()
         fetchUserData()
         fetchDataOtkliki()
-
-
     }, [])
 
     return (
