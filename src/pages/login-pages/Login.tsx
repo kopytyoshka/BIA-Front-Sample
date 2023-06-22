@@ -72,14 +72,9 @@ function Login() {
             if (response.ok) {
                 const responseData = await response.json();
                 const token = responseData.token;
-                const decoded = jwtDecode(token) as { sub: string };
-                const userId = decoded['sub'];
-                console.log(decoded)
-                console.log(userId)
                 const expirationDate = new Date();  // Create a new Date object
                 expirationDate.setDate(expirationDate.getDate() + 7);  // Set the expiration date to 7 days from now
                 document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}; path=/`
-                document.cookie = `userId=${userId}; expires=${expirationDate.toUTCString()}; path=/`
                 redirectToExternalSite('/home');
             } else if (response.status === 403) {
                 // Handle 403 Forbidden error
