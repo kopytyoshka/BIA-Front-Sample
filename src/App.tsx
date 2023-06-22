@@ -36,7 +36,8 @@ import HR7EditVacancyCard from "./pages/hr-pages/HR7-Edit-Vacancy-Card";
 import HR8AllVacancies from "./pages/hr-pages/HR8-All-Vacancies";
 import * as path from "path";
 import handleToken from "./scripts/CookiesToken";
-
+import login from "./pages/login-pages/Login";
+const userRole = handleToken();
 setupIonicReact();
 const App: React.FC = () => (
 
@@ -74,8 +75,7 @@ const App: React.FC = () => (
                 <Route exact path="/hr8-all-vacancies">
                     <HR8AllVacancies/>
                 </Route>
-                <Route exact path="/login" component={Login}/>
-                <Route exact path="/register" component={Registration}/>
+                <Route path="/login" component={Login}/>
                 <Route path="/list-candidates/:id" component={ListCandidates}/>
                 <Route path="/candidate-card/:id" component={CandidateCardForHR}/>
             </IonRouterOutlet>
