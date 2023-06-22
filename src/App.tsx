@@ -1,4 +1,4 @@
-import {Redirect, Route} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import {IonApp, IonRouterOutlet, setupIonicReact} from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
 /* Core CSS required for Ionic components to work properly */
@@ -43,8 +43,6 @@ setupIonicReact();
 const App: React.FC = () => (
 
 
-
-
     <IonApp>
         <IonReactRouter>
             <IonRouterOutlet>
@@ -78,23 +76,26 @@ const App: React.FC = () => (
                 <Route exact path="/hr8-all-vacancies">
                     <HR8AllVacancies/>
                 </Route>
-                <ProtectedRoute
-                    path="/admin"
-                    component={PageHR}
-                    allowedRoles={["HR"]}
-                    userRole={userRole}
-                    redirectPath="/login"
-                />
-                <ProtectedRoute
-                    path="/user"
-                    component={PageCandidate}
-                    allowedRoles={["USER"]}
-                    userRole={userRole}
-                    redirectPath="/login"
-                />
-                <Route path="/login" component={Login}/>
-                <Route path="/list-candidates/:id" component={ListCandidates} />
-                <Route path="/candidate-card/:id" component={CandidateCardForHR} />
+                <Switch>
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/register" component={Registration}/>
+                    <ProtectedRoute
+                        path="/admin"
+                        component={PageHR}
+                        allowedRoles={["HR"]}
+                        userRole={userRole}
+                        redirectPath="/login"
+                    />
+                    <ProtectedRoute
+                        path="/user"
+                        component={PageCandidate}
+                        allowedRoles={["USER"]}
+                        userRole={userRole}
+                        redirectPath="/login"
+                    />
+                </Switch>
+                <Route path="/list-candidates/:id" component={ListCandidates}/>
+                <Route path="/candidate-card/:id" component={CandidateCardForHR}/>
             </IonRouterOutlet>
         </IonReactRouter>
     </IonApp>
