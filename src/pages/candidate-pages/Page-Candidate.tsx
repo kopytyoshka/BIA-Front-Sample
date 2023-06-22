@@ -28,18 +28,6 @@ function PageCandidate() {
     const [image, setImage] = useState('')
     const userId = handleToken();
 
-
-    const fetchDataVacancies = () => {
-        fetch("/api/vacancy/allVacanciesForUser")
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                setVacancy(data)
-                console.log(vacancy)
-            })
-    }
-
     const fetchDataOtkliki = () => {
         fetch('/api/userInfo/getUsersResponses?userId=' + userId)
             .then(response => {
@@ -66,7 +54,6 @@ function PageCandidate() {
     }
 
     useEffect(() => {
-        fetchDataVacancies()
         fetchUserData()
         fetchDataOtkliki()
     }, [])
@@ -81,13 +68,6 @@ function PageCandidate() {
                         <IonButtons slot="start">
                             <IonMenuButton></IonMenuButton>
                         </IonButtons>
-                        {/*<IonButtons slot="end">*/}
-                        {/*    <IonMenuToggle>*/}
-                        {/*        <IonItem lines="none" routerLink="/logout">*/}
-                        {/*            <IonTitle>Выйти</IonTitle>*/}
-                        {/*        </IonItem>*/}
-                        {/*    </IonMenuToggle>*/}
-                        {/*</IonButtons>*/}
                         <IonTitle>Личные Данные</IonTitle>
                     </IonToolbar>
                 </IonHeader>
@@ -147,33 +127,6 @@ function PageCandidate() {
                             ))}
                         </IonRow>
                     </IonGrid>
-
-
-                    <div className="response-vacancy-header">
-                        <h1>Вакансии</h1>
-                        <IonLabel><i>Для ознакомления</i></IonLabel>
-                    </div>
-
-                    <IonGrid style={{margin: "10px"}}>
-                        <IonRow style={{margin: "0px"}}>
-                            {vacancy.map(vac => (
-                                    <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
-                                            className="vacancy-cards-list" key={vac.vacancyId}>
-                                        <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                            <IonCardHeader>
-                                                <IonCardTitle style={{fontWeight: 600}}>{vac.vacancyName}</IonCardTitle>
-                                            </IonCardHeader>
-                                            <IonItem>
-                                                <IonBadge slot="start" color={"success"}>{vac.vacancyStatus}</IonBadge>
-                                                <IonBadge slot="end" color={"warning"}>{vac.workExperience}</IonBadge>
-                                            </IonItem>
-                                        </IonCard>
-                                    </IonCol>
-                                )
-                            )}
-                        </IonRow>
-                    </IonGrid>
-
                 </IonContent>
             </IonPage>
         </>
