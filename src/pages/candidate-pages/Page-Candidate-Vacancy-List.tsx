@@ -10,11 +10,37 @@ import {
     IonTitle,
     IonToolbar
 } from "@ionic/react";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {warning} from "ionicons/icons";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
+import PageCandidateVacancyInfo from "./Page-Candidate-Vacancy-Info";
 
+const [vacancy, setVacancy] = useState<any[]>([])
+
+interface WorkExperienceProps {
+    workExperience: string;
+}
+
+function formatWorkExperience(workExperience: string): string {
+    return workExperience === "WithoutExp" ? "Без опыта работы" : workExperience;
+}
+
+const fetchDataVacancies = () => {
+    fetch("/api/vacancy/allVacanciesForUser")
+        .then(response => {
+            return response.json()
+        })
+        .then(data => {
+            setVacancy(data)
+            console.log(vacancy)
+        })
+}
+
+useEffect(() => {
+    fetchDataVacancies()
+}, [])
 const PageCandidateVacancyList = () => {
+
     return (
         <>
             <PopupMenuCandidate/>
@@ -68,6 +94,22 @@ const PageCandidateVacancyList = () => {
                                         </IonList>
                                     </IonCardContent>
                                 </IonCard>
+                                {vacancy.map(vac => (
+
+                                        <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
+                                                className="vacancy-cards-list" key={vac.vacancyId}>
+                                            <IonCard className="vacancy-cards" style={{borderRadius: '20px'}} onClick={PageCandidateVacancyInfo}>
+                                                <IonCardHeader>
+                                                    <IonCardTitle style={{fontWeight: 600}}>{vac.vacancyName}</IonCardTitle>
+                                                </IonCardHeader>
+                                                <IonItem>
+                                                    <IonBadge slot="start" color={"success"}>{vac.description}</IonBadge>
+                                                    <IonBadge slot="end" color={"warning"}>{formatWorkExperience(vac.workExperience)}</IonBadge>
+                                                </IonItem>
+                                            </IonCard>
+                                        </IonCol>
+                                    )
+                                )}
                             </IonCol>
                         </IonRow>
                     </IonGrid>
