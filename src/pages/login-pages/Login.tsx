@@ -15,6 +15,9 @@ import "../../styles/Test-Form.css"
 import {redirectToExternalSite} from "../../scripts/utils";
 import jwtDecode from "jwt-decode";
 
+declare global {
+    let userId: string;
+}
 function Login() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -74,7 +77,7 @@ function Login() {
                     const token = responseData.token;
                     const decoded = jwtDecode(token) as { sub: string };
                     console.log(decoded)
-                    const userId = decoded['sub'];
+                    userId = decoded['sub'];
                     console.log(userId)
                     const expirationDate = new Date();  // Create a new Date object
                     expirationDate.setDate(expirationDate.getDate() + 7);  // Set the expiration date to 7 days from now
