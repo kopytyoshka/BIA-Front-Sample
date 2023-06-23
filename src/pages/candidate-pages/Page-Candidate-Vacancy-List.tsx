@@ -120,8 +120,10 @@ function PageCandidateVacancyList() {
                                                 <IonCardHeader>
                                                     <IonCardTitle style={{fontWeight: 600}}>{vac.vacancyName}</IonCardTitle>
                                                 </IonCardHeader>
+                                                <IonItem lines="none">
+                                                    <IonItem slot="start">{vac.description}</IonItem>
+                                                </IonItem>
                                                 <IonItem>
-                                                    <IonBadge slot="start" color={"success"}>{vac.description}</IonBadge>
                                                     <IonBadge slot="end"
                                                               color={
                                                                   vac.workExperience === "WithoutExperience" ? "success" :
@@ -131,7 +133,7 @@ function PageCandidateVacancyList() {
                                                         {formatWorkExperience(vac.workExperience)}
                                                     </IonBadge>
                                                 </IonItem>
-                                                <IonItem>
+                                                <IonItem style={{justifyContent: "center"}}>
                                                     <IonButton onClick={() => handleItemClick(vac.vacancyId)}>Просмотреть вакансию</IonButton>
                                                 </IonItem>
                                             </IonCard>
