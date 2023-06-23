@@ -36,6 +36,8 @@ function PageCandidateVacancyInfo() {
                 console.log(data)
             })
     }
+
+
     useEffect(() => {
         fetchVacancyData()
     }, [])

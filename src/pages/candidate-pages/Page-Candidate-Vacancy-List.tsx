@@ -58,7 +58,6 @@ function PageCandidateVacancyList() {
         history.push(`/vacancy/${id}`);
     };
 
-
     return (
         <>
             <PopupMenuCandidate/>
@@ -123,11 +122,7 @@ function PageCandidateVacancyList() {
                                                 <IonCardTitle style={{fontWeight: 600}}>{vac.vacancyName}</IonCardTitle>
                                             </IonCardHeader>
                                             <IonItem>
-                                                <IonTextarea readonly={true}
-                                                             maxlength={150}
-                                                             counter={false}>
-                                                    {vac.description + "..."}
-                                                </IonTextarea>
+                                                {vac.description.length > 150 ? vac.description.slice(0, 150) + '...' : vac.description}
                                             </IonItem>
                                             <IonItem>
                                                 <IonBadge slot="end"
