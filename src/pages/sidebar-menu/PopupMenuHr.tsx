@@ -14,7 +14,7 @@ import {
 } from '@ionic/react';
 import {openExternalSite} from "../../scripts/utils";
 
-function PopupMenu() {
+function PopupMenuHr() {
     function nullifyAllCookies() {
         const cookies = document.cookie.split(";");
 
@@ -69,4 +69,4 @@ function PopupMenu() {
     );
 }
 
-export default PopupMenu;
+export default PopupMenuHr;

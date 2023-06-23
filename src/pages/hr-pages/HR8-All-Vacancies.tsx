@@ -12,7 +12,7 @@ import {
     IonToolbar
 } from '@ionic/react';
 import '../../styles/Page-HR.css'
-import PopupMenu from "../sidebar-menu/Popup-Menu";
+import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 
 const HR8AllVacancies = () => {
 
@@ -29,7 +29,7 @@ const HR8AllVacancies = () => {
 
     return (
         <>
-            <PopupMenu/>
+            <PopupMenuHr/>
             <IonPage id="main-content">
 
                 <IonHeader>

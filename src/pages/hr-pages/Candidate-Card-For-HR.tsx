@@ -13,7 +13,7 @@ import {
     IonTitle,
     IonToolbar
 } from '@ionic/react';
-import PopupMenu from "../sidebar-menu/Popup-Menu";
+import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useParams} from "react-router";
 
 interface Stage {
@@ -79,7 +79,7 @@ const CandidateCardForHR = () => {
 
     return (
         <>
-            <PopupMenu/>
+            <PopupMenuHr/>
             <IonPage id="main-content">
 
                 <IonHeader>

@@ -317,7 +317,7 @@ import {
 import React, {useState} from "react";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import "../../styles/Test-Form.css"
-import PopupMenu from "../sidebar-menu/Popup-Menu";
+import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {car} from "ionicons/icons";
 
 function HR4TestPageTest2() {
@@ -383,7 +383,7 @@ function HR4TestPageTest2() {
 
     return (
         <>
-            <PopupMenu/>
+            <PopupMenuHr/>
             <IonPage id="main-content">
                 <IonHeader>
                     <IonToolbar>

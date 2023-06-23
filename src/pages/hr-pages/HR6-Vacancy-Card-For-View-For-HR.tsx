@@ -12,7 +12,7 @@ import {
     IonToolbar
 } from '@ionic/react';
 import '../../styles/Page-HR.css'
-import PopupMenu from "../sidebar-menu/Popup-Menu";
+import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 
 const HR6VacancyCardForView = () => {
     const [handlerMessage, setHandlerMessage] = useState('');
@@ -20,7 +20,7 @@ const HR6VacancyCardForView = () => {
 
     return (
         <>
-            <PopupMenu/>
+            <PopupMenuHr/>
             <IonPage id="main-content">
 
                 <IonHeader>

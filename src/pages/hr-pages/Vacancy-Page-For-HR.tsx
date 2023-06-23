@@ -1,4 +1,4 @@
-import PopupMenu from "../sidebar-menu/Popup-Menu";
+import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import '../../styles/Page-Candidate.css'
 import {
     IonBadge,
@@ -36,7 +36,7 @@ import React from "react";
 function VacancyPageForHR() {
     return (
         <>
-            <PopupMenu/>
+            <PopupMenuHr/>
             <IonPage id="main-content">
 
                 <IonHeader>

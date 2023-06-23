@@ -12,14 +12,14 @@ import {
     IonToolbar
 } from '@ionic/react';
 import '../../styles/Page-HR.css'
-import PopupMenu from "../sidebar-menu/Popup-Menu";
+import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 
 const HR7EditVacancyCard = () => {
     const [handlerMessage, setHandlerMessage] = useState('');
     const [roleMessage, setRoleMessage] = useState('');
     return (
         <>
-            <PopupMenu/>
+            <PopupMenuHr/>
             <IonPage id="main-content">
 
                 <IonHeader>

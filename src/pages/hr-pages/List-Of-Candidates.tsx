@@ -13,7 +13,7 @@ import {
     IonToolbar
 } from "@ionic/react";
 import React, {useEffect, useState} from 'react';
-import PopupMenu from "../sidebar-menu/Popup-Menu";
+import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useHistory, useParams} from "react-router";
 
 interface Stage {
@@ -65,7 +65,7 @@ const ListCandidates = () => {
 // function ListCandidates() {
     return (
         <>
-            <PopupMenu/>
+            <PopupMenuHr/>
             <IonPage id="main-content">
 
                 <IonHeader>
