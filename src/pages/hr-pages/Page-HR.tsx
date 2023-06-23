@@ -13,6 +13,7 @@ import {
 } from '@ionic/react';
 import PopupMenu from "../sidebar-menu/Popup-Menu-Candidate";
 import {useHistory} from "react-router";
+import handleToken from "../../scripts/CookiesToken";
 
 const PageHR = () => {
 
@@ -37,7 +38,7 @@ const PageHR = () => {
     }
 
     const fetchUserData = () => {
-        fetch("/api/userInfo/getUserInformation")
+        fetch("/api/userInfo/getUsersInfo?userId" + handleToken())
             .then(response => {
                 return response.json()
             })
