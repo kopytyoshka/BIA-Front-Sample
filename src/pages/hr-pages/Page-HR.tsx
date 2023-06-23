@@ -11,9 +11,9 @@ import {
     IonTitle,
     IonToolbar
 } from '@ionic/react';
-import PopupMenu from "../sidebar-menu/Popup-Menu-Candidate";
 import {useHistory} from "react-router";
 import handleToken from "../../scripts/CookiesToken";
+import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 
 const PageHR = () => {
 
@@ -56,7 +56,7 @@ const PageHR = () => {
 // function PageHR() {
     return (
         <>
-            <PopupMenu/>
+            <PopupMenuHr/>
             <IonPage id="main-content">
 
                 <IonHeader>

@@ -62,7 +62,6 @@ const ListCandidates = () => {
         fetchData()
     }, [])
 
-// function ListCandidates() {
     return (
         <>
             <PopupMenuHr/>

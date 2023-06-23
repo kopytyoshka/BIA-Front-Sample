@@ -33,6 +33,7 @@ import {
     IonToolbar
 } from "@ionic/react";
 import React from "react";
+
 function VacancyPageForHR() {
     return (
         <>
@@ -59,7 +60,8 @@ function VacancyPageForHR() {
 
                     <IonGrid>
                         <IonRow>
-                            <IonCol style={{padding: "0"}} size="3" sizeXs="12" sizeSm="3" sizeMd="3" sizeLg="3" sizeXl="2.5">
+                            <IonCol style={{padding: "0"}} size="3" sizeXs="12" sizeSm="3" sizeMd="3" sizeLg="3"
+                                    sizeXl="2.5">
                                 <IonItem lines="none" color="transparent">
                                     <h1 style={{fontSize: "3vh", marginLeft: "0"}}>Backend разработчик на Java</h1>
                                 </IonItem>
@@ -155,7 +157,8 @@ function VacancyPageForHR() {
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="8">
                                 <IonCard style={{borderRadius: '20px'}}>
                                     <IonItem>
-                                        <IonTextarea placeholder="Описание" autoGrow={true} style={{height: "300px"}}></IonTextarea>
+                                        <IonTextarea placeholder="Описание" autoGrow={true}
+                                                     style={{height: "300px"}}></IonTextarea>
                                     </IonItem>
                                 </IonCard>
                             </IonCol>
