@@ -17,7 +17,7 @@ import {useHistory} from "react-router";
 export function formatWorkExperience(workExperience: string): string {
     return workExperience === "WithoutExperience" ? "Без опыта работы" :
         workExperience === "MoreTwoYears" ? "Более двух лет" :
-            workExperience === "CoupleOfYears" ? "1-а года" :
+            workExperience === "CoupleOfYears" ? "1-2 года" :
                 "not-documented"
 }
 
