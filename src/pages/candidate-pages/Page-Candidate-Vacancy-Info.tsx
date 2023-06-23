@@ -77,7 +77,13 @@ function PageCandidateVacancyInfo() {
                                             </IonItem>
                                         </IonItem>
                                         <IonItem lines="none">
-                                            {'Сфера работы:' + data.sphere}
+                                            <IonItem>
+                                                <IonLabel>Сфера:</IonLabel>
+                                                <IonBadge slot="end"
+                                                          color={"warning"}>
+                                                    {data.sphere}
+                                                </IonBadge>
+                                            </IonItem>
                                         </IonItem>
                                     </IonList>
                                 </IonCard>

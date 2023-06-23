@@ -6,7 +6,7 @@ import {
     IonHeader, IonInput, IonItem,
     IonLabel, IonList,
     IonMenuButton, IonPage, IonRadio, IonRadioGroup,
-    IonRow, IonSearchbar, IonText,
+    IonRow, IonSearchbar, IonText, IonTextarea,
     IonTitle,
     IonToolbar
 } from "@ionic/react";
@@ -123,9 +123,11 @@ function PageCandidateVacancyList() {
                                                 <IonCardTitle style={{fontWeight: 600}}>{vac.vacancyName}</IonCardTitle>
                                             </IonCardHeader>
                                             <IonItem>
-                                                <IonInput readonly={true} aria-rowcount={2}>
-                                                    {vac.description}
-                                                </IonInput>
+                                                <IonTextarea readonly={true}
+                                                             maxlength={150}
+                                                             counter={false}>
+                                                    {vac.description + "..."}
+                                                </IonTextarea>
                                             </IonItem>
                                             <IonItem>
                                                 <IonBadge slot="end"
