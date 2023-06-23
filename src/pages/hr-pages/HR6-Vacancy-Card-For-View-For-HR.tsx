@@ -17,6 +17,7 @@ import PopupMenu from "../sidebar-menu/Popup-Menu";
 const HR6VacancyCardForView = () => {
     const [handlerMessage, setHandlerMessage] = useState('');
     const [roleMessage, setRoleMessage] = useState('');
+
     return (
         <>
             <PopupMenu/>
