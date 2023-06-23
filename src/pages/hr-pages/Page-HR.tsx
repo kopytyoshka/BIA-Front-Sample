@@ -38,7 +38,7 @@ const PageHR = () => {
     }
 
     const fetchUserData = () => {
-        fetch("/api/userInfo/getUsersInfo?userId" + handleToken())
+        fetch("/api/userInfo/getUsersInfo?userId=" + handleToken())
             .then(response => {
                 return response.json()
             })
