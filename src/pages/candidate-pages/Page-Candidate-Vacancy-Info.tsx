@@ -32,8 +32,8 @@ function PageCandidateVacancyInfo() {
 
     async function Response() {
         let makeResponseData = {
-            userId: handleToken(),
-            vacancyId: id,
+            user: handleToken(),
+            vacancy: id,
         };
 
         try {
