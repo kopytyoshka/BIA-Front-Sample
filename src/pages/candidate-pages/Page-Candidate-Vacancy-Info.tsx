@@ -75,9 +75,9 @@ function PageCandidateVacancyInfo() {
                                                     {formatWorkExperience(data.workExperience)}
                                                 </IonBadge>
                                             </IonItem>
-                                            <IonItem lines="none">
-                                                {'Сфера работы:' + data.sphere}
-                                            </IonItem>
+                                        </IonItem>
+                                        <IonItem lines="none">
+                                            {'Сфера работы:' + data.sphere}
                                         </IonItem>
                                     </IonList>
                                 </IonCard>

@@ -3,7 +3,7 @@ import {
     IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle,
     IonCol,
     IonContent, IonGrid,
-    IonHeader, IonItem,
+    IonHeader, IonInput, IonItem,
     IonLabel, IonList,
     IonMenuButton, IonPage, IonRadio, IonRadioGroup,
     IonRow, IonSearchbar, IonText,
@@ -24,9 +24,9 @@ interface WorkExperienceProps {
 
 export function formatWorkExperience(workExperience: string): string {
     return workExperience === "WithoutExperience" ? "Без опыта работы" :
-            workExperience === "MoreTwoYears" ? "Более двух лет" :
-                workExperience === "CoupleOfYears" ? "1-а года" :
-                    "not-documented"
+        workExperience === "MoreTwoYears" ? "Более двух лет" :
+            workExperience === "CoupleOfYears" ? "1-а года" :
+                "not-documented"
 }
 
 
@@ -52,13 +52,11 @@ function PageCandidateVacancyList() {
     }, [])
 
 
-
     const history = useHistory();
 
     const handleItemClick = (id: string) => {
         history.push(`/vacancy/${id}`);
     };
-
 
 
     return (
@@ -115,35 +113,34 @@ function PageCandidateVacancyList() {
                                     </IonCardContent>
                                 </IonCard>
                             </IonCol>
-                                {vacancy.map(vac => (
+                            {vacancy.map(vac => (
 
-                                        <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
-                                                className="vacancy-cards-list" key={vac.vacancyId}>
-                                            <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}
-                                                     onClick={PageCandidateVacancyInfo}>
-                                                <IonCardHeader>
-                                                    <IonCardTitle style={{fontWeight: 600}}>{vac.vacancyName}</IonCardTitle>
-                                                </IonCardHeader>
-                                                <IonItem lines="none">
-                                                    <IonItem slot="start" aria-rowcount={2}>{vac.description}</IonItem>
-                                                </IonItem>
-                                                <IonItem>
-                                                    <IonBadge slot="end"
-                                                              color={
-                                                                  vac.workExperience === "WithoutExperience" ? "success" :
-                                                                      vac.workExperience === "MoreTwoYears" ? "danger" :
-                                                                          "warning"
-                                                              }>
-                                                        {formatWorkExperience(vac.workExperience)}
-                                                    </IonBadge>
-                                                </IonItem>
-                                                <IonItem style={{justifyContent: "center"}}>
-                                                    <IonButton onClick={() => handleItemClick(vac.vacancyId)}>Просмотреть вакансию</IonButton>
-                                                </IonItem>
-                                            </IonCard>
-                                        </IonCol>
-                                    )
-                                )}
+                                    <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
+                                            className="vacancy-cards-list" key={vac.vacancyId}>
+                                        <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}
+                                                 onClick={() => handleItemClick(vac.vacancyId)}>
+                                            <IonCardHeader>
+                                                <IonCardTitle style={{fontWeight: 600}}>{vac.vacancyName}</IonCardTitle>
+                                            </IonCardHeader>
+                                            <IonItem>
+                                                <IonInput readonly={true} aria-rowcount={2}>
+                                                    {vac.description}
+                                                </IonInput>
+                                            </IonItem>
+                                            <IonItem>
+                                                <IonBadge slot="end"
+                                                          color={
+                                                              vac.workExperience === "WithoutExperience" ? "success" :
+                                                                  vac.workExperience === "MoreTwoYears" ? "danger" :
+                                                                      "warning"
+                                                          }>
+                                                    {formatWorkExperience(vac.workExperience)}
+                                                </IonBadge>
+                                            </IonItem>
+                                        </IonCard>
+                                    </IonCol>
+                                )
+                            )}
                         </IonRow>
                     </IonGrid>
                 </IonContent>
