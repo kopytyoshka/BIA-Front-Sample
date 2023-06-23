@@ -10,11 +10,36 @@ import {
     IonTitle,
     IonToolbar
 } from "@ionic/react";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {warning} from "ionicons/icons";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
+import {useParams} from "react-router";
 
-const PageCandidateVacancyInfo = () => {
+
+function PageCandidateVacancyInfo() {
+
+    interface VacancyParam {
+        id: string;
+    }
+
+    const { id } = useParams<VacancyParam>();
+    const [data, setData] = useState(null);
+
+    const fetchVacancyData = () => {
+        fetch("/api/vacancy/getCandidatesByVacancy?vacancyId=" + id)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setData(data)
+                console.log(data)
+            })
+    }
+    useEffect(() => {
+        fetchVacancyData()
+    }, [])
+
+
     return (
         <>
             <PopupMenuCandidate/>
@@ -58,12 +83,14 @@ const PageCandidateVacancyInfo = () => {
                                         elit. Mauris tellus sem, auctor accumsan egestas sed, venenatis at ex. Nam
                                         consequat ex odio, suscipit rhoncus orci dictum eget. Aenean sit amet ligula
                                         varius felis facilisis lacinia nec volutpat nulla. Duis ullamcorper sit amet
-                                        turpis sed blandit. Integer pretium massa eu faucibus interdum.Lorem ipsum dolor
+                                        turpis sed blandit. Integer pretium massa eu faucibus interdum.Lorem ipsum
+                                        dolor
                                         sit amet, consectetur adipiscing
                                         elit. Mauris tellus sem, auctor accumsan egestas sed, venenatis at ex. Nam
                                         consequat ex odio, suscipit rhoncus orci dictum eget. Aenean sit amet ligula
                                         varius felis facilisis lacinia nec volutpat nulla. Duis ullamcorper sit amet
-                                        turpis sed blandit. Integer pretium massa eu faucibus interdum.Lorem ipsum dolor
+                                        turpis sed blandit. Integer pretium massa eu faucibus interdum.Lorem ipsum
+                                        dolor
                                         sit amet, consectetur adipiscing
                                         elit. Mauris tellus sem, auctor accumsan egestas sed, venenatis at ex. Nam
                                         consequat ex odio, suscipit rhoncus orci dictum eget. Aenean sit amet ligula

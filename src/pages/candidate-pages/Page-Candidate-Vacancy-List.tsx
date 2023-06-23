@@ -14,6 +14,8 @@ import React, {useEffect, useState} from "react";
 import {warning} from "ionicons/icons";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import PageCandidateVacancyInfo from "./Page-Candidate-Vacancy-Info";
+import {redirectToExternalSite} from "../../scripts/utils";
+import {useHistory} from "react-router";
 
 
 interface WorkExperienceProps {
@@ -45,6 +47,16 @@ function PageCandidateVacancyList() {
     useEffect(() => {
         fetchDataVacancies()
     }, [])
+
+
+
+    const history = useHistory();
+
+    const handleItemClick = (id: string) => {
+        history.push(`/vacancy/${id}`);
+    };
+
+
 
     return (
         <>
@@ -118,6 +130,9 @@ function PageCandidateVacancyList() {
                                                               }>
                                                         {formatWorkExperience(vac.workExperience)}
                                                     </IonBadge>
+                                                </IonItem>
+                                                <IonItem>
+                                                    <IonButton onClick={() => handleItemClick(vac.vacancyId)}>Просмотреть вакансию</IonButton>
                                                 </IonItem>
                                             </IonCard>
                                         </IonCol>

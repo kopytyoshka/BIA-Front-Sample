@@ -36,6 +36,7 @@ import HR8AllVacancies from "./pages/hr-pages/HR8-All-Vacancies";
 import handleToken from "./scripts/CookiesToken";
 import HR4TestPage from "./pages/hr-pages/HR4-Test-Page";
 import PageCandidateVacancyList from "./pages/candidate-pages/Page-Candidate-Vacancy-List";
+import pageCandidateVacancyInfo from "./pages/candidate-pages/Page-Candidate-Vacancy-Info";
 
 const userRole = handleToken();
 setupIonicReact();
@@ -82,6 +83,7 @@ const App: React.FC = () => (
                     <PageCandidateVacancyList/>
                 </Route>
                 <Route path="/login" component={Login}/>
+                <Route path='/vacancy/:id' component={pageCandidateVacancyInfo}/>
                 <Route path="/list-candidates/:id" component={ListCandidates}/>
                 <Route path="/candidate-card/:id" component={CandidateCardForHR}/>
             </IonRouterOutlet>
