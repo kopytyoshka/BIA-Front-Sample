@@ -67,7 +67,7 @@ function PopupMenuCandidate() {
                             </IonItem>
                         </IonMenuToggle>
                         <IonMenuToggle>
-                            <IonItem>
+                            <IonItem routerLink="/login">
                                 <IonIcon src="../images/terminal-outline.svg" slot="start"></IonIcon>
                                 <IonLabel onClick={nullifyAllCookies}>Выйти</IonLabel>
                             </IonItem>
@@ -75,17 +75,6 @@ function PopupMenuCandidate() {
                     </IonList>
                 </IonContent>
             </IonMenu>
-            {/*<IonPage id="main-content">*/}
-            {/*    <IonHeader>*/}
-            {/*        <IonToolbar>*/}
-            {/*            <IonButtons slot="start">*/}
-            {/*                <IonMenuButton></IonMenuButton>*/}
-            {/*            </IonButtons>*/}
-            {/*            <IonTitle>Menu</IonTitle>*/}
-            {/*        </IonToolbar>*/}
-            {/*    </IonHeader>*/}
-            {/*    /!*<IonContent className="ion-padding">тут отрисовка говна</IonContent>*!/*/}
-            {/*</IonPage>*/}
         </>
     );
 }

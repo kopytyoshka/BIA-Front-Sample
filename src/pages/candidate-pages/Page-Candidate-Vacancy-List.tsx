@@ -96,6 +96,8 @@ function PageCandidateVacancyList() {
                                     </IonCardContent>
                                 </IonCard>
                             </IonCol>
+                        </IonRow>
+                        <IonRow>
                             {vacancy.map(vac => (
 
                                     <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
