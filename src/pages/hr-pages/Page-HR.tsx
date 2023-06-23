@@ -26,6 +26,7 @@ const PageHR = () => {
     const [vacancy, setVacancy] = useState<any[]>([])
     const [image, setImage] = useState('')
     const [name, setName] = useState('')
+    const [activeVacancies, setActiveVacancies] = useState<any[]>([])
 
     const fetchData = () => {
         fetch("/api/vacancy/allVacanciesForHR")
@@ -34,6 +35,16 @@ const PageHR = () => {
             })
             .then(data => {
                 setVacancy(data)
+            })
+    }
+
+    const fetchDataActiveVacancies = () => {
+        fetch("/api/vacancy/countActiveVacancies")
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setActiveVacancies(data)
             })
     }
 
@@ -51,6 +62,7 @@ const PageHR = () => {
     useEffect(() => {
         fetchData()
         fetchUserData()
+        fetchDataActiveVacancies()
     }, [])
 
 // function PageHR() {
@@ -95,7 +107,7 @@ const PageHR = () => {
                                         </IonItem>
 
                                         <IonItem routerLink="/">
-                                            <IonBadge slot="start">11</IonBadge>
+                                            <IonBadge slot="start">{activeVacancies}</IonBadge>
                                             <IonLabel>Активных вакансий</IonLabel>
                                         </IonItem>
 
