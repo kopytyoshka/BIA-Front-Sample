@@ -6,7 +6,7 @@ import {
     IonHeader, IonItem,
     IonLabel, IonList,
     IonMenuButton, IonPage, IonRadio, IonRadioGroup,
-    IonRow, IonSearchbar,
+    IonRow, IonSearchbar, IonText,
     IonTitle,
     IonToolbar
 } from "@ionic/react";
@@ -22,8 +22,11 @@ interface WorkExperienceProps {
     workExperience: string;
 }
 
-function formatWorkExperience(workExperience: string): string {
-    return workExperience === "WithoutExperience" ? "Без опыта работы" : workExperience;
+export function formatWorkExperience(workExperience: string): string {
+    return workExperience === "WithoutExperience" ? "Без опыта работы" :
+            workExperience === "MoreTwoYears" ? "Более двух лет" :
+                workExperience === "CoupleOfYears" ? "1-а года" :
+                    "not-documented"
 }
 
 
@@ -111,6 +114,7 @@ function PageCandidateVacancyList() {
                                         </IonList>
                                     </IonCardContent>
                                 </IonCard>
+                            </IonCol>
                                 {vacancy.map(vac => (
 
                                         <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
@@ -121,7 +125,7 @@ function PageCandidateVacancyList() {
                                                     <IonCardTitle style={{fontWeight: 600}}>{vac.vacancyName}</IonCardTitle>
                                                 </IonCardHeader>
                                                 <IonItem lines="none">
-                                                    <IonItem slot="start">{vac.description}</IonItem>
+                                                    <IonItem slot="start" aria-rowcount={2}>{vac.description}</IonItem>
                                                 </IonItem>
                                                 <IonItem>
                                                     <IonBadge slot="end"
@@ -140,7 +144,6 @@ function PageCandidateVacancyList() {
                                         </IonCol>
                                     )
                                 )}
-                            </IonCol>
                         </IonRow>
                     </IonGrid>
                 </IonContent>
