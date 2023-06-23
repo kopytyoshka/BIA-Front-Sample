@@ -30,6 +30,7 @@ function PageCandidateVacancyList() {
         workExperience: string;
     }
 
+    const [badgeColor, setBadgeColor] = useState("");
     const [vacancy, setVacancy] = useState<any[]>([])
     const fetchDataVacancies = () => {
         fetch("/api/vacancy/allVacanciesForUser")
@@ -44,7 +45,6 @@ function PageCandidateVacancyList() {
     useEffect(() => {
         fetchDataVacancies()
     }, [])
-
 
     return (
         <>
@@ -103,13 +103,21 @@ function PageCandidateVacancyList() {
 
                                         <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
                                                 className="vacancy-cards-list" key={vac.vacancyId}>
-                                            <IonCard className="vacancy-cards" style={{borderRadius: '20px'}} onClick={PageCandidateVacancyInfo}>
+                                            <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}
+                                                     onClick={PageCandidateVacancyInfo}>
                                                 <IonCardHeader>
                                                     <IonCardTitle style={{fontWeight: 600}}>{vac.vacancyName}</IonCardTitle>
                                                 </IonCardHeader>
                                                 <IonItem>
                                                     <IonBadge slot="start" color={"success"}>{vac.description}</IonBadge>
-                                                    <IonBadge slot="end" color={"warning"}>{formatWorkExperience(vac.workExperience)}</IonBadge>
+                                                    <IonBadge slot="end"
+                                                              color={
+                                                                  vac.workExperience === "WithoutExperience" ? "success" :
+                                                                      vac.workExperience === "MoreTwoYears" ? "danger" :
+                                                                          "warning"
+                                                              }>
+                                                        {formatWorkExperience(vac.workExperience)}
+                                                    </IonBadge>
                                                 </IonItem>
                                             </IonCard>
                                         </IonCol>
