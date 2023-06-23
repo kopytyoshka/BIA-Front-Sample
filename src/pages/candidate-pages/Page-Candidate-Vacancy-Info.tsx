@@ -14,6 +14,7 @@ import React, {useEffect, useState} from "react";
 import {warning} from "ionicons/icons";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import {useParams} from "react-router";
+import {formatWorkExperience} from "./Page-Candidate-Vacancy-List";
 
 
 function PageCandidateVacancyInfo() {
@@ -23,10 +24,10 @@ function PageCandidateVacancyInfo() {
     }
 
     const { id } = useParams<VacancyParam>();
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<any>([]);
 
     const fetchVacancyData = () => {
-        fetch("/api/vacancy/getCandidatesByVacancy?vacancyId=" + id)
+        fetch("/api/vacancy/getVacancyInfo?vacancyId=" + id)
             .then(response => {
                 return response.json()
             })
@@ -59,13 +60,23 @@ function PageCandidateVacancyInfo() {
                                     className="vacancy-cards-list">
                                 <IonCard style={{borderRadius: '20px'}}>
                                     <IonCardHeader>
-                                        <IonCardTitle style={{fontWeight: 600}}>Информация о вакансии</IonCardTitle>
+                                        <IonCardTitle style={{fontWeight: 600}}>{data.vacancyName}</IonCardTitle>
                                     </IonCardHeader>
                                     <IonList no-lines>
                                         <IonItem lines="none">
                                             <IonItem>
                                                 <IonLabel>Опыт работы</IonLabel>
-                                                <IonItem lines="none" slot="end">100 лет</IonItem>
+                                                <IonBadge slot="end"
+                                                          color={
+                                                              data.workExperience === "WithoutExperience" ? "success" :
+                                                                  data.workExperience === "MoreTwoYears" ? "danger" :
+                                                                      "warning"
+                                                          }>
+                                                    {formatWorkExperience(data.workExperience)}
+                                                </IonBadge>
+                                            </IonItem>
+                                            <IonItem lines="none">
+                                                {'Сфера работы:' + data.sphere}
                                             </IonItem>
                                         </IonItem>
                                     </IonList>
@@ -78,24 +89,7 @@ function PageCandidateVacancyInfo() {
                                     <IonCardTitle style={{fontWeight: 600}}>Описание вакансии</IonCardTitle>
                                 </IonCardHeader>
                                 <IonList no-lines>
-                                    <IonItem lines="none" style={{textAlign: "justify"}}>Lorem ipsum dolor sit amet,
-                                        consectetur adipiscing
-                                        elit. Mauris tellus sem, auctor accumsan egestas sed, venenatis at ex. Nam
-                                        consequat ex odio, suscipit rhoncus orci dictum eget. Aenean sit amet ligula
-                                        varius felis facilisis lacinia nec volutpat nulla. Duis ullamcorper sit amet
-                                        turpis sed blandit. Integer pretium massa eu faucibus interdum.Lorem ipsum
-                                        dolor
-                                        sit amet, consectetur adipiscing
-                                        elit. Mauris tellus sem, auctor accumsan egestas sed, venenatis at ex. Nam
-                                        consequat ex odio, suscipit rhoncus orci dictum eget. Aenean sit amet ligula
-                                        varius felis facilisis lacinia nec volutpat nulla. Duis ullamcorper sit amet
-                                        turpis sed blandit. Integer pretium massa eu faucibus interdum.Lorem ipsum
-                                        dolor
-                                        sit amet, consectetur adipiscing
-                                        elit. Mauris tellus sem, auctor accumsan egestas sed, venenatis at ex. Nam
-                                        consequat ex odio, suscipit rhoncus orci dictum eget. Aenean sit amet ligula
-                                        varius felis facilisis lacinia nec volutpat nulla. Duis ullamcorper sit amet
-                                        turpis sed blandit. Integer pretium massa eu faucibus interdum.</IonItem>
+                                    <IonItem lines="none" style={{textAlign: "justify"}}>{data.description}</IonItem>
                                 </IonList>
                             </IonCard>
                         </IonRow>
