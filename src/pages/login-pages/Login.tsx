@@ -94,7 +94,6 @@ function Login() {
 
     return (
         <>
-            <PopupMenuCandidate/>
             <IonPage id="main-content">
                 <IonHeader>
                     <IonToolbar>
