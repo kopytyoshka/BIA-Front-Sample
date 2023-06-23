@@ -1,13 +1,17 @@
 import React from 'react';
-import '../../styles/Popup-Menu-Style.css'
+import '../../styles/Popup-Menu-Style.css';
 import {
     IonBadge,
     IonButtons,
     IonContent,
-    IonHeader, IonIcon,
-    IonItem, IonLabel, IonList,
+    IonHeader,
+    IonIcon,
+    IonItem,
+    IonLabel,
+    IonList,
     IonMenu,
-    IonMenuButton, IonMenuToggle,
+    IonMenuButton,
+    IonMenuToggle,
     IonPage,
     IonTitle,
     IonToolbar
@@ -24,6 +28,7 @@ function PopupMenuCandidate() {
             document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
         }
     }
+
     return (
         <>
             <IonMenu contentId="main-content">
@@ -60,10 +65,11 @@ function PopupMenuCandidate() {
                                 <IonIcon src="./images/terminal-outline.svg" slot="start"></IonIcon>
                                 <IonLabel>Поддержка</IonLabel>
                             </IonItem>
-
+                        </IonMenuToggle>
+                        <IonMenuToggle>
                             <IonItem>
                                 <IonIcon src="../images/terminal-outline.svg" slot="start"></IonIcon>
-                                <IonLabel onClick={() => nullifyAllCookies()}>Выйти</IonLabel>
+                                <IonLabel onClick={nullifyAllCookies}>Выйти</IonLabel>
                             </IonItem>
                         </IonMenuToggle>
                     </IonList>
