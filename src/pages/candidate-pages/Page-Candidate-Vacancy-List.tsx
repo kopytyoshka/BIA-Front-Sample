@@ -11,16 +11,8 @@ import {
     IonToolbar
 } from "@ionic/react";
 import React, {useEffect, useState} from "react";
-import {warning} from "ionicons/icons";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
-import PageCandidateVacancyInfo from "./Page-Candidate-Vacancy-Info";
-import {redirectToExternalSite} from "../../scripts/utils";
 import {useHistory} from "react-router";
-
-
-interface WorkExperienceProps {
-    workExperience: string;
-}
 
 export function formatWorkExperience(workExperience: string): string {
     return workExperience === "WithoutExperience" ? "Без опыта работы" :
@@ -31,11 +23,7 @@ export function formatWorkExperience(workExperience: string): string {
 
 
 function PageCandidateVacancyList() {
-    interface WorkExperienceProps {
-        workExperience: string;
-    }
 
-    const [badgeColor, setBadgeColor] = useState("");
     const [vacancy, setVacancy] = useState<any[]>([])
     const fetchDataVacancies = () => {
         fetch("/api/vacancy/allVacanciesForUser")
@@ -73,7 +61,7 @@ function PageCandidateVacancyList() {
                 <IonContent>
                     <IonGrid>
                         <IonRow>
-                            <IonCol size="3" sizeXs="12" sizeSm="3" sizeMd="3" sizeLg="3" sizeXl="4">
+                            <IonCol size="5" sizeXs="12" sizeSm="5" sizeMd="5" sizeLg="5" sizeXl="6">
                                 <IonSearchbar searchIcon="public/images/search-outline.svg"
                                               placeholder="Поиск по вакансиям"></IonSearchbar>
                             </IonCol>
@@ -92,19 +80,15 @@ function PageCandidateVacancyList() {
                                         <IonList>
                                             <IonRadioGroup>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="dogs">Нет опыта</IonRadio>
+                                                    <IonRadio justify="space-between" value="WithoutExperience">Без опыта</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="cats">1-3 лет</IonRadio>
+                                                    <IonRadio justify="space-between" value="CoupleOfYears">1-2 года</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="turtles">4-5 лет</IonRadio>
-                                                    <br/>
-                                                </IonItem>
-                                                <IonItem>
-                                                    <IonRadio justify="space-between" value="fish">Больше 5</IonRadio>
+                                                    <IonRadio justify="space-between" value="MoreTwoYears">Больше двух лет</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                             </IonRadioGroup>

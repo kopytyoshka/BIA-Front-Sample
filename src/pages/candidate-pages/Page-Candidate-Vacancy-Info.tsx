@@ -15,6 +15,8 @@ import {warning} from "ionicons/icons";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import {useParams} from "react-router";
 import {formatWorkExperience} from "./Page-Candidate-Vacancy-List";
+import {redirectToExternalSite} from "../../scripts/utils";
+import handleToken from "../../scripts/CookiesToken";
 
 
 function PageCandidateVacancyInfo() {
@@ -25,6 +27,38 @@ function PageCandidateVacancyInfo() {
 
     const { id } = useParams<VacancyParam>();
     const [data, setData] = useState<any>([]);
+
+
+
+    async function Response() {
+        let makeResponseData = {
+            userId: handleToken(),
+            vacancyId: id,
+        };
+
+        try {
+            let response = await fetch("/api/userInfo/createResponseForUser", {
+                method: 'POST',
+                headers: {
+                    'Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(makeResponseData)
+            });
+
+            if (response.ok) {
+                redirectToExternalSite('/home');
+            } else if (response.status === 403) {
+                console.log('АШИПКА 403')
+            } else {
+                console.log('АШИПКА НЕИЗВЕСТНА')
+            }
+        } catch (error) {
+            console.error('Error', error);
+        }
+    }
+
 
     const fetchVacancyData = () => {
         fetch("/api/vacancy/getVacancyInfo?vacancyId=" + id)
@@ -103,7 +137,7 @@ function PageCandidateVacancyInfo() {
                         </IonRow>
                         <IonRow>
                             <IonButton fill="outline" color="danger"
-                                       style={{paddingLeft: "10px"}}>Откликнуться</IonButton>
+                                       style={{paddingLeft: "10px"}} onClick={Response}>Откликнуться</IonButton>
                         </IonRow>
                     </IonGrid>
                 </IonContent>
