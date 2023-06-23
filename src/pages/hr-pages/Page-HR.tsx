@@ -28,7 +28,7 @@ const PageHR = () => {
     const [name, setName] = useState('')
 
     const fetchData = () => {
-        fetch("/api/vacancy/allVacancies")
+        fetch("/api/vacancy/allVacanciesForHR")
             .then(response => {
                 return response.json()
             })
