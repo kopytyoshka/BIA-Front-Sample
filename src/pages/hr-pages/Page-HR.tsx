@@ -25,6 +25,22 @@ export function formatWorkStatus(vacancyStatus: string): string {
 
 const PageHR = () => {
 
+    const [query, setQuery] = useState('');
+    const [results, setResults] = useState<any[]>([])
+
+    const handleSearch = () => {
+        fetch('/api/vacancy/vacancySpecification', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify([{ key: 'name', value: query, operation: 'LIKE' }]),
+        })
+            .then(response => response.json())
+            .then(data => setResults(data))
+            .catch(error => console.error(error));
+    };
+
     const history = useHistory();
 
     const navigateToPage = (vacancyId: string) => {
@@ -85,6 +101,7 @@ const PageHR = () => {
         fetchUserData()
         fetchDataActiveVacancies()
         fetchDataActiveResponses()
+        handleSearch()
     }, [])
 
     const handleItemClick = (vacancyId: string) => {
@@ -157,10 +174,28 @@ const PageHR = () => {
                             </IonCol>
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12"
                                     className="vacancy-cards-list">
+                                {/*<div className="search-button">*/}
+                                {/*    <IonSearchbar searchIcon="../images/search-outline.svg"*/}
+                                {/*                  placeholder="Поиск по названию"></IonSearchbar>*/}
+                                {/*</div>*/}
+
                                 <div className="search-button">
-                                    <IonSearchbar searchIcon="../images/search-outline.svg"
-                                                  placeholder="Поиск по названию"></IonSearchbar>
+                                    <IonSearchbar
+                                        searchIcon="../images/search-outline.svg"
+                                        placeholder="Поиск по названию"
+                                        value={query ?? ''}
+                                        onIonChange={e => setQuery(e.detail.value!)}
+                                    ></IonSearchbar>
+
+                                    {results.map(result => (
+                                        <div key={result.vacancyId}>
+                                            <h3>{result.vacancyName}</h3>
+                                            <p>{result.description}</p>
+
+                                        </div>
+                                    ))}
                                 </div>
+
                             </IonCol>
                         </IonRow>
                     </IonGrid>
