@@ -14,15 +14,20 @@ import {
 import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import handleToken from "../../scripts/CookiesToken";
+import {useParams} from "react-router";
 
 const HR6VacancyCardForView = () => {
     const [handlerMessage, setHandlerMessage] = useState('');
     const [roleMessage, setRoleMessage] = useState('');
     const [vacancy, setVacancy] = useState<any[]>([])
-    const vacancyId = handleToken();
+    interface VacancyParam {
+        id: string;
+    }
+
+    const { id } = useParams<VacancyParam>();
 
     const fetchVacancyData = () => {
-        fetch('/api/vacancy/getVacancyInfo?id=' + vacancyId)
+        fetch('/api/vacancy/getVacancyInfo?id=' + id)
             .then(response => {
                 return response.json()
             })

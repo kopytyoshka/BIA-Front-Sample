@@ -66,7 +66,7 @@ const PageHR = () => {
     }, [])
 
     const handleItemClick = (id: string) => {
-        history.push(`/vacancy/${id}`);
+        history.push(`/vacancy-card/${id}`);
     };
 
     return (
