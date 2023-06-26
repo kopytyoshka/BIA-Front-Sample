@@ -186,6 +186,7 @@ const PageHR = () => {
                                         value={query ?? ''}
                                         onIonChange={e => setQuery(e.detail.value!)}
                                     ></IonSearchbar>
+                                    <IonButton onClick={handleSearch}>Поиск</IonButton>
 
                                     {results.map(result => (
                                         <div key={result.vacancyId}>
