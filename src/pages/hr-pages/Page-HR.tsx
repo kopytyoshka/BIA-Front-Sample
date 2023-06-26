@@ -172,13 +172,14 @@ const PageHR = () => {
                                         onIonChange={e => setQuery(e.detail.value!)}
                                     ></IonSearchbar>
 
-                                    {results.map(result => (
-                                        <div key={result.vacancyId}>
-                                            <h3>{result.vacancyName}</h3>
-                                            <p>{result.description}</p>
+                                    {/*{results.map(result => (*/}
+                                    {/*    */}
+                                    {/*    <div key={result.vacancyId}>*/}
+                                    {/*        <h3>{result.vacancyName}</h3>*/}
+                                    {/*        <p>{result.description}</p>*/}
 
-                                        </div>
-                                    ))}
+                                    {/*    </div>*/}
+                                    {/*))}*/}
                                 </div>
 
                             </IonCol>
@@ -187,7 +188,7 @@ const PageHR = () => {
 
                     <IonGrid style={{margin: "0px"}}>
                         <IonRow>
-                            {vacancy.map(vac => (
+                            {results.map(vac => (
                                 <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
                                         className="vacancy-cards-list" key={vac.vacancyId}>
                                     <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
