@@ -101,8 +101,11 @@ const PageHR = () => {
         fetchUserData()
         fetchDataActiveVacancies()
         fetchDataActiveResponses()
-        handleSearch()
     }, [])
+
+    useEffect(() => {
+        handleSearch();
+    }, [query]);
 
     const handleItemClick = (vacancyId: string) => {
         history.push(`/vacancy-card/${vacancyId}`);
@@ -185,9 +188,9 @@ const PageHR = () => {
                                         placeholder="Поиск по названию"
                                         value={query ?? ''}
                                         onIonChange={e => setQuery(e.detail.value!)}
-                                        onInput={() => handleSearch()}
+                                        // onChange={() => handleSearch()}
                                     ></IonSearchbar>
-                                    <IonButton onClick={handleSearch}>Поиск</IonButton>
+                                    {/*<IonButton onClick={handleSearch}>Поиск</IonButton>*/}
 
                                     {results.map(result => (
                                         <div key={result.vacancyId}>
