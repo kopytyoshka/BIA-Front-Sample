@@ -14,6 +14,14 @@ import {
 import {useHistory} from "react-router";
 import handleToken from "../../scripts/CookiesToken";
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
+import {formatWorkExperience} from "../candidate-pages/Page-Candidate-Vacancy-List";
+
+export function formatWorkStatus(vacancyStatus: string): string {
+    return vacancyStatus === "Opened" ? "Активная" :
+        vacancyStatus === "OnModeration" ? "На модерации" :
+            vacancyStatus === "Closed" ? "В архиве" :
+                "not-documented"
+}
 
 const PageHR = () => {
 
@@ -154,19 +162,35 @@ const PageHR = () => {
                             {vacancy.map(vac => (
                                 <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
                                         className="vacancy-cards-list" key={vac.vacancyId}>
-                                    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}} onClick={() => handleItemClick(vac.vacancyId)}>
+                                    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
                                         <IonCardContent>
                                             <IonItem>
                                                 <IonLabel style={{fontWeight: 700}}>{vac.vacancyName}</IonLabel>
                                             </IonItem>
                                             <IonItem>
-                                                <IonBadge slot="start" color={"success"}>{vac.vacancyStatus}</IonBadge>
-                                                <IonBadge slot="end" color={"warning"}>{vac.workExperience}</IonBadge>
+                                                <IonBadge slot="start"
+                                                          color={
+                                                              vac.vacancyStatus === "Opened" ? "success" :
+                                                                  vac.vacancyStatus === "OnModeration" ? "warning" :
+                                                                      "danger"
+                                                          }>
+                                                    {formatWorkStatus(vac.vacancyStatus)}</IonBadge>
+                                                <IonBadge slot="end"
+                                                          color={
+                                                              vac.workExperience === "WithoutExperience" ? "success" :
+                                                                  vac.workExperience === "MoreTwoYears" ? "danger" :
+                                                                      "warning"
+                                                          }>
+                                                    {formatWorkExperience(vac.workExperience)}</IonBadge>
                                             </IonItem>
                                             <IonButton
                                                 onClick={() => navigateToPage(vac.vacancyId)}
                                                  expand="block" fill="clear" color="transparent">Просмотреть
                                                 кандидатов</IonButton>
+                                            <IonButton
+                                                onClick={() => handleItemClick(vac.vacancyId)}
+                                                expand="block" fill="clear" color="transparent">Просмотреть
+                                                вакансию</IonButton>
                                         </IonCardContent>
                                     </IonCard>
                                 </IonCol>
