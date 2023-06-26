@@ -65,7 +65,10 @@ const PageHR = () => {
         fetchDataActiveVacancies()
     }, [])
 
-// function PageHR() {
+    const handleItemClick = (id: string) => {
+        history.push(`/vacancy/${id}`);
+    };
+
     return (
         <>
             <PopupMenuHr/>
@@ -130,7 +133,7 @@ const PageHR = () => {
                     <IonGrid fixed={true} style={{margin: "0px"}}>
                         <IonRow style={{margin: "0px"}} className="search-and-vacansii">
                             <IonCol size="12" sizeXs="5" sizeSm="12" sizeMd="12" sizeLg="2">
-                                <h1>Вакансия</h1>
+                                <h1>Вакансии</h1>
                             </IonCol>
                             <IonCol size="12" sizeXs="7" sizeSm="12" sizeMd="12" sizeLg="4"
                                     className="vacancy-cards-list">
@@ -156,8 +159,8 @@ const PageHR = () => {
                         <IonRow>
                             {vacancy.map(vac => (
                                 <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
-                                        className="vacancy-cards-list" key={vac.id}>
-                                    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
+                                        className="vacancy-cards-list" key={vac.vacancyId}>
+                                    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}} onClick={() => handleItemClick(vac.vacancyId)}>
                                         <IonCardContent>
                                             <IonItem>
                                                 <IonLabel style={{fontWeight: 700}}>{vac.vacancyName}</IonLabel>
