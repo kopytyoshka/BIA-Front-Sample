@@ -13,10 +13,28 @@ import {
 } from '@ionic/react';
 import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
+import handleToken from "../../scripts/CookiesToken";
 
 const HR6VacancyCardForView = () => {
     const [handlerMessage, setHandlerMessage] = useState('');
     const [roleMessage, setRoleMessage] = useState('');
+    const [vacancy, setVacancy] = useState<any[]>([])
+    const vacancyId = handleToken();
+
+    const fetchVacancyData = () => {
+        fetch('/api/vacancy/getVacancyInfo?id=' + vacancyId)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setVacancy(data)
+                console.log(vacancy)
+            })
+    }
+
+    useEffect(() => {
+        fetchVacancyData()
+    }, [])
 
     return (
         <>
@@ -33,36 +51,40 @@ const HR6VacancyCardForView = () => {
                 </IonHeader>
 
                 <IonContent className="ion-padding">
-                    <h1 style={{marginLeft: "20px"}}>Backend-разработчик на Java</h1>
+                    {vacancy.map(vac =>(
+                        <h1 style={{marginLeft: "20px"}}>{vac.name}</h1>
+                    ))}
                     <IonGrid>
                         <IonRow>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonTitle>
-                                            Информация о вакансии
-                                        </IonTitle>
-                                    </IonCardHeader>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            Статус
-                                            <IonBadge slot="end" color={"warning"}>На модерации</IonBadge>
-                                        </IonItem>
-                                        <IonItem>
-                                            Опыт работы
-                                            <IonBadge slot="end" color={"danger"}>Без опыта</IonBadge>
-                                        </IonItem>
-                                        <IonItem>
-                                            Отклики
-                                            <IonBadge slot="end" color={"primary"}>340</IonBadge>
-                                        </IonItem>
-                                        <IonItem routerLink="/">
-                                            Этапы
-                                            <IonIcon slot="end" icon="../images/chevron-forward-outline.svg"></IonIcon>
-                                        </IonItem>
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
+                            {vacancy.map(vac =>(
+                                <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
+                                    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
+                                        <IonCardHeader>
+                                            <IonTitle>
+                                                Информация о вакансии
+                                            </IonTitle>
+                                        </IonCardHeader>
+                                        <IonCardContent>
+                                            <IonItem>
+                                                Статус
+                                                <IonBadge slot="end" color={"warning"}>{vac.vacancyStatus}</IonBadge>
+                                            </IonItem>
+                                            <IonItem>
+                                                Опыт работы
+                                                <IonBadge slot="end" color={"danger"}>{vac.workExperience}</IonBadge>
+                                            </IonItem>
+                                            <IonItem>
+                                                Отклики
+                                                <IonBadge slot="end" color={"primary"}>340</IonBadge>
+                                            </IonItem>
+                                            <IonItem routerLink="/">
+                                                Этапы
+                                                <IonIcon slot="end" icon="../images/chevron-forward-outline.svg"></IonIcon>
+                                            </IonItem>
+                                        </IonCardContent>
+                                    </IonCard>
+                                </IonCol>
+                            ))}
                             <IonCol style={{marginLeft: "20px"}}>
                                 <IonButton fill="outline">Редактировать</IonButton>
                                 <IonButton fill="outline">В архив</IonButton>
@@ -72,13 +94,16 @@ const HR6VacancyCardForView = () => {
 
                     <IonGrid>
                         <IonRow>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="8">
-                                <IonCard style={{borderRadius: '20px'}}>
-                                    <IonItem>
-                                        <IonTextarea placeholder="Описание" autoGrow={true} style={{height: "300px"}}></IonTextarea>
-                                    </IonItem>
-                                </IonCard>
-                            </IonCol>
+                            {vacancy.map(vac =>(
+                                <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="8">
+                                    <IonCard style={{borderRadius: '20px'}}>
+                                        <IonCardHeader>Описание</IonCardHeader>
+                                        <IonCardContent>
+                                            {vac.description}
+                                        </IonCardContent>
+                                    </IonCard>
+                                </IonCol>
+                            ))}
                         </IonRow>
                     </IonGrid>
 
