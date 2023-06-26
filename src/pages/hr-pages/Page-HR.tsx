@@ -35,6 +35,7 @@ const PageHR = () => {
     const [image, setImage] = useState('')
     const [name, setName] = useState('')
     const [activeVacancies, setActiveVacancies] = useState<any>([])
+    const [activeResponses, setActiveResponses] = useState<any>([])
 
     const fetchData = () => {
         fetch("/api/vacancy/allVacanciesForHR")
@@ -57,6 +58,17 @@ const PageHR = () => {
             })
     }
 
+    const fetchDataActiveResponses = () => {
+        fetch("/api/response/countActiveResponses")
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setActiveResponses(data)
+                console.log(data)
+            })
+    }
+
     const fetchUserData = () => {
         fetch("/api/userInfo/getUsersInfo?userId=" + handleToken())
             .then(response => {
@@ -72,6 +84,7 @@ const PageHR = () => {
         fetchData()
         fetchUserData()
         fetchDataActiveVacancies()
+        fetchDataActiveResponses()
     }, [])
 
     const handleItemClick = (vacancyId: string) => {
@@ -111,19 +124,14 @@ const PageHR = () => {
                                             <IonLabel>{name}</IonLabel>
                                         </IonItem>
 
-                                        <IonItem routerLink="/">
+                                        <IonItem>
                                             <IonBadge slot="start">{activeVacancies.num}</IonBadge>
                                             <IonLabel>Активных вакансий</IonLabel>
                                         </IonItem>
 
-                                        <IonItem routerLink="/">
-                                            <IonBadge slot="start">11</IonBadge>
+                                        <IonItem>
+                                            <IonBadge slot="start">{activeResponses.num}</IonBadge>
                                             <IonLabel>Новых заявок</IonLabel>
-                                        </IonItem>
-
-                                        <IonItem routerLink="/">
-                                            <IonBadge slot="start">11</IonBadge>
-                                            <IonLabel>Кандидатов в обработке</IonLabel>
                                         </IonItem>
 
                                     </IonCardContent>
