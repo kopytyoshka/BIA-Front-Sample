@@ -19,7 +19,7 @@ import {useParams} from "react-router";
 const HR6VacancyCardForView = () => {
     const [handlerMessage, setHandlerMessage] = useState('');
     const [roleMessage, setRoleMessage] = useState('');
-    const [vacancy, setVacancy] = useState<any[]>([])
+    const [vacancy, setVacancy] = useState<any>([])
     interface VacancyParam {
         vacancyId: string;
     }
@@ -56,12 +56,9 @@ const HR6VacancyCardForView = () => {
                 </IonHeader>
 
                 <IonContent className="ion-padding">
-                    {vacancy.map(vac =>(
-                        <h1 style={{marginLeft: "20px"}}>{vac.name}</h1>
-                    ))}
+                        <h1 style={{marginLeft: "20px"}}>{vacancy.name}</h1>
                     <IonGrid>
                         <IonRow>
-                            {vacancy.map(vac =>(
                                 <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
                                     <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
                                         <IonCardHeader>
@@ -72,11 +69,11 @@ const HR6VacancyCardForView = () => {
                                         <IonCardContent>
                                             <IonItem>
                                                 Статус
-                                                <IonBadge slot="end" color={"warning"}>{vac.vacancyStatus}</IonBadge>
+                                                <IonBadge slot="end" color={"warning"}>{vacancy.vacancyStatus}</IonBadge>
                                             </IonItem>
                                             <IonItem>
                                                 Опыт работы
-                                                <IonBadge slot="end" color={"danger"}>{vac.workExperience}</IonBadge>
+                                                <IonBadge slot="end" color={"danger"}>{vacancy.workExperience}</IonBadge>
                                             </IonItem>
                                             <IonItem>
                                                 Отклики
@@ -89,7 +86,6 @@ const HR6VacancyCardForView = () => {
                                         </IonCardContent>
                                     </IonCard>
                                 </IonCol>
-                            ))}
                             <IonCol style={{marginLeft: "20px"}}>
                                 <IonButton fill="outline">Редактировать</IonButton>
                                 <IonButton fill="outline">В архив</IonButton>
@@ -99,16 +95,14 @@ const HR6VacancyCardForView = () => {
 
                     <IonGrid>
                         <IonRow>
-                            {vacancy.map(vac =>(
                                 <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="8">
                                     <IonCard style={{borderRadius: '20px'}}>
                                         <IonCardHeader>Описание</IonCardHeader>
                                         <IonCardContent>
-                                            {vac.description}
+                                            {vacancy.description}
                                         </IonCardContent>
                                     </IonCard>
                                 </IonCol>
-                            ))}
                         </IonRow>
                     </IonGrid>
 
