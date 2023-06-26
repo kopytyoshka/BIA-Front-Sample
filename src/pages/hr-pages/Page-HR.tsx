@@ -26,7 +26,7 @@ const PageHR = () => {
     const [vacancy, setVacancy] = useState<any[]>([])
     const [image, setImage] = useState('')
     const [name, setName] = useState('')
-    const [activeVacancies, setActiveVacancies] = useState<any[]>([])
+    const [activeVacancies, setActiveVacancies] = useState<any>([])
 
     const fetchData = () => {
         fetch("/api/vacancy/allVacanciesForHR")
@@ -38,16 +38,16 @@ const PageHR = () => {
             })
     }
 
-    // const fetchDataActiveVacancies = () => {
-    //     fetch("/api/vacancy/countActiveVacancies")
-    //         .then(response => {
-    //             return response.json()
-    //         })
-    //         .then(data => {
-    //             setActiveVacancies(data)
-    //             console.log(data)
-    //         })
-    // }
+    const fetchDataActiveVacancies = () => {
+        fetch("/api/vacancy/countActiveVacancies")
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setActiveVacancies(data)
+                console.log(data)
+            })
+    }
 
     const fetchUserData = () => {
         fetch("/api/userInfo/getUsersInfo?userId=" + handleToken())
@@ -63,7 +63,7 @@ const PageHR = () => {
     useEffect(() => {
         fetchData()
         fetchUserData()
-        // fetchDataActiveVacancies()
+        fetchDataActiveVacancies()
     }, [])
 
     const handleItemClick = (vacancyId: string) => {
@@ -104,7 +104,7 @@ const PageHR = () => {
                                         </IonItem>
 
                                         <IonItem routerLink="/">
-                                            <IonBadge slot="start">{activeVacancies}</IonBadge>
+                                            <IonBadge slot="start">{activeVacancies.num}</IonBadge>
                                             <IonLabel>Активных вакансий</IonLabel>
                                         </IonItem>
 
