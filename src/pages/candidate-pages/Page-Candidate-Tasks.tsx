@@ -16,6 +16,7 @@ import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import moment from 'moment';
 import {AddToCalendarButton} from 'add-to-calendar-button-react';
 import {openExternalSite, redirectToExternalSite} from "../../scripts/utils";
+import handleToken from "../../scripts/CookiesToken";
 
 interface Stage {
     name: string;
@@ -43,7 +44,7 @@ const PageCandidateTasks = () => {
 
     const [usersChallenge, setUsersChallenge] = useState<any[]>([])
     const fetchDataVacancyCards = () => {
-        fetch('/api/userInfo/getUsersResponses')
+        fetch('/api/userInfo/getUsersResponses?userId=' + handleToken())
             .then(response => {
                 return response.json()
             })
