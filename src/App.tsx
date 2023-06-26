@@ -79,7 +79,7 @@ const App: React.FC = () => (
                 <Route exact path="/candidate-all-vacancies">
                     <PageCandidateVacancyList/>
                 </Route>
-                <Route path="/vacancy-card/:id" component={HR6VacancyCardForView} />
+                <Route path="/vacancy-card/:vacancyId" component={HR6VacancyCardForView} />
                 <Route path="/login" component={Login}/>
                 <Route path='/vacancy/:id' component={pageCandidateVacancyInfo}/>
                 <Route path="/list-candidates/:id" component={ListCandidates}/>

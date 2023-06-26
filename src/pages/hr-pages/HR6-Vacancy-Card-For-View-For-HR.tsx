@@ -21,13 +21,13 @@ const HR6VacancyCardForView = () => {
     const [roleMessage, setRoleMessage] = useState('');
     const [vacancy, setVacancy] = useState<any[]>([])
     interface VacancyParam {
-        id: string;
+        vacancyId: string;
     }
 
-    const { id } = useParams<VacancyParam>();
+    const { vacancyId } = useParams<VacancyParam>();
 
     const fetchVacancyData = () => {
-        fetch('/api/vacancy/getVacancyInfo?id=' + id)
+        fetch('/api/vacancy/getVacancyInfo?id=' + vacancyId)
             .then(response => {
                 return response.json()
             })

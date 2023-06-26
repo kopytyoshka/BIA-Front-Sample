@@ -19,8 +19,8 @@ const PageHR = () => {
 
     const history = useHistory();
 
-    const navigateToPage = (id: string) => {
-        history.push(`/list-candidates/${id}`);
+    const navigateToPage = (vacancyId: string) => {
+        history.push(`/list-candidates/${vacancyId}`);
     };
 
     const [vacancy, setVacancy] = useState<any[]>([])
@@ -66,8 +66,8 @@ const PageHR = () => {
         // fetchDataActiveVacancies()
     }, [])
 
-    const handleItemClick = (id: string) => {
-        history.push(`/vacancy-card/${id}`);
+    const handleItemClick = (vacancyId: string) => {
+        history.push(`/vacancy-card/${vacancyId}`);
     };
 
     return (
