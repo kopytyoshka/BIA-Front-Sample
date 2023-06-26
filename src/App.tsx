@@ -70,9 +70,6 @@ const App: React.FC = () => (
                 <Route exact path="/candidate-test">
                     <PageCandidateTestForm/>
                 </Route>
-                <Route exact path="/hr6-vacancy-card">
-                    <HR6VacancyCardForView/>
-                </Route>
                 <Route exact path="/hr7-edit-vacancy-card">
                     <HR7EditVacancyCard/>
                 </Route>
@@ -82,6 +79,7 @@ const App: React.FC = () => (
                 <Route exact path="/candidate-all-vacancies">
                     <PageCandidateVacancyList/>
                 </Route>
+                <Route path="/vacancy-card/:id" component={HR6VacancyCardForView} />
                 <Route path="/login" component={Login}/>
                 <Route path='/vacancy/:id' component={pageCandidateVacancyInfo}/>
                 <Route path="/list-candidates/:id" component={ListCandidates}/>
