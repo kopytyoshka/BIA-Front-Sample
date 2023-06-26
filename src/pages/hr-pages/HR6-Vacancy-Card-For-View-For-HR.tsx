@@ -27,7 +27,7 @@ const HR6VacancyCardForView = () => {
     const { vacancyId } = useParams<VacancyParam>();
 
     const fetchVacancyData = () => {
-        fetch('/api/vacancy/getVacancyInfo?id=' + vacancyId)
+        fetch('/api/vacancy/getVacancyInfo?vacancyId=' + vacancyId)
             .then(response => {
                 return response.json()
             })
