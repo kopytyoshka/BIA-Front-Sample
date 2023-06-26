@@ -38,15 +38,16 @@ const PageHR = () => {
             })
     }
 
-    const fetchDataActiveVacancies = () => {
-        fetch("/api/vacancy/countActiveVacancies")
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                setActiveVacancies(data)
-            })
-    }
+    // const fetchDataActiveVacancies = () => {
+    //     fetch("/api/vacancy/countActiveVacancies")
+    //         .then(response => {
+    //             return response.json()
+    //         })
+    //         .then(data => {
+    //             setActiveVacancies(data)
+    //             console.log(data)
+    //         })
+    // }
 
     const fetchUserData = () => {
         fetch("/api/userInfo/getUsersInfo?userId=" + handleToken())
@@ -62,7 +63,7 @@ const PageHR = () => {
     useEffect(() => {
         fetchData()
         fetchUserData()
-        fetchDataActiveVacancies()
+        // fetchDataActiveVacancies()
     }, [])
 
     const handleItemClick = (id: string) => {
@@ -79,13 +80,6 @@ const PageHR = () => {
                         <IonButtons slot="start">
                             <IonMenuButton></IonMenuButton>
                         </IonButtons>
-                        {/*<IonButtons slot="end">*/}
-                        {/*    <IonMenuToggle>*/}
-                        {/*        <IonItem lines="none" routerLink="/logout">*/}
-                        {/*            <IonTitle>Выйти</IonTitle>*/}
-                        {/*        </IonItem>*/}
-                        {/*    </IonMenuToggle>*/}
-                        {/*</IonButtons>*/}
                         <IonTitle>Главная страница</IonTitle>
                     </IonToolbar>
                 </IonHeader>
