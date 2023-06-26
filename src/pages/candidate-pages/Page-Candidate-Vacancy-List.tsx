@@ -13,18 +13,12 @@ import {
 import React, {useEffect, useState} from "react";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import {useHistory} from "react-router";
-
-export function formatWorkExperience(workExperience: string): string {
-    return workExperience === "WithoutExperience" ? "Без опыта работы" :
-        workExperience === "MoreTwoYears" ? "Более двух лет" :
-            workExperience === "CoupleOfYears" ? "1-2 года" :
-                "not-documented"
-}
-
+import {formatWorkExperience} from "../../scripts/utils";
 
 function PageCandidateVacancyList() {
 
     const [vacancy, setVacancy] = useState<any[]>([])
+    const history = useHistory();
     const fetchDataVacancies = () => {
         fetch("/api/vacancy/allVacanciesForUser")
             .then(response => {
@@ -35,12 +29,10 @@ function PageCandidateVacancyList() {
                 console.log(vacancy)
             })
     }
+
     useEffect(() => {
         fetchDataVacancies()
     }, [])
-
-
-    const history = useHistory();
 
     const handleItemClick = (id: string) => {
         history.push(`/vacancy/${id}`);

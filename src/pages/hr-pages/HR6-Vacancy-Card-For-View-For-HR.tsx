@@ -17,14 +17,15 @@ import handleToken from "../../scripts/CookiesToken";
 import {useParams} from "react-router";
 
 const HR6VacancyCardForView = () => {
-    const [handlerMessage, setHandlerMessage] = useState('');
-    const [roleMessage, setRoleMessage] = useState('');
-    const [vacancy, setVacancy] = useState<any>([])
     interface VacancyParam {
         vacancyId: string;
     }
 
+    const [handlerMessage, setHandlerMessage] = useState('');
+    const [roleMessage, setRoleMessage] = useState('');
+    const [vacancy, setVacancy] = useState<any>([])
     const { vacancyId } = useParams<VacancyParam>();
+
 
     const fetchVacancyData = () => {
         fetch('/api/vacancy/getVacancyInfo?vacancyId=' + vacancyId)

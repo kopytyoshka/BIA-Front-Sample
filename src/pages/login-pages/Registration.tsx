@@ -19,6 +19,12 @@ function Registration() {
     const [name, setName] = React.useState("");
     const [phone, setPhone] = React.useState("");
     const [isOpen, setIsOpen] = useState(false);
+
+    const [isTouchedPhone, setIsTouchedPhone] = useState(false);    const [isTouched, setIsTouched] = useState(false);
+    const [isValid, setIsValid] = useState<boolean>();
+    const [isValidPassword, setIsValidPassword] = useState<boolean>();
+    const [isValidPhone, setIsValidPhone] = useState<boolean>();
+
     const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
     };
@@ -32,16 +38,6 @@ function Registration() {
         const result = event.target.value.replace(/[^0-9]/gi, '');
         setPhone(result);
     };
-
-
-    console.log(phone)
-
-
-
-    const [isTouchedPhone, setIsTouchedPhone] = useState(false);    const [isTouched, setIsTouched] = useState(false);
-    const [isValid, setIsValid] = useState<boolean>();
-    const [isValidPassword, setIsValidPassword] = useState<boolean>();
-    const [isValidPhone, setIsValidPhone] = useState<boolean>();
 
     const validatePassword = (password: string) => {
         return password.match(

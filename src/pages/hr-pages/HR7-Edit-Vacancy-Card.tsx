@@ -17,6 +17,7 @@ import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 const HR7EditVacancyCard = () => {
     const [handlerMessage, setHandlerMessage] = useState('');
     const [roleMessage, setRoleMessage] = useState('');
+
     return (
         <>
             <PopupMenuHr/>

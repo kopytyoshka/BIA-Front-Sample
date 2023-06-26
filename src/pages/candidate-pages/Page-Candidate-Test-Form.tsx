@@ -20,8 +20,6 @@ function PageCandidateTestForm() {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.value);
     };
-    console.log(checked);
-
 
     return (
         <>

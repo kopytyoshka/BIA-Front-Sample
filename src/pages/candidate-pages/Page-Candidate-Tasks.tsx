@@ -50,7 +50,6 @@ const PageCandidateTasks = () => {
             })
             .then(data => {
                 setUsersChallenge(data)
-                console.log(data)
             })
     }
     useEffect(() => {

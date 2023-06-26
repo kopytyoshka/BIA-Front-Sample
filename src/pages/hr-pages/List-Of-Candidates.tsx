@@ -39,9 +39,7 @@ interface RouteParams {
 
 const ListCandidates = () => {
     const { id } = useParams<RouteParams>();
-
     const [candidate, setCandidate] = useState<any[]>([])
-
     const history = useHistory();
 
     const navigateToPage = (id: string) => {

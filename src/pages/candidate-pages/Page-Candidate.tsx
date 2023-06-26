@@ -18,10 +18,7 @@ import handleToken from "../../scripts/CookiesToken";
 function PageCandidate() {
 
     const [vacancy, setVacancy] = useState<any[]>([])
-    const [user, setUser] = useState<any[]>([])
-    const [candidate, setCandidate] = useState<any[]>([])
     const [otkliki, setOtkliki] = useState<any[]>([])
-
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -45,7 +42,6 @@ function PageCandidate() {
                 return response.json()
             })
             .then(dataCandidate => {
-                setCandidate(dataCandidate)
                 setPhoneNumber(dataCandidate.phoneNumber)
                 setEmail(dataCandidate.email)
                 setName(dataCandidate.name)

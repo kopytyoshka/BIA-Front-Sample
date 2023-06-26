@@ -14,54 +14,23 @@ import {
 import {useHistory} from "react-router";
 import handleToken from "../../scripts/CookiesToken";
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
-import {formatWorkExperience} from "../candidate-pages/Page-Candidate-Vacancy-List";
-
-export function formatWorkStatus(vacancyStatus: string): string {
-    return vacancyStatus === "Opened" ? "Активная" :
-        vacancyStatus === "OnModeration" ? "На модерации" :
-            vacancyStatus === "Closed" ? "В архиве" :
-                "not-documented"
-}
+import {formatWorkExperience, formatWorkStatus} from "../../scripts/utils";
 
 const PageHR = () => {
 
     const [query, setQuery] = useState('');
+    const [image, setImage] = useState('')
+    const [name, setName] = useState('')
     const [results, setResults] = useState<any[]>([])
-
-    const handleSearch = () => {
-        fetch('/api/vacancy/vacancySpecification', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify([{ key: 'name', value: query, operation: 'LIKE' }]),
-        })
-            .then(response => response.json())
-            .then(data => setResults(data))
-            .catch(error => console.error(error));
-    };
+    const [vacancy, setVacancy] = useState<any[]>([])
+    const [activeVacancies, setActiveVacancies] = useState<any>([])
+    const [activeResponses, setActiveResponses] = useState<any>([])
 
     const history = useHistory();
 
     const navigateToPage = (vacancyId: string) => {
         history.push(`/list-candidates/${vacancyId}`);
     };
-
-    const [vacancy, setVacancy] = useState<any[]>([])
-    const [image, setImage] = useState('')
-    const [name, setName] = useState('')
-    const [activeVacancies, setActiveVacancies] = useState<any>([])
-    const [activeResponses, setActiveResponses] = useState<any>([])
-
-    const fetchData = () => {
-        fetch("/api/vacancy/allVacanciesForHR")
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                setVacancy(data)
-            })
-    }
 
     const fetchDataActiveVacancies = () => {
         fetch("/api/vacancy/countActiveVacancies")
@@ -96,8 +65,25 @@ const PageHR = () => {
             })
     }
 
+
+    const handleItemClick = (vacancyId: string) => {
+        history.push(`/vacancy-card/${vacancyId}`);
+    };
+
+    const handleSearch = () => {
+        fetch('/api/vacancy/vacancySpecification', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify([{ key: 'name', value: query, operation: 'LIKE' }]),
+        })
+            .then(response => response.json())
+            .then(data => setResults(data))
+            .catch(error => console.error(error));
+    };
+
     useEffect(() => {
-        fetchData()
         fetchUserData()
         fetchDataActiveVacancies()
         fetchDataActiveResponses()
@@ -106,10 +92,6 @@ const PageHR = () => {
     useEffect(() => {
         handleSearch();
     }, [query]);
-
-    const handleItemClick = (vacancyId: string) => {
-        history.push(`/vacancy-card/${vacancyId}`);
-    };
 
     return (
         <>
@@ -188,9 +170,7 @@ const PageHR = () => {
                                         placeholder="Поиск по названию"
                                         value={query ?? ''}
                                         onIonChange={e => setQuery(e.detail.value!)}
-                                        // onChange={() => handleSearch()}
                                     ></IonSearchbar>
-                                    {/*<IonButton onClick={handleSearch}>Поиск</IonButton>*/}
 
                                     {results.map(result => (
                                         <div key={result.vacancyId}>

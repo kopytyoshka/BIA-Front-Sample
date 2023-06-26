@@ -14,8 +14,7 @@ import React, {useEffect, useState} from "react";
 import {warning} from "ionicons/icons";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import {useParams} from "react-router";
-import {formatWorkExperience} from "./Page-Candidate-Vacancy-List";
-import {redirectToExternalSite} from "../../scripts/utils";
+import {formatWorkExperience, redirectToExternalSite} from "../../scripts/utils";
 import handleToken from "../../scripts/CookiesToken";
 
 
