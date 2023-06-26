@@ -185,6 +185,7 @@ const PageHR = () => {
                                         placeholder="Поиск по названию"
                                         value={query ?? ''}
                                         onIonChange={e => setQuery(e.detail.value!)}
+                                        onChange={() => handleSearch()}
                                     ></IonSearchbar>
                                     <IonButton onClick={handleSearch}>Поиск</IonButton>
 
