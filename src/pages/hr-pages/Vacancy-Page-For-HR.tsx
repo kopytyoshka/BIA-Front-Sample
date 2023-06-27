@@ -14,7 +14,7 @@ import {
     IonContent,
     IonGrid,
     IonHeader,
-    IonIcon,
+    IonIcon, IonInput,
     IonItem,
     IonLabel,
     IonList,
@@ -32,9 +32,35 @@ import {
     IonTitle,
     IonToolbar
 } from "@ionic/react";
-import React from "react";
+import React, {useState} from "react";
 
 function VacancyPageForHR() {
+
+    const [vacancyName, setVacancyName] = useState('');
+
+    async function submitVacancy() {
+        try {
+            const userInput = { /* Construct the user input object */ };
+
+            const response = await fetch('/api/vacancy/createVacancy', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userInput),
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+            } else {
+                const errorData = await response.json();
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+
     return (
         <>
             <PopupMenuHr/>
@@ -55,8 +81,16 @@ function VacancyPageForHR() {
                         <IonRow>
                             <IonCol style={{padding: "0"}} size="3" sizeXs="12" sizeSm="3" sizeMd="3" sizeLg="3"
                                     sizeXl="2.5">
+
                                 <IonItem lines="none" color="transparent">
-                                    <h1 style={{fontSize: "3vh", marginLeft: "0"}}>Backend разработчик на Java</h1>
+                                    {/*<h1 style={{fontSize: "3vh", marginLeft: "0"}}>Backend разработчик на Java</h1>*/}
+                                    <IonInput
+                                        style={{marginTop: "20px", borderRadius: '20px'}}
+                                        label="Введите название вакансии"
+                                        labelPlacement="floating" fill="outline"
+                                        placeholder="Введите название вакансии"
+                                        onIonChange={(e: any) => setVacancyName(e)}>
+                                    </IonInput>
                                 </IonItem>
                             </IonCol>
                             <IonCol>
