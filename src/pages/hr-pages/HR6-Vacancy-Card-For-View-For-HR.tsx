@@ -60,6 +60,7 @@ const HR6VacancyCardForView = () => {
     async function addNewStage() {
 
         let vacancy = {
+            stageType: newStageType,
             vacancyId: vacancyId,
         };
 
@@ -295,8 +296,8 @@ const HR6VacancyCardForView = () => {
                                             onIonChange={handeNewStageType}
                                         >
                                             <IonSelectOption value="Interview">Интервью</IonSelectOption>
-                                            <IonSelectOption value="OpenedQ">Открытый вопрос</IonSelectOption>
-                                            <IonSelectOption value="ClosedQ">Закрытый вопрос</IonSelectOption>
+                                            <IonSelectOption value="OpenedTest">Открытый вопрос</IonSelectOption>
+                                            <IonSelectOption value="ClosedTest">Закрытый вопрос</IonSelectOption>
                                         </IonSelect>
 
                                     </IonCardContent>
