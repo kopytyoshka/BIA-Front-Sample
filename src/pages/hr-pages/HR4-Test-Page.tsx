@@ -398,7 +398,7 @@ function HR4TestPageTest2() {
                                 </IonItem>
                             </IonMenuToggle>
                         </IonButtons>
-                        <IonTitle>Тест на позицию штука пука</IonTitle>
+                        <IonTitle>Тест на позицию Java-разработчик</IonTitle>
                     </IonToolbar>
                 </IonHeader>
 
