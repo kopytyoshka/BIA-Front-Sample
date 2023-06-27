@@ -40,7 +40,7 @@ const HR6VacancyCardForView = () => {
     }
 
     const fetchDataActiveResponses = () => {
-        fetch("/api/response/countAllResponsesForVacancy?vacancyId?=" + vacancyId)
+        fetch("/api/response/countAllResponsesForVacancy?vacancyId=" + vacancyId)
             .then(response => {
                 return response.json()
             })
