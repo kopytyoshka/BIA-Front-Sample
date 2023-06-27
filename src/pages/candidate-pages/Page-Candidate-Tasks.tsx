@@ -79,9 +79,14 @@ const PageCandidateTasks = () => {
                             </div>
                             <IonGrid style={{margin: "10px"}}>
                                 <IonRow style={{marginLeft: "0px"}}>
-                                    {(chell.stages).map((stage: Stage) => (
+                                    {chell.stages.length === 0 ? (
+                                        <div className="empty-stages-message">
+                                            На данный момент по этой вакансии заданий нет
+                                        </div>
+                                    ) : (chell.stages).map((stage: Stage) => (
                                         <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
                                                 className="vacancy-cards-list" key={stage.id}>
+
                                             <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
                                                 <IonCardHeader>
                                                     <IonCardTitle style={{fontWeight: 600}}>{stage.name}</IonCardTitle>
@@ -105,8 +110,8 @@ const PageCandidateTasks = () => {
                                                         заданию</IonButton>
                                                     <IonButton expand="block" fill="clear" color="transparent"
                                                                style={{fontSize: "13px"}}
-                                                               onClick={() => openExternalSite('https://calendar.google.com/calendar/u/0/r/eventedit?text=${stage.name}'+
-                                                                   `&dates=${moment(stage.deadline).subtract(1, 'hour').format('YYYYMMDDTHHmmssZ')}/${moment(stage.deadline).format('YYYYMMDDTHHmmssZ')}`+
+                                                               onClick={() => openExternalSite('https://calendar.google.com/calendar/u/0/r/eventedit?text=${stage.name}' +
+                                                                   `&dates=${moment(stage.deadline).subtract(1, 'hour').format('YYYYMMDDTHHmmssZ')}/${moment(stage.deadline).format('YYYYMMDDTHHmmssZ')}` +
                                                                    '&details=ID этапа: ${stage.id} ')}>Добавить в
                                                         календарь</IonButton>
                                                 </IonCardContent>
