@@ -235,7 +235,8 @@ const HR6VacancyCardForView = () => {
                                                 expand="block" fill="clear" color="transparent">Перейти к заданию
                                             </IonButton>
                                             <IonButton id="present-alert"
-                                                       expand="block" fill="clear" color="transparent" onClick={() => deleteStage(stage.id)}>Удалить
+                                                       expand="block" fill="clear" color="transparent"
+                                                       onClick={() => deleteStage(stage.id)}>Удалить
                                             </IonButton>
                                             {/*<IonAlert*/}
                                             {/*    header="Вы действительно хотите удалить?"*/}
@@ -272,7 +273,16 @@ const HR6VacancyCardForView = () => {
                                         <IonSelect
                                             interface="popover"
                                             placeholder="Выберите значение"
-                                            style={{marginTop: '10px', width: '100%', textAlign: 'center',  justifyContent: 'center'}}
+                                            style={{
+                                                marginTop: '10px',
+                                                width: '100%',
+                                                textAlign: 'center',
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                flexDirection: 'column',
+                                                alignContent: 'center',
+                                                flexWrap: 'wrap',
+                                            }}
                                             value={newStageType}
                                             onIonChange={handeNewStageType}
                                         >
