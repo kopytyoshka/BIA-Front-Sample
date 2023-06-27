@@ -29,6 +29,7 @@ const HR6VacancyCardForView = () => {
     const {vacancyId} = useParams<VacancyParam>();
     const [activeResponses, setActiveResponses] = useState<any>([])
     const [newStageType, setNewStageType] = useState('');
+    const [stages, setStages] = useState<any[]>([])
 
     const handeNewStageType = (event: any) => {
         setNewStageType(event.target.value);
@@ -43,6 +44,16 @@ const HR6VacancyCardForView = () => {
             .then(data => {
                 setVacancy(data)
                 console.log(vacancy)
+            })
+    }
+
+    const fetchStagesData = () => {
+        fetch('/api/vacancy/getVacancyStages?vacancyId=' + vacancyId)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setStages(data)
             })
     }
 
@@ -76,7 +87,7 @@ const HR6VacancyCardForView = () => {
             });
 
             if (response.ok) {
-                fetchVacancyData();
+                fetchStagesData();
             } else if (response.status === 403) {
                 console.log('АШИПКА 403')
             } else {
@@ -88,6 +99,7 @@ const HR6VacancyCardForView = () => {
     }
 
     useEffect(() => {
+        fetchStagesData()
         fetchVacancyData()
         fetchDataActiveResponses()
     }, [])
@@ -166,132 +178,77 @@ const HR6VacancyCardForView = () => {
 
                     <IonGrid>
                         <IonRow>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonTitle>
-                                            Тестирование
-                                        </IonTitle>
-                                    </IonCardHeader>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            <IonText>
-                                                До какого числа
-                                            </IonText>
-                                            <IonText slot="end">
-                                                30.07.2023
-                                            </IonText>
-                                        </IonItem>
-                                        <IonItem>
-                                            Статус
-                                            <IonBadge slot="end" color={"danger"}>Недоступно</IonBadge>
-                                        </IonItem>
-                                        <IonItem>
-                                            <IonText>
-                                                Результат
-                                            </IonText>
-                                            <IonText slot="end">
-                                                max: 10
-                                            </IonText>
-                                        </IonItem>
-                                        <IonButton
-                                            expand="block" fill="clear" color="transparent">Перейти к заданию
-                                        </IonButton>
-                                        <IonButton id="present-alert"
-                                                   expand="block" fill="clear" color="transparent">Удалить
-                                        </IonButton>
-                                        <IonAlert
-                                            header="Вы действительно хотите удалить?"
-                                            trigger="present-alert"
-                                            buttons={[
-                                                {
-                                                    text: 'Отмена',
-                                                    role: 'cancel',
-                                                    handler: () => {
-                                                        setHandlerMessage('Alert canceled');
+                            {stages.map(stage => (
+                                <IonCol>
+                                    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
+                                        <IonCardHeader>
+                                            <IonTitle>
+                                                {stage.name}
+                                            </IonTitle>
+                                        </IonCardHeader>
+                                        <IonCardContent>
+                                            <IonItem>
+                                                <IonText>
+                                                    Дедлайн
+                                                </IonText>
+                                                <IonText slot="end">
+                                                    {stage.deadline}
+                                                </IonText>
+                                            </IonItem>
+                                            <IonItem>
+                                                Статус
+                                                <IonBadge slot="end" color={"danger"}>to-be-done</IonBadge>
+                                            </IonItem>
+                                            <IonItem>
+                                                <IonText>
+                                                    Результат
+                                                </IonText>
+                                                <IonText slot="end">
+                                                    to-be-done
+                                                </IonText>
+                                            </IonItem>
+                                            <IonButton
+                                                expand="block" fill="clear" color="transparent">Перейти к заданию
+                                            </IonButton>
+                                            <IonButton id="present-alert"
+                                                       expand="block" fill="clear" color="transparent">Удалить
+                                            </IonButton>
+                                            <IonAlert
+                                                header="Вы действительно хотите удалить?"
+                                                trigger="present-alert"
+                                                buttons={[
+                                                    {
+                                                        text: 'Отмена',
+                                                        role: 'cancel',
+                                                        handler: () => {
+                                                            setHandlerMessage('Alert canceled');
+                                                        },
                                                     },
-                                                },
-                                                {
-                                                    text: 'Да',
-                                                    role: 'confirm',
-                                                    handler: () => {
-                                                        setHandlerMessage('Alert confirmed');
+                                                    {
+                                                        text: 'Да',
+                                                        role: 'confirm',
+                                                        handler: () => {
+                                                            setHandlerMessage('Alert confirmed');
+                                                        },
                                                     },
-                                                },
-                                            ]}
-                                            onDidDismiss={({detail}) => setRoleMessage(`Dismissed with role: ${detail.role}`)}
-                                        ></IonAlert>
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
-                            <IonCol>
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonTitle>
-                                            Тестирование
-                                        </IonTitle>
-                                    </IonCardHeader>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            <IonText>
-                                                До какого числа
-                                            </IonText>
-                                            <IonText slot="end">
-                                                30.07.2023
-                                            </IonText>
-                                        </IonItem>
-                                        <IonItem>
-                                            Статус
-                                            <IonBadge slot="end" color={"danger"}>Недоступно</IonBadge>
-                                        </IonItem>
-                                        <IonItem>
-                                            <IonText>
-                                                Результат
-                                            </IonText>
-                                            <IonText slot="end">
-                                                max: 10
-                                            </IonText>
-                                        </IonItem>
-                                        <IonButton
-                                            expand="block" fill="clear" color="transparent">Перейти к заданию
-                                        </IonButton>
-                                        <IonButton id="present-alert"
-                                                   expand="block" fill="clear" color="transparent">Удалить
-                                        </IonButton>
-                                        <IonAlert
-                                            header="Вы действительно хотите удалить?"
-                                            trigger="present-alert"
-                                            buttons={[
-                                                {
-                                                    text: 'Отмена',
-                                                    role: 'cancel',
-                                                    handler: () => {
-                                                        setHandlerMessage('Alert canceled');
-                                                    },
-                                                },
-                                                {
-                                                    text: 'Да',
-                                                    role: 'confirm',
-                                                    handler: () => {
-                                                        setHandlerMessage('Alert confirmed');
-                                                    },
-                                                },
-                                            ]}
-                                            onDidDismiss={({detail}) => setRoleMessage(`Dismissed with role: ${detail.role}`)}
-                                        ></IonAlert>
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
+                                                ]}
+                                                onDidDismiss={({detail}) => setRoleMessage(`Dismissed with role: ${detail.role}`)}
+                                            ></IonAlert>
+                                        </IonCardContent>
+                                    </IonCard>
+                                </IonCol>
+                            ))}
                             <IonCol>
                                 <IonCard style={{borderRadius: '20px', marginTop: '120px'}}>
                                     <IonCardContent>
                                         <IonButton
-                                                   expand="block" fill="clear" color="transparent" onClick={() => addNewStage()}>Добавить этап
+                                            expand="block" fill="clear" color="transparent"
+                                            onClick={() => addNewStage()}>Добавить этап
                                         </IonButton>
                                         <IonSelect
                                             interface="popover"
                                             placeholder="Выберите значение"
-                                            style={{ marginTop: '10px', width: '100%', textAlign: 'center' }}
+                                            style={{marginTop: '10px', width: '100%', textAlign: 'center'}}
                                             value={newStageType}
                                             onIonChange={handeNewStageType}
                                         >
