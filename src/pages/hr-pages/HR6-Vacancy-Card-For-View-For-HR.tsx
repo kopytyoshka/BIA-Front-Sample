@@ -58,6 +58,11 @@ const HR6VacancyCardForView = () => {
     }
 
     async function addNewStage() {
+
+        let vacancy = {
+            vacancyId: vacancyId,
+        };
+
         try {
             let response = await fetch("/api/stage/createTestStageInVacancy", {
                 method: 'POST',
@@ -66,16 +71,10 @@ const HR6VacancyCardForView = () => {
                     'Content-type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify(vacancyId)
+                body: JSON.stringify(vacancy)
             });
 
             if (response.ok) {
-                if (newStageType == "ClosedQ") {
-                    //
-                }
-                if (newStageType == "OpenedQ") {
-                    //
-                }
                 fetchVacancyData();
             } else if (response.status === 403) {
                 console.log('АШИПКА 403')
