@@ -40,6 +40,7 @@ interface RouteParams {
 const ListCandidates = () => {
     const { id } = useParams<RouteParams>();
     const [candidate, setCandidate] = useState<any[]>([])
+    const [data, setData] = useState<any>([]);
     const history = useHistory();
 
     const navigateToPage = (id: string) => {
@@ -56,8 +57,20 @@ const ListCandidates = () => {
             })
     }
 
+    const fetchVacancyData = () => {
+        fetch("/api/vacancy/getVacancyInfo?vacancyId=" + id)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setData(data)
+                console.log(data)
+            })
+    }
+
     useEffect(() => {
         fetchData()
+        fetchVacancyData()
     }, [])
 
     return (
@@ -93,9 +106,7 @@ const ListCandidates = () => {
                                                     <IonLabel>Вакансия</IonLabel>
                                                     <IonChip>
                                                         <IonIcon icon="../images/calendar-outline.svg"></IonIcon>
-                                                        <IonLabel>Java Backend Junior</IonLabel>
-                                                        <IonIcon
-                                                            icon="../images/close-circle-outline.svg"></IonIcon>
+                                                        <IonLabel>{data.vacancyName}</IonLabel>
                                                     </IonChip>
                                                 </IonItem>
 
@@ -133,7 +144,6 @@ const ListCandidates = () => {
                                                     </IonList>
                                                 </IonItem>
                                             </IonList>
-                                            <IonText>to-be-done</IonText>
                                         </IonCardContent>
                                     </IonCard>
                                 </IonCol>
