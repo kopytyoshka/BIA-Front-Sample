@@ -23,8 +23,8 @@ const HR6VacancyCardForView = () => {
         vacancyId: string;
     }
 
-    const [handlerMessage, setHandlerMessage] = useState('');
-    const [roleMessage, setRoleMessage] = useState('');
+    // const [handlerMessage, setHandlerMessage] = useState('');
+    // const [roleMessage, setRoleMessage] = useState('');
     const [vacancy, setVacancy] = useState<any>([])
     const {vacancyId} = useParams<VacancyParam>();
     const [activeResponses, setActiveResponses] = useState<any>([])
@@ -45,6 +45,35 @@ const HR6VacancyCardForView = () => {
                 setVacancy(data)
                 console.log(vacancy)
             })
+    }
+
+    async function deleteStage(stageId: string) {
+        let stage = {
+            stageId: stageId,
+            vacancyId: vacancyId,
+        };
+
+        try {
+            let response = await fetch("/api/vacancy/deleteStageInVacancy", {
+                method: 'POST',
+                headers: {
+                    'Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(stage)
+            });
+
+            if (response.ok) {
+                fetchStagesData();
+            } else if (response.status === 403) {
+                console.log('АШИПКА 403')
+            } else {
+                console.log('АШИПКА НЕИЗВЕСТНА')
+            }
+        } catch (error) {
+            console.error('Error', error);
+        }
     }
 
     const fetchStagesData = () => {
@@ -196,8 +225,8 @@ const HR6VacancyCardForView = () => {
                                                 </IonText>
                                             </IonItem>
                                             <IonItem>
-                                                Статус
-                                                <IonBadge slot="end" color={"danger"}>to-be-done</IonBadge>
+                                                Тип
+                                                <IonBadge slot="end" color={"danger"}>{stage.type}</IonBadge>
                                             </IonItem>
                                             <IonItem>
                                                 <IonText>
@@ -211,29 +240,29 @@ const HR6VacancyCardForView = () => {
                                                 expand="block" fill="clear" color="transparent">Перейти к заданию
                                             </IonButton>
                                             <IonButton id="present-alert"
-                                                       expand="block" fill="clear" color="transparent">Удалить
+                                                       expand="block" fill="clear" color="transparent" onClick={() => deleteStage(stage.id)}>Удалить
                                             </IonButton>
-                                            <IonAlert
-                                                header="Вы действительно хотите удалить?"
-                                                trigger="present-alert"
-                                                buttons={[
-                                                    {
-                                                        text: 'Отмена',
-                                                        role: 'cancel',
-                                                        handler: () => {
-                                                            setHandlerMessage('Alert canceled');
-                                                        },
-                                                    },
-                                                    {
-                                                        text: 'Да',
-                                                        role: 'confirm',
-                                                        handler: () => {
-                                                            setHandlerMessage('Alert confirmed');
-                                                        },
-                                                    },
-                                                ]}
-                                                onDidDismiss={({detail}) => setRoleMessage(`Dismissed with role: ${detail.role}`)}
-                                            ></IonAlert>
+                                            {/*<IonAlert*/}
+                                            {/*    header="Вы действительно хотите удалить?"*/}
+                                            {/*    trigger="present-alert"*/}
+                                            {/*    buttons={[*/}
+                                            {/*        {*/}
+                                            {/*            text: 'Отмена',*/}
+                                            {/*            role: 'cancel',*/}
+                                            {/*            handler: () => {*/}
+                                            {/*                setHandlerMessage('Alert canceled');*/}
+                                            {/*            },*/}
+                                            {/*        },*/}
+                                            {/*        {*/}
+                                            {/*            text: 'Да',*/}
+                                            {/*            role: 'confirm',*/}
+                                            {/*            handler: () => {*/}
+                                            {/*                setHandlerMessage('Alert confirmed');*/}
+                                            {/*            },*/}
+                                            {/*        },*/}
+                                            {/*    ]}*/}
+                                            {/*    onDidDismiss={({detail}) => setRoleMessage(`Dismissed with role: ${detail.role}`)}*/}
+                                            {/*></IonAlert>*/}
                                         </IonCardContent>
                                     </IonCard>
                                 </IonCol>
@@ -248,13 +277,13 @@ const HR6VacancyCardForView = () => {
                                         <IonSelect
                                             interface="popover"
                                             placeholder="Выберите значение"
-                                            style={{marginTop: '10px', width: '100%', textAlign: 'center'}}
+                                            style={{marginTop: '10px', width: '100%', textAlign: 'center',  justifyContent: 'center'}}
                                             value={newStageType}
                                             onIonChange={handeNewStageType}
                                         >
                                             <IonSelectOption value="Interview">Интервью</IonSelectOption>
-                                            <IonSelectOption value="OpenTest">Открытый вопрос</IonSelectOption>
-                                            <IonSelectOption value="CloseTest">Закрытый вопрос</IonSelectOption>
+                                            <IonSelectOption value="OpenTest">Открытые вопросы</IonSelectOption>
+                                            <IonSelectOption value="CloseTest">Закрытые вопросы</IonSelectOption>
                                         </IonSelect>
 
                                     </IonCardContent>
