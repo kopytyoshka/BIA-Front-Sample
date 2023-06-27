@@ -296,8 +296,8 @@ const HR6VacancyCardForView = () => {
                                             onIonChange={handeNewStageType}
                                         >
                                             <IonSelectOption value="Interview">Интервью</IonSelectOption>
-                                            <IonSelectOption value="OpenedTest">Открытый вопрос</IonSelectOption>
-                                            <IonSelectOption value="ClosedTest">Закрытый вопрос</IonSelectOption>
+                                            <IonSelectOption value="OpenTest">Открытый вопрос</IonSelectOption>
+                                            <IonSelectOption value="CloseTest">Закрытый вопрос</IonSelectOption>
                                         </IonSelect>
 
                                     </IonCardContent>
