@@ -56,11 +56,6 @@ const HR6VacancyCardForView = () => {
         try {
             let response = await fetch("/api/vacancy/deleteStageInVacancy", {
                 method: 'DELETE',
-                headers: {
-                    'Origin': '*',
-                    'Content-type': 'application/json',
-                    'Accept': 'application/json'
-                },
                 body: JSON.stringify(stage)
             });
 
