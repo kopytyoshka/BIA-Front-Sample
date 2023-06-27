@@ -159,24 +159,25 @@ const ListCandidates = () => {
                         </IonGrid>
                     </IonItem>
 
-                    <IonGrid>
-                        <IonRow>
-                            <IonCol size="2" sizeXs="8" sizeSm="8" sizeMd="8" sizeLg="2">
-                                <IonChip>
-                                    <IonIcon icon="../images/calendar-outline.svg"></IonIcon>
-                                    <IonLabel>Java Backend Junior</IonLabel>
-                                    <IonIcon icon="../images/close-circle-outline.svg"></IonIcon>
-                                </IonChip>
-                            </IonCol>
-                            <IonCol size="2" sizeXs="8" sizeSm="8" sizeMd="8" sizeLg="2">
-                                <IonChip>
-                                    <IonIcon icon="../images/star-outline.svg"></IonIcon>
-                                    <IonLabel>Больше 10</IonLabel>
-                                    <IonIcon icon="../images/close-circle-outline.svg"></IonIcon>
-                                </IonChip>
-                            </IonCol>
-                        </IonRow>
-                    </IonGrid>
+                    {/*<IonGrid>*/}
+                    {/*    <IonRow>*/}
+                    {/*        <IonCol size="2" sizeXs="8" sizeSm="8" sizeMd="8" sizeLg="2">*/}
+                    {/*            <IonChip>*/}
+                    {/*                <IonIcon icon="../images/calendar-outline.svg"></IonIcon>*/}
+                    {/*                <IonLabel>Java Backend Junior</IonLabel>*/}
+                    {/*                <IonIcon icon="../images/close-circle-outline.svg"></IonIcon>*/}
+                    {/*            </IonChip>*/}
+                    {/*        </IonCol>*/}
+                    {/*        <IonCol size="2" sizeXs="8" sizeSm="8" sizeMd="8" sizeLg="2">*/}
+                    {/*            <IonChip>*/}
+                    {/*                <IonIcon icon="../images/star-outline.svg"></IonIcon>*/}
+                    {/*                <IonLabel>Больше 10</IonLabel>*/}
+                    {/*                <IonIcon icon="../images/close-circle-outline.svg"></IonIcon>*/}
+                    {/*            </IonChip>*/}
+                    {/*        </IonCol>*/}
+                    {/*    </IonRow>*/}
+                    {/*</IonGrid>*/}
+
                     <IonGrid style={{margin: "0px"}}>
                         <IonRow style={{margin: "0px"}}>
 
@@ -202,7 +203,7 @@ const ListCandidates = () => {
                                                 <IonLabel color="medium" slot="end"><i>to-be-done</i></IonLabel>
                                             </IonItem>
 
-                                            <IonButton onClick={() => navigateToPage(can.id)}
+                                            <IonButton onClick={() => navigateToPage(can.userId)}
                                                        expand="block" fill="clear" color="transparent">Подробнее о
                                                 кандидате</IonButton>
 
