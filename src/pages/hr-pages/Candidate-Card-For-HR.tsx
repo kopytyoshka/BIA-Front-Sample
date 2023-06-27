@@ -1,4 +1,3 @@
-
 import React, {useEffect, useState} from 'react';
 import '../../styles/Page-HR.css'
 import {
@@ -17,37 +16,13 @@ import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useParams} from "react-router";
 import handleToken from "../../scripts/CookiesToken";
 
-// interface Stage {
-//     name: string;
-//     id: string;
-//     deadline: Date;
-//     result: string;
-//     additional: null;
-//     state: string;
-// }
-//
-// interface Vacancy {
-//     responseStatus: string;
-//     creationDate: string;
-//     vacancyName: string;
-//     stages: Stage[];
-//     vacancyId: string;
-// }
-//
-//
-// interface RouteParams {
-//     id: string;
-// }
-
 const CandidateCardForHR = () => {
-    // const { id } = useParams<RouteParams>();
-    const [candidate, setCandidate] = useState<any[]>([])
     const [otkilk, setOtklik] = useState<any[]>([])
 
-    const [phoneNumber, setPhoneNumber] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [name, setName] = useState('');
-    // const [image, setImage] = useState('');
+    const [image, setImage] = useState('')
+    const [name, setName] = useState('')
+    const [phone, setPhone] = useState('')
+    const [email, setEmail] = useState('')
 
     const fetchDataOtkliki = () => {
         fetch("/api/userInfo/getUsersResponses?userId=" + handleToken())
@@ -58,25 +33,6 @@ const CandidateCardForHR = () => {
                 setOtklik(dataOtklik)
             })
     }
-
-    // const fetchData = () => {
-    //     fetch("/api/userInfo/getUsersInfo?userId=" + id)
-    //         .then(response => {
-    //             return response.json()
-    //         })
-    //         .then(dataCandidate => {
-    //             setCandidate(dataCandidate)
-    //             setPhoneNumber(dataCandidate.phoneNumber)
-    //             setEmail(dataCandidate.email)
-    //             setName(dataCandidate.name)
-    //             setImage(dataCandidate.image_url)
-    //         })
-    // }
-
-    const [image, setImage] = useState('')
-    const [name, setName] = useState('')
-    const [phone, setPhone] = useState('')
-    const [email, setEmail] = useState('')
 
     const fetchUsersInfo = () => {
         fetch("/api/userInfo/getUsersInfo?userId=" + handleToken())
