@@ -7,7 +7,7 @@ import {
     IonContent, IonFab, IonFabButton, IonGrid,
     IonHeader, IonIcon, IonItem,
     IonMenuButton,
-    IonPage, IonRow, IonText, IonTextarea,
+    IonPage, IonRow, IonSelect, IonSelectOption, IonText, IonTextarea,
     IonTitle,
     IonToolbar
 } from '@ionic/react';
@@ -253,6 +253,16 @@ const HR6VacancyCardForView = () => {
                                         <IonButton routerLink="/hr-test-page"
                                             expand="block" fill="clear" color="transparent">Добавить этап
                                         </IonButton>
+                                        <IonSelect
+                                            interface="popover"
+                                            placeholder="Выберите значение"
+                                            style={{ marginTop: '10px' }}
+                                        >
+                                            <IonSelectOption value="1">Интервью</IonSelectOption>
+                                            <IonSelectOption value="2">Открытый вопрос</IonSelectOption>
+                                            <IonSelectOption value="3">Закрытый вопрос</IonSelectOption>
+                                        </IonSelect>
+
                                     </IonCardContent>
                                 </IonCard>
                             </IonCol>
