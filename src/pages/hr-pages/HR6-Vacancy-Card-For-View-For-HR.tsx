@@ -16,6 +16,8 @@ import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import handleToken from "../../scripts/CookiesToken";
 import {useParams} from "react-router";
 
+import {formatWorkExperience, formatWorkStatus} from "../../scripts/utils";
+
 const HR6VacancyCardForView = () => {
     interface VacancyParam {
         vacancyId: string;
@@ -83,11 +85,22 @@ const HR6VacancyCardForView = () => {
                                         <IonCardContent>
                                             <IonItem>
                                                 Статус
-                                                <IonBadge slot="end" color={"warning"}>{vacancy.vacancyStatus}</IonBadge>
+                                                <IonBadge slot="end"
+                                                color={
+                                                    vacancy.vacancyStatus === "Opened" ? "success" :
+                                                        vacancy.vacancyStatus === "OnModeration" ? "warning" :
+                                                "danger"
+                                                }>
+                                                    {formatWorkStatus(vacancy.vacancyStatus)}</IonBadge>
                                             </IonItem>
                                             <IonItem>
                                                 Опыт работы
-                                                <IonBadge slot="end" color={"danger"}>{vacancy.workExperience}</IonBadge>
+                                                <IonBadge slot="end" color={
+                                                    vacancy.workExperience === "WithoutExperience" ? "success" :
+                                                        vacancy.workExperience === "MoreTwoYears" ? "danger" :
+                                                            "warning"
+                                                }>
+                                                    {formatWorkExperience(vacancy.workExperience)}</IonBadge>
                                             </IonItem>
                                             <IonItem>
                                                 Отклики
