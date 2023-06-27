@@ -13,10 +13,10 @@ import {
 } from '@ionic/react';
 import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
-import handleToken from "../../scripts/CookiesToken";
 import {useParams} from "react-router";
 
-import {formatWorkExperience, formatWorkStatus} from "../../scripts/utils";
+import {formatWorkExperience, formatWorkStatus, redirectToExternalSite} from "../../scripts/utils";
+import handleToken from "../../scripts/CookiesToken";
 
 const HR6VacancyCardForView = () => {
     interface VacancyParam {
@@ -26,8 +26,13 @@ const HR6VacancyCardForView = () => {
     const [handlerMessage, setHandlerMessage] = useState('');
     const [roleMessage, setRoleMessage] = useState('');
     const [vacancy, setVacancy] = useState<any>([])
-    const { vacancyId } = useParams<VacancyParam>();
+    const {vacancyId} = useParams<VacancyParam>();
     const [activeResponses, setActiveResponses] = useState<any>([])
+    const [newStageType, setNewStageType] = useState('');
+
+    const handeNewStageType = (event: any) => {
+        setNewStageType(event.target.value);
+    };
 
 
     const fetchVacancyData = () => {
@@ -52,6 +57,36 @@ const HR6VacancyCardForView = () => {
             })
     }
 
+    async function addNewStage() {
+        try {
+            let response = await fetch("/api/stage/createTestStageInVacancy", {
+                method: 'POST',
+                headers: {
+                    'Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(vacancyId)
+            });
+
+            if (response.ok) {
+                if (newStageType == "ClosedQ") {
+                    //
+                }
+                if (newStageType == "OpenedQ") {
+                    //
+                }
+                fetchVacancyData();
+            } else if (response.status === 403) {
+                console.log('АШИПКА 403')
+            } else {
+                console.log('АШИПКА НЕИЗВЕСТНА')
+            }
+        } catch (error) {
+            console.error('Error', error);
+        }
+    }
+
     useEffect(() => {
         fetchVacancyData()
         fetchDataActiveResponses()
@@ -72,43 +107,43 @@ const HR6VacancyCardForView = () => {
                 </IonHeader>
 
                 <IonContent className="ion-padding">
-                        <h1 style={{marginLeft: "20px"}}>{vacancy.name}</h1>
+                    <h1 style={{marginLeft: "20px"}}>{vacancy.name}</h1>
                     <IonGrid>
                         <IonRow>
-                                <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                        <IonCardHeader>
-                                            <IonTitle>
-                                                Информация о вакансии
-                                            </IonTitle>
-                                        </IonCardHeader>
-                                        <IonCardContent>
-                                            <IonItem>
-                                                Статус
-                                                <IonBadge slot="end"
-                                                color={
-                                                    vacancy.vacancyStatus === "Opened" ? "success" :
-                                                        vacancy.vacancyStatus === "OnModeration" ? "warning" :
-                                                "danger"
-                                                }>
-                                                    {formatWorkStatus(vacancy.vacancyStatus)}</IonBadge>
-                                            </IonItem>
-                                            <IonItem>
-                                                Опыт работы
-                                                <IonBadge slot="end" color={
-                                                    vacancy.workExperience === "WithoutExperience" ? "success" :
-                                                        vacancy.workExperience === "MoreTwoYears" ? "danger" :
-                                                            "warning"
-                                                }>
-                                                    {formatWorkExperience(vacancy.workExperience)}</IonBadge>
-                                            </IonItem>
-                                            <IonItem>
-                                                Отклики
-                                                <IonBadge slot="end" color={"primary"}>{activeResponses.num}</IonBadge>
-                                            </IonItem>
-                                        </IonCardContent>
-                                    </IonCard>
-                                </IonCol>
+                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
+                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
+                                    <IonCardHeader>
+                                        <IonTitle>
+                                            Информация о вакансии
+                                        </IonTitle>
+                                    </IonCardHeader>
+                                    <IonCardContent>
+                                        <IonItem>
+                                            Статус
+                                            <IonBadge slot="end"
+                                                      color={
+                                                          vacancy.vacancyStatus === "Opened" ? "success" :
+                                                              vacancy.vacancyStatus === "OnModeration" ? "warning" :
+                                                                  "danger"
+                                                      }>
+                                                {formatWorkStatus(vacancy.vacancyStatus)}</IonBadge>
+                                        </IonItem>
+                                        <IonItem>
+                                            Опыт работы
+                                            <IonBadge slot="end" color={
+                                                vacancy.workExperience === "WithoutExperience" ? "success" :
+                                                    vacancy.workExperience === "MoreTwoYears" ? "danger" :
+                                                        "warning"
+                                            }>
+                                                {formatWorkExperience(vacancy.workExperience)}</IonBadge>
+                                        </IonItem>
+                                        <IonItem>
+                                            Отклики
+                                            <IonBadge slot="end" color={"primary"}>{activeResponses.num}</IonBadge>
+                                        </IonItem>
+                                    </IonCardContent>
+                                </IonCard>
+                            </IonCol>
                             <IonCol style={{marginLeft: "20px"}}>
                                 <IonButton fill="outline">Редактировать</IonButton>
                                 <IonButton fill="outline">В архив</IonButton>
@@ -118,14 +153,14 @@ const HR6VacancyCardForView = () => {
 
                     <IonGrid>
                         <IonRow>
-                                <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="8">
-                                    <IonCard style={{borderRadius: '20px'}}>
-                                        <IonCardHeader>Описание</IonCardHeader>
-                                        <IonCardContent>
-                                            {vacancy.description}
-                                        </IonCardContent>
-                                    </IonCard>
-                                </IonCol>
+                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="8">
+                                <IonCard style={{borderRadius: '20px'}}>
+                                    <IonCardHeader>Описание</IonCardHeader>
+                                    <IonCardContent>
+                                        {vacancy.description}
+                                    </IonCardContent>
+                                </IonCard>
+                            </IonCol>
                         </IonRow>
                     </IonGrid>
 
@@ -184,7 +219,7 @@ const HR6VacancyCardForView = () => {
                                                     },
                                                 },
                                             ]}
-                                            onDidDismiss={({ detail }) => setRoleMessage(`Dismissed with role: ${detail.role}`)}
+                                            onDidDismiss={({detail}) => setRoleMessage(`Dismissed with role: ${detail.role}`)}
                                         ></IonAlert>
                                     </IonCardContent>
                                 </IonCard>
@@ -242,7 +277,7 @@ const HR6VacancyCardForView = () => {
                                                     },
                                                 },
                                             ]}
-                                            onDidDismiss={({ detail }) => setRoleMessage(`Dismissed with role: ${detail.role}`)}
+                                            onDidDismiss={({detail}) => setRoleMessage(`Dismissed with role: ${detail.role}`)}
                                         ></IonAlert>
                                     </IonCardContent>
                                 </IonCard>
@@ -251,16 +286,18 @@ const HR6VacancyCardForView = () => {
                                 <IonCard style={{borderRadius: '20px', marginTop: '120px'}}>
                                     <IonCardContent>
                                         <IonButton routerLink="/hr-test-page"
-                                            expand="block" fill="clear" color="transparent">Добавить этап
+                                                   expand="block" fill="clear" color="transparent" onClick={() => addNewStage()}>Добавить этап
                                         </IonButton>
                                         <IonSelect
                                             interface="popover"
                                             placeholder="Выберите значение"
-                                            style={{ marginTop: '10px' }}
+                                            style={{ marginTop: '10px', width: '100%', textAlign: 'center' }}
+                                            value={newStageType}
+                                            onIonChange={handeNewStageType}
                                         >
-                                            <IonSelectOption value="1">Интервью</IonSelectOption>
-                                            <IonSelectOption value="2">Открытый вопрос</IonSelectOption>
-                                            <IonSelectOption value="3">Закрытый вопрос</IonSelectOption>
+                                            <IonSelectOption value="Interview">Интервью</IonSelectOption>
+                                            <IonSelectOption value="OpenedQ">Открытый вопрос</IonSelectOption>
+                                            <IonSelectOption value="ClosedQ">Закрытый вопрос</IonSelectOption>
                                         </IonSelect>
 
                                     </IonCardContent>
