@@ -16,6 +16,10 @@ import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useParams} from "react-router";
 import handleToken from "../../scripts/CookiesToken";
 
+interface RouteParams {
+    id: string
+}
+
 const CandidateCardForHR = () => {
     const [otkilk, setOtklik] = useState<any[]>([])
 
@@ -24,8 +28,10 @@ const CandidateCardForHR = () => {
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
 
+    const { id } = useParams<RouteParams>();
+
     const fetchDataOtkliki = () => {
-        fetch("/api/userInfo/getUsersResponses?userId=" + handleToken())
+        fetch("/api/userInfo/getUsersResponses?userId=" + id)
             .then(response => {
                 return response.json()
             })
@@ -35,7 +41,7 @@ const CandidateCardForHR = () => {
     }
 
     const fetchUsersInfo = () => {
-        fetch("/api/userInfo/getUsersInfo?userId=" + handleToken())
+        fetch("/api/userInfo/getUsersInfo?userId=" + id)
             .then(response => {
                 return response.json()
             })

@@ -83,13 +83,6 @@ const ListCandidates = () => {
                         <IonButtons slot="start">
                             <IonMenuButton></IonMenuButton>
                         </IonButtons>
-                        {/*<IonButtons slot="end">*/}
-                        {/*    <IonMenuToggle>*/}
-                        {/*        <IonItem lines="none" routerLink="/logout">*/}
-                        {/*            <IonTitle>Выйти</IonTitle>*/}
-                        {/*        </IonItem>*/}
-                        {/*    </IonMenuToggle>*/}
-                        {/*</IonButtons>*/}
                         <IonTitle>Список кандидатов</IonTitle>
                     </IonToolbar>
                 </IonHeader>
@@ -180,7 +173,6 @@ const ListCandidates = () => {
 
                     <IonGrid style={{margin: "0px"}}>
                         <IonRow style={{margin: "0px"}}>
-
                             {candidate.map(can => (
                                 <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4" key={can.id}>
                                     <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
@@ -203,10 +195,13 @@ const ListCandidates = () => {
                                                 <IonLabel color="medium" slot="end"><i>to-be-done</i></IonLabel>
                                             </IonItem>
 
-                                            <IonButton onClick={() => navigateToPage(can.userId)}
-                                                       expand="block" fill="clear" color="transparent">Подробнее о
-                                                кандидате</IonButton>
-
+                                            <IonButton
+                                                onClick={() => navigateToPage(can.userId)}
+                                                expand="block"
+                                                fill="clear"
+                                                color="transparent">
+                                                Подробнее о кандидате
+                                            </IonButton>
                                         </IonCardContent>
                                     </IonCard>
                                 </IonCol>
