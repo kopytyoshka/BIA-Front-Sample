@@ -25,6 +25,7 @@ const HR6VacancyCardForView = () => {
     const [roleMessage, setRoleMessage] = useState('');
     const [vacancy, setVacancy] = useState<any>([])
     const { vacancyId } = useParams<VacancyParam>();
+    const [activeResponses, setActiveResponses] = useState<any>([])
 
 
     const fetchVacancyData = () => {
@@ -38,8 +39,20 @@ const HR6VacancyCardForView = () => {
             })
     }
 
+    const fetchDataActiveResponses = () => {
+        fetch("/api/response/countAllResponsesForVacancy")
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setActiveResponses(data)
+                console.log(data)
+            })
+    }
+
     useEffect(() => {
         fetchVacancyData()
+        fetchDataActiveResponses()
     }, [])
 
     return (
@@ -78,11 +91,7 @@ const HR6VacancyCardForView = () => {
                                             </IonItem>
                                             <IonItem>
                                                 Отклики
-                                                <IonBadge slot="end" color={"primary"}>340</IonBadge>
-                                            </IonItem>
-                                            <IonItem routerLink="/">
-                                                Этапы
-                                                <IonIcon slot="end" icon="../images/chevron-forward-outline.svg"></IonIcon>
+                                                <IonBadge slot="end" color={"primary"}>{activeResponses.num}</IonBadge>
                                             </IonItem>
                                         </IonCardContent>
                                     </IonCard>

@@ -140,6 +140,34 @@ function VacancyPageForHR() {
                                     </IonCardContent>
                                 </IonCard>
                             </IonCol>
+
+                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
+                                <IonCard style={{borderRadius: '20px'}}>
+                                    <IonCardHeader>
+                                        <IonCardTitle>
+                                            Сфера
+                                        </IonCardTitle>
+                                    </IonCardHeader>
+                                    <IonCardContent>
+                                        <IonList>
+                                            <IonRadioGroup>
+                                                <IonItem>
+                                                    <IonRadio justify="space-between" value="dogs">IT</IonRadio>
+                                                    <br/>
+                                                </IonItem>
+                                                <IonItem>
+                                                    <IonRadio justify="space-between" value="cats">Образование</IonRadio>
+                                                    <br/>
+                                                </IonItem>
+                                                <IonItem>
+                                                    <IonRadio justify="space-between" value="turtles">Медицина</IonRadio>
+                                                    <br/>
+                                                </IonItem>
+                                            </IonRadioGroup>
+                                        </IonList>
+                                    </IonCardContent>
+                                </IonCard>
+                            </IonCol>
                         </IonRow>
                     </IonGrid>
 
@@ -147,7 +175,7 @@ function VacancyPageForHR() {
 
                     <IonGrid>
                         <IonRow>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="8">
+                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12">
                                 <IonCard style={{borderRadius: '20px'}}>
                                     <IonItem>
                                         <IonTextarea placeholder="Описание" autoGrow={true}
@@ -157,58 +185,6 @@ function VacancyPageForHR() {
                             </IonCol>
                         </IonRow>
                     </IonGrid>
-
-                    <IonGrid>
-                        <IonRow>
-                            <IonCol size="1" sizeXs="6" sizeSm="6" sizeMd="6" sizeLg="3" sizeXl="2">
-                                <IonButton expand="block" fill="clear" color="transparent" style={{margin: "0px"}}>
-                                    <IonList style={{padding: "0px"}}>
-                                        <IonItem>
-                                            <IonSelect interface="popover" placeholder="Добавить этап">
-                                                <IonSelectOption value="apples">Интервью</IonSelectOption>
-                                                <IonSelectOption value="oranges">Тестирование</IonSelectOption>
-                                            </IonSelect>
-                                        </IonItem>
-                                    </IonList>
-                                </IonButton>
-                            </IonCol>
-                            <IonCol size="1" sizeXs="6" sizeSm="6" sizeMd="6" sizeLg="3" sizeXl="2">
-                                <IonButton expand="block" fill="clear" color="transparent">
-                                    <IonList style={{padding: "0px"}}>
-                                        <IonItem>
-                                            <IonSelect interface="popover" placeholder="Добавить существующий этап">
-                                                <IonSelectOption value="apples">Интервью</IonSelectOption>
-                                                <IonSelectOption value="oranges">Тестирование</IonSelectOption>
-                                            </IonSelect>
-                                        </IonItem>
-                                    </IonList>
-                                </IonButton>
-                            </IonCol>
-                        </IonRow>
-                    </IonGrid>
-
-                    <h1 style={{marginLeft: "40px"}}>Этапы отбора</h1>
-
-                    <IonGrid>
-                        <IonRow>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                <IonCard style={{borderRadius: '20px'}}>
-                                    <IonCardContent>
-                                        <IonItem routerLink="/">
-                                            Анкета
-                                        </IonItem>
-                                        <IonItem routerLink="/">
-                                            Тест
-                                        </IonItem>
-                                        <IonItem routerLink="/">
-                                            Интервью
-                                        </IonItem>
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
-                        </IonRow>
-                    </IonGrid>
-
                 </IonContent>
             </IonPage>
         </>
