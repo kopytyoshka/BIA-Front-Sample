@@ -20,10 +20,11 @@ import {
     IonHeader,
     IonGrid,
     IonRow,
-    IonCol,
+    IonCol, IonToast,
 } from '@ionic/react';
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useHistory, useParams} from "react-router";
+import {reload} from "ionicons/icons";
 
 interface Question {
     question: string;
@@ -38,6 +39,8 @@ interface Question {
 const CreateQuestion: React.FC = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [doneQuestions, setDoneQuestions] = useState<any[]>([]);
+    const [message, setMessage] = useState("");
+    const [showPopup, setShowPopup] = useState(false);
 
     interface StageParam {
         id: string;
@@ -89,9 +92,38 @@ const CreateQuestion: React.FC = () => {
             });
 
             if (response.ok) {
-                console.log('Question saved successfully');
+                setMessage('Вопрос сохранен! При перезагрузе страницы он отобразится.')
+                setShowPopup(true);
             } else {
-                console.log('Failed to save the question');
+                setMessage('Вопрос не получилось сохранить. Попробуйте ещё раз.')
+                setShowPopup(true);
+            }
+        } catch (error) {
+            console.error('Error occurred while saving the question:', error);
+        }
+    };
+
+    const handleDeleteQuestion = async (questionId: string) => {
+        let deletingQuestion = {
+            stageId: id,
+            questionId: questionId,
+        }
+        try {
+            const response = await fetch('/api/stage/deleteQuestionFromStage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(deletingQuestion),
+            });
+
+            if (response.ok) {
+                fetchQuestions()
+                setMessage('Вопрос удалён!')
+                setShowPopup(true);
+            } else {
+                setMessage('Удалить вопрос не получилось :( Что-то пошло не так')
+                setShowPopup(true);
             }
         } catch (error) {
             console.error('Error occurred while saving the question:', error);
@@ -126,6 +158,12 @@ const CreateQuestion: React.FC = () => {
                         <IonTitle>Создание закрытого теста</IonTitle>
                     </IonToolbar>
                 </IonHeader>
+                <IonToast
+                    isOpen={showPopup}
+                    message={message}
+                    onDidDismiss={() => setShowPopup(false)}
+                    duration={2000}
+                />
                 <IonContent>
                     <IonGrid style={{margin: "10px"}}>
                         <IonRow style={{marginLeft: "0px"}}>
@@ -168,6 +206,7 @@ const CreateQuestion: React.FC = () => {
                                                     <IonTextarea
                                                         value={done.var4} disabled
                                                     ></IonTextarea>
+                                                    <IonButton slot="end" color="danger" onClick={(e: any) => handleDeleteQuestion(done.id)}>Удалить</IonButton>
                                                 </IonItem>
                                             </IonRadioGroup>
                                         </IonCardContent>
@@ -231,8 +270,7 @@ const CreateQuestion: React.FC = () => {
                                                     ></IonTextarea>
                                                 </IonItem>
                                             </IonRadioGroup>
-                                            <IonButton onClick={() => handleSaveQuestion(question)}>Save
-                                                question</IonButton>
+                                            <IonButton onClick={() => handleSaveQuestion(question)}>Сохранить вопрос</IonButton>
                                         </IonCardContent>
                                     </IonCard>
                                 ))}
