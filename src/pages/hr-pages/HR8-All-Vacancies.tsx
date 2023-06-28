@@ -13,11 +13,12 @@ import {
 } from '@ionic/react';
 import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
+import {useHistory} from "react-router";
 
 const HR8AllVacancies = () => {
-
     const [vacancy, setVacancy] = useState<any[]>([])
-    const fetchData = () => {
+    const history = useHistory();
+    const fetchAllVacancies = () => {
         fetch("/api/vacancy/allVacanciesForHR")
             .then(response => {
                 return response.json()
@@ -26,6 +27,14 @@ const HR8AllVacancies = () => {
                 setVacancy(data)
             })
     }
+
+    const handleItemClick = (vacancyId: string) => {
+        history.push(`/vacancy-card/${vacancyId}`);
+    };
+
+    useEffect(() => {
+        fetchAllVacancies()
+    }, [])
 
     return (
         <>
@@ -49,7 +58,11 @@ const HR8AllVacancies = () => {
                                               placeholder="Выбор параметров"></IonSearchbar>
                             </IonCol>
                             <IonCol style={{marginLeft: "20px"}}>
-                                <IonButton fill="outline">Добавить вакансию</IonButton>
+                                <IonButton
+                                    routerLink="/create-vacancy"
+                                    fill="outline">
+                                    Добавить вакансию
+                                </IonButton>
                             </IonCol>
                         </IonRow>
                     </IonGrid>
@@ -69,46 +82,13 @@ const HR8AllVacancies = () => {
                                                 {vac.description}
                                             </IonItem>
                                             <IonButton
-                                                expand="block" fill="clear" color="transparent">Просмотреть вакансию
-                                            </IonButton>
+                                                onClick={() => handleItemClick(vac.vacancyId)}
+                                                expand="block" fill="clear" color="transparent">Просмотреть
+                                                вакансию</IonButton>
                                         </IonCardContent>
                                     </IonCard>
                                 </IonCol>
                             ))}
-                            {/*<IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">*/}
-                            {/*    <IonCard style={{borderRadius: '20px'}}>*/}
-                            {/*        <IonCardHeader>*/}
-                            {/*            <IonTitle>*/}
-                            {/*                Backend-разработчик C#*/}
-                            {/*            </IonTitle>*/}
-                            {/*        </IonCardHeader>*/}
-                            {/*        <IonCardContent>*/}
-                            {/*            <IonItem>*/}
-                            {/*                Краткое описание*/}
-                            {/*            </IonItem>*/}
-                            {/*            <IonButton*/}
-                            {/*                expand="block" fill="clear" color="transparent">Просмотреть вакансию*/}
-                            {/*            </IonButton>*/}
-                            {/*        </IonCardContent>*/}
-                            {/*    </IonCard>*/}
-                            {/*</IonCol>*/}
-                            {/*<IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">*/}
-                            {/*    <IonCard style={{borderRadius: '20px'}}>*/}
-                            {/*        <IonCardHeader>*/}
-                            {/*            <IonTitle>*/}
-                            {/*                Backend-разработчик C#*/}
-                            {/*            </IonTitle>*/}
-                            {/*        </IonCardHeader>*/}
-                            {/*        <IonCardContent>*/}
-                            {/*            <IonItem>*/}
-                            {/*                Краткое описание*/}
-                            {/*            </IonItem>*/}
-                            {/*            <IonButton*/}
-                            {/*                expand="block" fill="clear" color="transparent">Просмотреть вакансию*/}
-                            {/*            </IonButton>*/}
-                            {/*        </IonCardContent>*/}
-                            {/*    </IonCard>*/}
-                            {/*</IonCol>*/}
                         </IonRow>
                     </IonGrid>
                 </IonContent>
