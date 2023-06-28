@@ -19,6 +19,10 @@ function PageCandidateVacancyList() {
 
     const [vacancy, setVacancy] = useState<any[]>([])
     const history = useHistory();
+    const handleItemClick = (id: string) => {
+        history.push(`/vacancy/${id}`);
+    };
+
     const fetchDataVacancies = () => {
         fetch("/api/vacancy/allVacanciesForUser")
             .then(response => {
@@ -33,10 +37,6 @@ function PageCandidateVacancyList() {
     useEffect(() => {
         fetchDataVacancies()
     }, [])
-
-    const handleItemClick = (id: string) => {
-        history.push(`/vacancy/${id}`);
-    };
 
     return (
         <>
