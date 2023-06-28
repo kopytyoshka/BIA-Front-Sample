@@ -10,7 +10,7 @@ interface Question {
     rightChoose: number;
 }
 
-function PageHrClosetTestCreate() {
+const CreateQuestion: React.FC = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentQuestion, setCurrentQuestion] = useState<Question>({
         question: '',
@@ -18,7 +18,7 @@ function PageHrClosetTestCreate() {
         var2: '',
         var3: '',
         var4: '',
-        rightChoose: 0,
+        rightChoose: 1,
     });
 
     const handleCreateQuestion = () => {
@@ -29,7 +29,7 @@ function PageHrClosetTestCreate() {
             var2: '',
             var3: '',
             var4: '',
-            rightChoose: 0,
+            rightChoose: 1,
         });
     };
 
@@ -79,28 +79,28 @@ function PageHrClosetTestCreate() {
                     <IonCardContent>
                         <IonItem>
                             <IonLabel position="floating">Question</IonLabel>
-                            <IonInput name="question" value={question.question} disabled></IonInput>
+                            <IonInput name="question" value={question.question} onIonChange={(e: any) => handleInputChange(e)}></IonInput>
                         </IonItem>
-                        <IonRadioGroup value={question.rightChoose.toString()} onClick={() => handleRadioChange}>
+                        <IonRadioGroup value={question.rightChoose.toString()} onIonChange={(e: any) => handleInputChange(e)}>
                             <IonItem>
                                 <IonLabel>Variant 1</IonLabel>
                                 <IonRadio slot="start" value="1"></IonRadio>
-                                <IonInput name="var1" value={question.var1} disabled></IonInput>
+                                <IonInput name="var1" value={question.var1} onIonChange={(e: any) => handleInputChange(e)}></IonInput>
                             </IonItem>
                             <IonItem>
                                 <IonLabel>Variant 2</IonLabel>
                                 <IonRadio slot="start" value="2"></IonRadio>
-                                <IonInput name="var2" value={question.var2} disabled></IonInput>
+                                <IonInput name="var2" value={question.var2} onIonChange={(e: any) => handleInputChange(e)}></IonInput>
                             </IonItem>
                             <IonItem>
                                 <IonLabel>Variant 3</IonLabel>
                                 <IonRadio slot="start" value="3"></IonRadio>
-                                <IonInput name="var3" value={question.var3} disabled></IonInput>
+                                <IonInput name="var3" value={question.var3} onIonChange={(e: any) => handleInputChange(e)}></IonInput>
                             </IonItem>
                             <IonItem>
                                 <IonLabel>Variant 4</IonLabel>
                                 <IonRadio slot="start" value="4"></IonRadio>
-                                <IonInput name="var4" value={question.var4} disabled></IonInput>
+                                <IonInput name="var4" value={question.var4} onIonChange={(e: any) => handleInputChange(e)}></IonInput>
                             </IonItem>
                         </IonRadioGroup>
                         <IonButton onClick={() => handleSaveQuestion(question)}>Save question</IonButton>
@@ -111,4 +111,4 @@ function PageHrClosetTestCreate() {
     );
 };
 
-export default PageHrClosetTestCreate;
+export default CreateQuestion;
