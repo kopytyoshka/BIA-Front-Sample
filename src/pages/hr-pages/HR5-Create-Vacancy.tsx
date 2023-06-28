@@ -227,7 +227,7 @@ function HR5CreateVacancy() {
                             </IonCol>
                         </IonRow>
                     </IonGrid>
-                    <IonButton>
+                    <IonButton onClick={() => submitVacancy()}>
                         Создать вакансию
                     </IonButton>
                 </IonContent>
