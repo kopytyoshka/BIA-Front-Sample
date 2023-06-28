@@ -33,25 +33,51 @@ import {
     IonToolbar
 } from "@ionic/react";
 import React, {useState} from "react";
+import {redirectToExternalSite} from "../../scripts/utils";
 
 function HR5CreateVacancy() {
 
     const [vacancyName, setVacancyName] = useState('');
+    const [vacancyWorkExperience, setVacancyWorkExperience] = useState('');
+    const [vacancyStatus, setVacancyStatus] = useState('');
+    const [vacancyDescription, setVacancyDescription] = useState('');
+    const [vacancySphere, setVacancySphere] = useState('');
+
+    const handleWorkExperience = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVacancyWorkExperience(event.target.value);
+    };
+
+    const handleVacancyStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVacancyStatus(event.target.value);
+    };
+
+    const handleVacancySphere = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVacancySphere(event.target.value);
+    };
 
     async function submitVacancy() {
         try {
-            const userInput = { /* Construct the user input object */ };
+            const vacancyInfo = {
+                name: vacancyName,
+                description: vacancyDescription,
+                workExperience: vacancyWorkExperience,
+                vacancyStatus: vacancyStatus,
+                sphere: vacancySphere,
+            };
 
             const response = await fetch('/api/vacancy/createVacancy', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
                 },
-                body: JSON.stringify(userInput),
+                body: JSON.stringify(vacancyInfo),
             });
 
             if (response.ok) {
-                const responseData = await response.json();
+                redirectToExternalSite('/home')
+                return response.json();
             } else {
                 const errorData = await response.json();
             }
@@ -95,21 +121,11 @@ function HR5CreateVacancy() {
                             </IonCol>
                             <IonCol>
                                 <IonItem lines="none" style={{paddingTop: "1vh"}} color="transparent">
-                                    <IonBadge color="warning" style={{fontSize: "3vh"}}>Опубликовано</IonBadge>
+                                    {/*<IonBadge color="warning" style={{fontSize: "3vh"}}>Опубликовано</IonBadge>*/}
                                 </IonItem>
                             </IonCol>
                         </IonRow>
                     </IonGrid>
-
-                    <IonGrid>
-                        <IonRow>
-                            <IonCol size="3" sizeXs="12" sizeSm="3" sizeMd="3" sizeLg="3" sizeXl="4">
-                                <IonSearchbar searchIcon="public/images/search-outline.svg"
-                                              placeholder="Выбор параметров"></IonSearchbar>
-                            </IonCol>
-                        </IonRow>
-                    </IonGrid>
-
                     <IonGrid>
                         <IonRow>
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
@@ -121,21 +137,17 @@ function HR5CreateVacancy() {
                                     </IonCardHeader>
                                     <IonCardContent>
                                         <IonList>
-                                            <IonRadioGroup>
+                                            <IonRadioGroup onClick={(e: any) => handleWorkExperience(e)}>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="dogs">Нет опыта</IonRadio>
+                                                    <IonRadio justify="space-between" value="WithoutExperience">Нет опыта</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="cats">1-3 лет</IonRadio>
+                                                    <IonRadio justify="space-between" value="CoupleOfYears">1-2 года</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="turtles">4-5 лет</IonRadio>
-                                                    <br/>
-                                                </IonItem>
-                                                <IonItem>
-                                                    <IonRadio justify="space-between" value="fish">Больше 5</IonRadio>
+                                                    <IonRadio justify="space-between" value="MoreTwoYears">Больше двух лет</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                             </IonRadioGroup>
@@ -152,21 +164,17 @@ function HR5CreateVacancy() {
                                     </IonCardHeader>
                                     <IonCardContent>
                                         <IonList>
-                                            <IonRadioGroup>
+                                            <IonRadioGroup onClick={(e: any) => handleVacancyStatus(e)}>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="dogs">Нет опыта</IonRadio>
+                                                    <IonRadio justify="space-between" value="OnModeration">На модерации</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="cats">1-3 лет</IonRadio>
+                                                    <IonRadio justify="space-between" value="Opened">Доступная</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="turtles">4-5 лет</IonRadio>
-                                                    <br/>
-                                                </IonItem>
-                                                <IonItem>
-                                                    <IonRadio justify="space-between" value="fish">Больше 5</IonRadio>
+                                                    <IonRadio justify="space-between" value="Closed">Архивная</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                             </IonRadioGroup>
@@ -184,17 +192,17 @@ function HR5CreateVacancy() {
                                     </IonCardHeader>
                                     <IonCardContent>
                                         <IonList>
-                                            <IonRadioGroup>
+                                            <IonRadioGroup onClick={(e: any) => handleVacancySphere(e)}>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="dogs">IT</IonRadio>
+                                                    <IonRadio justify="space-between" value="IT">IT</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="cats">Образование</IonRadio>
+                                                    <IonRadio justify="space-between" value="Education">Образование</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="turtles">Медицина</IonRadio>
+                                                    <IonRadio justify="space-between" value="Medicine">Медицина</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                             </IonRadioGroup>
@@ -213,12 +221,15 @@ function HR5CreateVacancy() {
                                 <IonCard style={{borderRadius: '20px'}}>
                                     <IonItem>
                                         <IonTextarea placeholder="Описание" autoGrow={true}
-                                                     style={{height: "300px"}}></IonTextarea>
+                                                     style={{minHeight: "300px"}} onChange={(e: any) => setVacancyDescription(e)}></IonTextarea>
                                     </IonItem>
                                 </IonCard>
                             </IonCol>
                         </IonRow>
                     </IonGrid>
+                    <IonButton>
+                        Создать вакансию
+                    </IonButton>
                 </IonContent>
             </IonPage>
         </>

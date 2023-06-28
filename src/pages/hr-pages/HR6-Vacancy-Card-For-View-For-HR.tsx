@@ -48,12 +48,11 @@ const HR6VacancyCardForView = () => {
     }
 
     async function deleteStage(stageId: string) {
-        let stage = {
-            stageId: stageId,
-            vacancyId: vacancyId,
-        };
-
         try {
+            const stage = {
+                stageId: stageId,
+                vacancyId: vacancyId,
+            }
             let response = await fetch("/api/vacancy/deleteStageInVacancy", {
                 method: 'POST',
                 headers: {
