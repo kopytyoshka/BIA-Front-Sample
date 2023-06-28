@@ -27,11 +27,8 @@ function MainPageByRole() {
     if (role == "HR") {
         return <PageHR/>;
     }
-    else if (role == "USER") {
-        return <PageCandidate/>;
-    }
     else {
-        redirectToExternalSite('/register');
+        return <PageCandidate/>;
     }
 
 
