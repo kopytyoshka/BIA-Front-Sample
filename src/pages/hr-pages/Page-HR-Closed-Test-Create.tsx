@@ -206,8 +206,8 @@ const CreateQuestion: React.FC = () => {
                                                     <IonTextarea
                                                         value={done.var4} disabled
                                                     ></IonTextarea>
-                                                    <IonButton slot="end" color="danger" onClick={(e: any) => handleDeleteQuestion(done.id)}>Удалить</IonButton>
                                                 </IonItem>
+                                                <IonButton slot="end" color="danger" onClick={(e: any) => handleDeleteQuestion(done.id)}>Удалить</IonButton>
                                             </IonRadioGroup>
                                         </IonCardContent>
                                     </IonCard>
