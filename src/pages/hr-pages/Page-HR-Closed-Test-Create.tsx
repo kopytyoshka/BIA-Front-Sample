@@ -97,7 +97,6 @@ const CreateQuestion: React.FC = () => {
             console.error('Error occurred while saving the question:', error);
         }
     };
-
     const fetchQuestions = () => {
         fetch("/api/stage/getQuestionsForCertainStage?stageId=" + id)
             .then(response => {
@@ -143,28 +142,28 @@ const CreateQuestion: React.FC = () => {
                                             <IonRadioGroup value={done.rightChoose.toString()}>
                                                 <IonItem>
                                                     <IonLabel>Первый вариант:</IonLabel>
-                                                    <IonRadio slot="start" value="1"></IonRadio>
+                                                    <IonRadio slot="start" value="1" disabled></IonRadio>
                                                     <IonTextarea
                                                         value={done.var1} disabled
                                                     ></IonTextarea>
                                                 </IonItem>
                                                 <IonItem>
                                                     <IonLabel>Второй вариант:</IonLabel>
-                                                    <IonRadio slot="start" value="2"></IonRadio>
+                                                    <IonRadio slot="start" value="2" disabled></IonRadio>
                                                     <IonTextarea
                                                         value={done.var2} disabled
                                                     ></IonTextarea>
                                                 </IonItem>
                                                 <IonItem>
                                                     <IonLabel>Третий вариант:</IonLabel>
-                                                    <IonRadio slot="start" value="3"></IonRadio>
+                                                    <IonRadio slot="start" value="3" disabled></IonRadio>
                                                     <IonTextarea
                                                         value={done.var3} disabled
                                                     ></IonTextarea>
                                                 </IonItem>
                                                 <IonItem>
                                                     <IonLabel>Четвертый вариант:</IonLabel>
-                                                    <IonRadio slot="start" value="4"></IonRadio>
+                                                    <IonRadio slot="start" value="4" disabled></IonRadio>
                                                     <IonTextarea
                                                         value={done.var4} disabled
                                                     ></IonTextarea>
@@ -174,9 +173,6 @@ const CreateQuestion: React.FC = () => {
                                     </IonCard>
                                 ))}
                             </IonCol>
-                        </IonRow>
-                        <IonRow>
-                            <IonButton onClick={handleCreateQuestion}>Добавить новый вопрос</IonButton>
                         </IonRow>
                     </IonGrid>
                     <IonGrid style={{margin: "10px"}}>
