@@ -30,6 +30,7 @@ const HR6VacancyCardForView = () => {
     const [activeResponses, setActiveResponses] = useState<any>([])
     const [newStageType, setNewStageType] = useState('');
     const [stages, setStages] = useState<any[]>([])
+    const history = useHistory();
 
     const handeNewStageType = (event: any) => {
         setNewStageType(event.target.value);
