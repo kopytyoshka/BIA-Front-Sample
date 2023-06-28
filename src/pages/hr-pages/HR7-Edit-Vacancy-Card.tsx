@@ -14,7 +14,7 @@ import {
 import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useParams} from "react-router";
-import {formatSphereType, formatWorkExperience, formatWorkStatus} from "../../scripts/utils";
+import {formatSphereType, formatWorkExperience, formatWorkStatus, redirectToExternalSite} from "../../scripts/utils";
 
 interface RouteParams {
     id: string
@@ -22,6 +22,9 @@ interface RouteParams {
 
 const HR7EditVacancyCard = () => {
     const [vacancyName, setVacancyName] = useState('');
+    const [vacancyWorkExperience, setVacancyWorkExperience] = useState('');
+    const [vacancyStatus, setVacancyStatus] = useState('');
+    const [vacancyDescription, setVacancyDescription] = useState('');
     const [vacancy, setVacancy] = useState<any>([]);
     const [stages, setStages] = useState<any[]>([])
     const [selectedStatus, setSelectedStatus] = useState('');
@@ -30,6 +33,48 @@ const HR7EditVacancyCard = () => {
     const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setVacancyName(event.target.value);
     };
+
+    const handleVacancyWorkExperience = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVacancyWorkExperience(event.target.value);
+    };
+
+    const handleVacancyStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVacancyWorkExperience(event.target.value);
+    };
+
+    const handleVacancyDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVacancyWorkExperience(event.target.value);
+    };
+
+    async function saveVacancy(id: string) {
+        try {
+            const vacancyInfo = {
+                name: vacancyName,
+                description: vacancyDescription,
+                workExperience: vacancyWorkExperience,
+                vacancyStatus: vacancyStatus,
+            };
+
+            const response = await fetch('/api/vacancy/updateVacancyInfo', {
+                method: 'POST',
+                headers: {
+                    'Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(vacancyInfo),
+            });
+
+            if (response.ok) {
+                redirectToExternalSite(`/vacancy-card/${id}`);
+                return response.json();
+            } else {
+                console.log("Error")
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
 
     const fetchVacancyData = () => {
         fetch("/api/vacancy/getVacancyInfo?vacancyId=" + id)
@@ -83,50 +128,50 @@ const HR7EditVacancyCard = () => {
                                         fill="outline"
                                         labelPlacement="floating"
                                         value={vacancy.vacancyName}
-                                        onIonChange={(e: any) => setVacancyName(e)}>
+                                        onIonChange={(e: any) => handleVacancyName(e)}>
                                     </IonInput>
                                 </IonItem>
                             </IonCol>
                             <IonCol style={{marginLeft: "20px"}}>
-                                <IonButton fill="outline">Сохранить</IonButton>
+                                <IonButton fill="outline" onClick={() => saveVacancy(vacancy.vacancyId)}>Сохранить</IonButton>
                                 <IonButton fill="outline">Отменить</IonButton>
                             </IonCol>
                         </IonRow>
                     </IonGrid>
-                    <IonGrid>
-                        <IonRow>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonTitle>
-                                            Информация о вакансии
-                                        </IonTitle>
-                                    </IonCardHeader>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            Статус
-                                            <IonBadge slot="end"
-                                                      color={
-                                                          vacancy.vacancyStatus === "Opened" ? "success" :
-                                                              vacancy.vacancyStatus === "OnModeration" ? "warning" :
-                                                                  "danger"
-                                                      }>
-                                                {formatWorkStatus(vacancy.vacancyStatus)}</IonBadge>
-                                        </IonItem>
-                                        <IonItem>
-                                            Опыт работы
-                                            <IonBadge slot="end" color={
-                                                vacancy.workExperience === "WithoutExperience" ? "success" :
-                                                    vacancy.workExperience === "MoreTwoYears" ? "danger" :
-                                                        "warning"
-                                            }>
-                                                {formatWorkExperience(vacancy.workExperience)}</IonBadge>
-                                        </IonItem>
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
-                        </IonRow>
-                    </IonGrid>
+                    {/*<IonGrid>*/}
+                    {/*    <IonRow>*/}
+                    {/*        <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">*/}
+                    {/*            <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>*/}
+                    {/*                <IonCardHeader>*/}
+                    {/*                    <IonTitle>*/}
+                    {/*                        Информация о вакансии*/}
+                    {/*                    </IonTitle>*/}
+                    {/*                </IonCardHeader>*/}
+                    {/*                <IonCardContent>*/}
+                    {/*                    <IonItem>*/}
+                    {/*                        Статус*/}
+                    {/*                        <IonBadge slot="end"*/}
+                    {/*                                  color={*/}
+                    {/*                                      vacancy.vacancyStatus === "Opened" ? "success" :*/}
+                    {/*                                          vacancy.vacancyStatus === "OnModeration" ? "warning" :*/}
+                    {/*                                              "danger"*/}
+                    {/*                                  }>*/}
+                    {/*                            {formatWorkStatus(vacancy.vacancyStatus)}</IonBadge>*/}
+                    {/*                    </IonItem>*/}
+                    {/*                    <IonItem>*/}
+                    {/*                        Опыт работы*/}
+                    {/*                        <IonBadge slot="end" color={*/}
+                    {/*                            vacancy.workExperience === "WithoutExperience" ? "success" :*/}
+                    {/*                                vacancy.workExperience === "MoreTwoYears" ? "danger" :*/}
+                    {/*                                    "warning"*/}
+                    {/*                        }>*/}
+                    {/*                            {formatWorkExperience(vacancy.workExperience)}</IonBadge>*/}
+                    {/*                    </IonItem>*/}
+                    {/*                </IonCardContent>*/}
+                    {/*            </IonCard>*/}
+                    {/*        </IonCol>*/}
+                    {/*    </IonRow>*/}
+                    {/*</IonGrid>*/}
 
                     <IonGrid>
                         <IonRow>
@@ -138,14 +183,40 @@ const HR7EditVacancyCard = () => {
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup value={selectedStatus} onIonChange={e => setSelectedStatus(e.detail.value)}>
+                                        <IonRadioGroup onClick={(e: any) => handleVacancyStatus(e)}>
                                             <IonItem>
-                                                <IonLabel>Активная</IonLabel>
-                                                <IonRadio slot="start" value="Opened" />
+                                                <IonRadio justify="space-between" value="OnModeration">На модерации</IonRadio>
                                             </IonItem>
                                             <IonItem>
-                                                <IonLabel>Закрытая</IonLabel>
-                                                <IonRadio slot="start" value="Closed" />
+                                                <IonRadio justify="space-between" value="Opened">Доступная</IonRadio>
+                                            </IonItem>
+                                            <IonItem>
+                                                <IonRadio justify="space-between" value="Closed">Архивная</IonRadio>
+                                            </IonItem>
+                                        </IonRadioGroup>
+                                    </IonCardContent>
+                                </IonCard>
+                            </IonCol>
+                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
+                                <IonCard style={{borderRadius: '20px'}}>
+                                    <IonCardHeader>
+                                        <IonCardTitle>
+                                            Опыт работы
+                                        </IonCardTitle>
+                                    </IonCardHeader>
+                                    <IonCardContent>
+                                        <IonRadioGroup  onClick={(e: any) => handleVacancyWorkExperience(e)}>
+                                            <IonItem>
+                                                <IonRadio justify="space-between" value="WithoutExperience">Нет опыта</IonRadio>
+                                                <br/>
+                                            </IonItem>
+                                            <IonItem>
+                                                <IonRadio justify="space-between" value="CoupleOfYears">1-2 года</IonRadio>
+                                                <br/>
+                                            </IonItem>
+                                            <IonItem>
+                                                <IonRadio justify="space-between" value="MoreTwoYears">Больше двух лет</IonRadio>
+                                                <br/>
                                             </IonItem>
                                         </IonRadioGroup>
                                     </IonCardContent>
@@ -163,7 +234,8 @@ const HR7EditVacancyCard = () => {
                                             value={vacancy.description}
                                             placeholder="Описание"
                                             autoGrow={true}
-                                            style={{minHeight: "300px"}}>
+                                            style={{minHeight: "300px"}}
+                                            onInput={(e: any) => handleVacancyDescription(e)}>
                                         </IonTextarea>
                                     </IonItem>
                                 </IonCard>
