@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     IonButton,
     IonCard,
@@ -37,12 +37,13 @@ interface Question {
 
 const CreateQuestion: React.FC = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
+    const [doneQuestions, setDoneQuestions] = useState<any[]>([]);
 
     interface StageParam {
         id: string;
     }
 
-    const { id } = useParams<StageParam>();
+    const {id} = useParams<StageParam>();
 
     const handleCreateQuestion = () => {
         setQuestions((prevState) => [
@@ -97,6 +98,22 @@ const CreateQuestion: React.FC = () => {
         }
     };
 
+    const fetchQuestions = () => {
+        fetch("/api/stage/getQuestionsForCertainStage?stageId=" + id)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setDoneQuestions(data)
+                console.log(data)
+            })
+    }
+
+
+    useEffect(() => {
+        fetchQuestions()
+    }, [])
+
     return (
         <>
             <PopupMenuHr/>
@@ -110,6 +127,58 @@ const CreateQuestion: React.FC = () => {
                             <IonTitle>Создание закрытого теста</IonTitle>
                         </IonToolbar>
                     </IonHeader>
+                    <IonGrid style={{margin: "10px"}}>
+                        <IonRow style={{marginLeft: "0px"}}>
+                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="10" sizeXl="10"
+                                    className="vacancy-cards-list">
+                                {doneQuestions.map(done => (
+                                    <IonCard key={done.id} style={{borderRadius: '20px'}}>
+                                        <IonCardContent>
+                                            <IonItem>
+                                                <IonLabel position="floating">Введите вопрос</IonLabel>
+                                                <IonTextarea
+                                                    value={done.question} disabled
+                                                ></IonTextarea>
+                                            </IonItem>
+                                            <IonRadioGroup value={done.rightChoose.toString()}>
+                                                <IonItem>
+                                                    <IonLabel>Первый вариант:</IonLabel>
+                                                    <IonRadio slot="start" value="1"></IonRadio>
+                                                    <IonTextarea
+                                                        value={done.var1} disabled
+                                                    ></IonTextarea>
+                                                </IonItem>
+                                                <IonItem>
+                                                    <IonLabel>Второй вариант:</IonLabel>
+                                                    <IonRadio slot="start" value="2"></IonRadio>
+                                                    <IonTextarea
+                                                        value={done.var2} disabled
+                                                    ></IonTextarea>
+                                                </IonItem>
+                                                <IonItem>
+                                                    <IonLabel>Третий вариант:</IonLabel>
+                                                    <IonRadio slot="start" value="3"></IonRadio>
+                                                    <IonTextarea
+                                                        value={done.var3} disabled
+                                                    ></IonTextarea>
+                                                </IonItem>
+                                                <IonItem>
+                                                    <IonLabel>Четвертый вариант:</IonLabel>
+                                                    <IonRadio slot="start" value="4"></IonRadio>
+                                                    <IonTextarea
+                                                        value={done.var4} disabled
+                                                    ></IonTextarea>
+                                                </IonItem>
+                                            </IonRadioGroup>
+                                        </IonCardContent>
+                                    </IonCard>
+                                ))}
+                            </IonCol>
+                        </IonRow>
+                        <IonRow>
+                            <IonButton onClick={handleCreateQuestion}>Добавить новый вопрос</IonButton>
+                        </IonRow>
+                    </IonGrid>
                     <IonGrid style={{margin: "10px"}}>
                         <IonRow style={{marginLeft: "0px"}}>
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="10" sizeXl="10"
