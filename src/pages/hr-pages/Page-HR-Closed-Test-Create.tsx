@@ -116,16 +116,17 @@ const CreateQuestion: React.FC = () => {
     return (
         <>
             <PopupMenuHr/>
-            <IonPage>
+            <IonPage id="main-content">
+
+                <IonHeader>
+                    <IonToolbar>
+                        <IonButtons slot="start">
+                            <IonMenuButton></IonMenuButton>
+                        </IonButtons>
+                        <IonTitle>Создание закрытого теста</IonTitle>
+                    </IonToolbar>
+                </IonHeader>
                 <IonContent>
-                    <IonHeader>
-                        <IonToolbar>
-                            <IonButtons slot="start">
-                                <IonMenuButton></IonMenuButton>
-                            </IonButtons>
-                            <IonTitle>Создание закрытого теста</IonTitle>
-                        </IonToolbar>
-                    </IonHeader>
                     <IonGrid style={{margin: "10px"}}>
                         <IonRow style={{marginLeft: "0px"}}>
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="10" sizeXl="10"
