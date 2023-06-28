@@ -1,34 +1,25 @@
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import '../../styles/Page-Candidate.css'
 import {
-    IonBadge,
     IonButton,
     IonButtons,
     IonCard,
     IonCardContent,
     IonCardHeader,
     IonCardTitle,
-    IonCheckbox,
-    IonChip,
     IonCol,
     IonContent,
     IonGrid,
     IonHeader,
-    IonIcon, IonInput,
+    IonInput,
     IonItem,
-    IonLabel,
     IonList,
-    IonMenuButton, IonMenuToggle,
+    IonMenuButton,
     IonPage,
     IonRadio,
     IonRadioGroup,
     IonRow,
-    IonSearchbar,
-    IonSelect,
-    IonSelectOption,
-    IonText,
     IonTextarea,
-    IonThumbnail,
     IonTitle,
     IonToolbar
 } from "@ionic/react";
@@ -60,7 +51,7 @@ function HR5CreateVacancy() {
     };
 
     const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setVacancySphere(event.target.value);
+        setVacancyName(event.target.value);
     };
 
     async function submitVacancy() {
@@ -87,7 +78,7 @@ function HR5CreateVacancy() {
                 redirectToExternalSite('/home')
                 return response.json();
             } else {
-                const errorData = await response.json();
+                console.log("Ошибочка вышла")
             }
         } catch (error) {
             console.error('Error:', error);
