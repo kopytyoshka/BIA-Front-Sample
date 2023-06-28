@@ -1,6 +1,5 @@
 import jwt_decode from "jwt-decode";
 import {redirectToExternalSite} from "./utils";
-import * as path from "path";
 
 function checkToken(): string | null {
     const cookies = document.cookie.split("; ");
@@ -13,9 +12,9 @@ function checkToken(): string | null {
     return null;
 }
 
-// Redirect function
 function redirectToLogin(): void {
     console.log("Redirecting to login...");
+    redirectToExternalSite('/login')
 }
 
 function decodeToken(token: string): string {
@@ -30,7 +29,7 @@ function handleToken(): string {
         console.log("Already on login page");
         return "";
     } else if (!token) {
-        redirectToLogin();
+        if (window.location.pathname !== "/register") redirectToLogin();
     } else {
         sub = decodeToken(token);
     }

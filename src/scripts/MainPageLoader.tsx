@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import Login from "../pages/login-pages/Login";
 import Registration from "../pages/login-pages/Registration";
 import handleToken from "./CookiesToken";
+import {redirectToExternalSite} from "./utils";
 
 function MainPageByRole() {
     const [role, setRole] = useState("")
@@ -30,7 +31,7 @@ function MainPageByRole() {
         return <PageCandidate/>;
     }
     else {
-        return <Registration/>
+        redirectToExternalSite('/register');
     }
 
 
