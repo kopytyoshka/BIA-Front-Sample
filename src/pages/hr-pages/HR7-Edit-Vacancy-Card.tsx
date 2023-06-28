@@ -5,9 +5,9 @@ import {
     IonButtons,
     IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol,
     IonContent, IonFab, IonFabButton, IonGrid,
-    IonHeader, IonIcon, IonInput, IonItem,
+    IonHeader, IonIcon, IonInput, IonItem, IonLabel,
     IonMenuButton,
-    IonPage, IonRow, IonText, IonTextarea,
+    IonPage, IonRadio, IonRadioGroup, IonRow, IonText, IonTextarea,
     IonTitle,
     IonToolbar
 } from '@ionic/react';
@@ -22,11 +22,9 @@ interface RouteParams {
 
 const HR7EditVacancyCard = () => {
     const [vacancyName, setVacancyName] = useState('');
-
-    const [handlerMessage, setHandlerMessage] = useState('');
-    const [roleMessage, setRoleMessage] = useState('');
     const [vacancy, setVacancy] = useState<any>([]);
     const [stages, setStages] = useState<any[]>([])
+    const [selectedStatus, setSelectedStatus] = useState('');
     const { id } = useParams<RouteParams>();
 
     const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,6 +55,7 @@ const HR7EditVacancyCard = () => {
     useEffect(() => {
         fetchVacancyData()
         fetchStages()
+        setSelectedStatus(vacancy.vacancyStatus);
     }, [])
 
     return (
@@ -123,11 +122,36 @@ const HR7EditVacancyCard = () => {
                                             }>
                                                 {formatWorkExperience(vacancy.workExperience)}</IonBadge>
                                         </IonItem>
-                                        <IonItem>
-                                            Сфера
-                                            <IonBadge slot="end" color="success">
-                                                {formatSphereType(vacancy.sphereType)}</IonBadge>
-                                        </IonItem>
+                                    </IonCardContent>
+                                </IonCard>
+                            </IonCol>
+                        </IonRow>
+                    </IonGrid>
+
+                    <IonGrid>
+                        <IonRow>
+                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
+                                <IonCard>
+                                    <IonCardHeader>
+                                        <IonCardTitle>
+                                            Статус вакансии
+                                        </IonCardTitle>
+                                    </IonCardHeader>
+                                    <IonCardContent>
+                                        <IonRadioGroup value={selectedStatus} onClick={(e: any)=> setSelectedStatus(e)}>
+                                            <IonItem>
+                                                <IonLabel>Активная</IonLabel>
+                                                <IonRadio slot="start" value="IT" />
+                                            </IonItem>
+                                            <IonItem>
+                                                <IonLabel>Закрытая</IonLabel>
+                                                <IonRadio slot="start" value="Medicine" />
+                                            </IonItem>
+                                            <IonItem>
+                                                <IonLabel>В архиве</IonLabel>
+                                                <IonRadio slot="start" value="Education" />
+                                            </IonItem>
+                                        </IonRadioGroup>
                                     </IonCardContent>
                                 </IonCard>
                             </IonCol>
