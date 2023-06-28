@@ -72,7 +72,7 @@ const ListCandidates = () => {
     }
 
     const handleSearch = () => {
-        fetch('/api/vacancy/userSpecification', {
+        fetch('/api/userInfo/userSpecification', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
