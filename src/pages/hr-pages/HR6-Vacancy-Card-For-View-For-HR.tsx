@@ -23,8 +23,6 @@ const HR6VacancyCardForView = () => {
         vacancyId: string;
     }
 
-    // const [handlerMessage, setHandlerMessage] = useState('');
-    // const [roleMessage, setRoleMessage] = useState('');
     const [vacancy, setVacancy] = useState<any>([])
     const {vacancyId} = useParams<VacancyParam>();
     const [activeResponses, setActiveResponses] = useState<any>([])
@@ -32,8 +30,15 @@ const HR6VacancyCardForView = () => {
     const [stages, setStages] = useState<any[]>([])
     const history = useHistory();
 
-    const handleItemClick = (id: string) => {
-        history.push(`/close-test-editor/${id}`);
+    const handleStageRedactor = (id: string) => {
+        fetch('/api/stage/getStageById?stageId=' + id)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                if (data.type == "CloseTest") history.push(`/close-test-editor/${id}`);
+                if (data.type == "OpenTest") history.push(`/open-test-editor/${id}`)
+            })
     };
     const handeNewStageType = (event: any) => {
         setNewStageType(event.target.value);
@@ -246,7 +251,7 @@ const HR6VacancyCardForView = () => {
                                                     to-be-done
                                                 </IonText>
                                             </IonItem>
-                                            <IonButton onClick={() => handleItemClick(stage.id)}
+                                            <IonButton onClick={() => handleStageRedactor(stage.id)}
                                                 expand="block" fill="clear" color="transparent">Редактировать вопросы
                                             </IonButton>
                                             <IonButton id="present-alert"
