@@ -140,16 +140,12 @@ const HR7EditVacancyCard = () => {
                                     <IonCardContent>
                                         <IonRadioGroup value={selectedStatus} onIonChange={e => setSelectedStatus(e.detail.value)}>
                                             <IonItem>
-                                                <IonLabel>Opened</IonLabel>
-                                                <IonRadio slot="start" value="IT" />
+                                                <IonLabel>Активная</IonLabel>
+                                                <IonRadio slot="start" value="Opened" />
                                             </IonItem>
                                             <IonItem>
-                                                <IonLabel>Closed</IonLabel>
-                                                <IonRadio slot="start" value="Medicine" />
-                                            </IonItem>
-                                            <IonItem>
-                                                <IonLabel>In archive</IonLabel>
-                                                <IonRadio slot="start" value="Education" />
+                                                <IonLabel>Закрытая</IonLabel>
+                                                <IonRadio slot="start" value="Closed" />
                                             </IonItem>
                                         </IonRadioGroup>
                                     </IonCardContent>
