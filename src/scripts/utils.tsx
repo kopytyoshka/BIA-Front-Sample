@@ -25,6 +25,13 @@ export function formatWorkStatus(vacancyStatus: string): string {
                 "not-documented"
 }
 
+export function formatSphereType(vacancySphere: string): string {
+    return vacancySphere === "Medicine" ? "Медицина" :
+        vacancySphere === "Education" ? "Образование" :
+            vacancySphere === "IT" ? "IT" :
+                "not-documented"
+}
+
 export function nullifyAllCookies() {
     const cookies = document.cookie.split(";");
 
