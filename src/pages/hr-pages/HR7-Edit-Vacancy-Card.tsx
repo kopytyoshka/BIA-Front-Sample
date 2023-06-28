@@ -56,7 +56,7 @@ const HR7EditVacancyCard = () => {
             };
 
             const response = await fetch('/api/vacancy/updateVacancyInfo', {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Origin': '*',
                     'Content-type': 'application/json',
