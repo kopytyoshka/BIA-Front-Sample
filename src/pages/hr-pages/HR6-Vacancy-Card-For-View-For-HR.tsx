@@ -284,7 +284,7 @@ const HR6VacancyCardForView = () => {
                                 </IonCol>
                             ))}
                             <IonCol>
-                                <IonCard style={{borderRadius: '20px', marginTop: '120px'}}>
+                                <IonCard style={{borderRadius: '20px', marginTop: '120px', maxWidth: '300px'}}>
                                     <IonCardContent>
                                         <IonButton
                                             expand="block" fill="clear" color="transparent"
