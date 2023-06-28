@@ -155,13 +155,13 @@ const CreateQuestion: React.FC = () => {
                                     <IonCard key={done.id} style={{borderRadius: '20px'}}>
                                         <IonCardContent>
                                             <IonItem>
-                                                <IonLabel position="floating">Введите вопрос</IonLabel>
+                                                <IonLabel position="floating">Вопрос</IonLabel>
                                                 <IonTextarea
                                                     value={done.question} disabled
                                                 ></IonTextarea>
                                             </IonItem>
                                             <IonItem>
-                                                <IonButton slot="end" color="danger" onClick={(e: any) => handleDeleteQuestion(done.id)}>Удалить</IonButton>
+                                                <IonButton slot="end" color="danger" onClick={() => handleDeleteQuestion(done.id)}>Удалить</IonButton>
                                             </IonItem>
                                         </IonCardContent>
                                     </IonCard>
