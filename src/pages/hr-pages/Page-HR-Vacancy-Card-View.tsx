@@ -231,7 +231,7 @@ const PageHRVacancyCardView = () => {
                         <IonRow>
                             {stages.map(stage => (
                                 <IonCol>
-                                    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
+                                    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}} color={'#F0303F'}>
                                         <IonCardHeader>
                                             <IonTitle>
                                                 {stage.name}
@@ -249,7 +249,7 @@ const PageHRVacancyCardView = () => {
                                             <IonItem>
                                                 Тип
                                                 <IonBadge slot="end"
-                                                          color={"danger"}>{formatStageType(stage.type)}</IonBadge>
+                                                          color={"#f0b330"}>{formatStageType(stage.type)}</IonBadge>
                                             </IonItem>
                                             <IonItem>
                                                 <IonText>
