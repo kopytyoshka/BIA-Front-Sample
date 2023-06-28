@@ -47,10 +47,14 @@ const HR7EditVacancyCard = () => {
         setVacancyWorkExperience(event.target.value);
     };
 
+    const handleVacancySphereType = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVacancyWorkExperience(event.target.value);
+    };
+
     async function saveVacancy() {
         try {
             const vacancyData = {
-                vacancyId: vacancyId,
+                vacancyId: id,
                 name: vacancyName,
                 description: vacancyDescription,
                 vacancyStatus: vacancyStatus,
@@ -85,8 +89,8 @@ const HR7EditVacancyCard = () => {
                 return response.json()
             })
             .then(data => {
-                setVacancyId(data.vacancyId)
-                setVacancySphereType(data.sphereType)
+                // setVacancyId(data.vacancyId)
+                // setVacancySphereType(data.sphereType)
                 setVacancy(data)
                 console.log(data)
             })
@@ -220,6 +224,20 @@ const HR7EditVacancyCard = () => {
                                             </IonItem>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="MoreTwoYears">Больше двух лет</IonRadio>
+                                                <br/>
+                                            </IonItem>
+                                        </IonRadioGroup>
+                                        <IonRadioGroup  onClick={(e: any) => handleVacancySphereType(e)}>
+                                            <IonItem>
+                                                <IonRadio justify="space-between" value="WithoutExperience">IT</IonRadio>
+                                                <br/>
+                                            </IonItem>
+                                            <IonItem>
+                                                <IonRadio justify="space-between" value="CoupleOfYears">Медицина</IonRadio>
+                                                <br/>
+                                            </IonItem>
+                                            <IonItem>
+                                                <IonRadio justify="space-between" value="MoreTwoYears">Образование</IonRadio>
                                                 <br/>
                                             </IonItem>
                                         </IonRadioGroup>
