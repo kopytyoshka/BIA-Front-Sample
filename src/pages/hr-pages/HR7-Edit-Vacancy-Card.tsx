@@ -21,10 +21,12 @@ interface RouteParams {
 }
 
 const HR7EditVacancyCard = () => {
+    const [vacancyId, setVacancyId] = useState('');
     const [vacancyName, setVacancyName] = useState('');
     const [vacancyWorkExperience, setVacancyWorkExperience] = useState('');
     const [vacancyStatus, setVacancyStatus] = useState('');
     const [vacancyDescription, setVacancyDescription] = useState('');
+    const [vacancySphereType, setVacancySphereType] = useState('');
     const [vacancy, setVacancy] = useState<any>([]);
     const [stages, setStages] = useState<any[]>([])
     const [selectedStatus, setSelectedStatus] = useState('');
@@ -49,10 +51,12 @@ const HR7EditVacancyCard = () => {
     async function saveVacancy() {
         try {
             const vacancyData = {
+                vacancyId: vacancyId,
                 name: vacancyName,
                 description: vacancyDescription,
-                workExperience: vacancyWorkExperience,
                 vacancyStatus: vacancyStatus,
+                workExperience: vacancyWorkExperience,
+                sphereType: vacancySphereType,
             };
 
             const response = await fetch('/api/vacancy/updateVacancyInfo', {
@@ -82,6 +86,8 @@ const HR7EditVacancyCard = () => {
                 return response.json()
             })
             .then(data => {
+                setVacancyId(data.vacancyId)
+                setVacancySphereType(data.sphereType)
                 setVacancy(data)
                 console.log(data)
             })
