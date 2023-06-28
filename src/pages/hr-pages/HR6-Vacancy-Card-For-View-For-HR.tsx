@@ -248,7 +248,7 @@ const HR6VacancyCardForView = () => {
                                                 </IonText>
                                             </IonItem>
                                             <IonButton onClick={() => handleItemClick(stage.id)}
-                                                expand="block" fill="clear" color="transparent">Перейти к заданию
+                                                expand="block" fill="clear" color="transparent">Редактировать вопросы
                                             </IonButton>
                                             <IonButton id="present-alert"
                                                        expand="block" fill="clear" color="transparent"
