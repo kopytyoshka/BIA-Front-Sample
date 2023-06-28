@@ -112,10 +112,8 @@ const CandidateCardForHR = () => {
                         <IonText style={{fontSize: "30px"}}>Активные отклики</IonText>
                     </IonCol>
                     <IonGrid>
-
-
+                        <IonRow>
                             {otkilk.map(otk => (
-                                <IonRow>
                                 <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4" key={otk.id}>
                                     <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
                                         <IonCardHeader>
@@ -173,8 +171,8 @@ const CandidateCardForHR = () => {
                                         </IonCardContent>
                                     </IonCard>
                                 </IonCol>
-                                </IonRow>
-                                ))}
+                            ))}
+                        </IonRow>
                     </IonGrid>
                 </IonContent>
             </IonPage>
