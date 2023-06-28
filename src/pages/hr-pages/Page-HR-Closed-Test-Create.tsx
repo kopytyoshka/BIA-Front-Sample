@@ -23,6 +23,7 @@ import {
     IonCol,
 } from '@ionic/react';
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
+import {useHistory, useParams} from "react-router";
 
 interface Question {
     question: string;
@@ -37,6 +38,12 @@ interface Question {
 const CreateQuestion: React.FC = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
 
+    interface StageParam {
+        id: string;
+    }
+
+    const { id } = useParams<StageParam>();
+
     const handleCreateQuestion = () => {
         setQuestions((prevState) => [
             ...prevState,
@@ -47,7 +54,7 @@ const CreateQuestion: React.FC = () => {
                 var3: '',
                 var4: '',
                 rightChoose: 0,
-                stageId: '',
+                stageId: id,
             },
         ]);
     };

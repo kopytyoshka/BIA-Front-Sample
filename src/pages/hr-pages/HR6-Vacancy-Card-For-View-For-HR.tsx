@@ -32,6 +32,9 @@ const HR6VacancyCardForView = () => {
     const [stages, setStages] = useState<any[]>([])
     const history = useHistory();
 
+    const handleItemClick = (id: string) => {
+        history.push(`/close-test-editor/${id}`);
+    };
     const handeNewStageType = (event: any) => {
         setNewStageType(event.target.value);
     };
@@ -244,7 +247,7 @@ const HR6VacancyCardForView = () => {
                                                     to-be-done
                                                 </IonText>
                                             </IonItem>
-                                            <IonButton
+                                            <IonButton onClick={() => handleItemClick(stage.id)}
                                                 expand="block" fill="clear" color="transparent">Перейти к заданию
                                             </IonButton>
                                             <IonButton id="present-alert"
