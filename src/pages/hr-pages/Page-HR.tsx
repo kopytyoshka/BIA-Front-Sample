@@ -151,7 +151,7 @@ const PageHR = () => {
                                     className="vacancy-cards-list">
                                 <div className="hr-card-vacansii-plus_button" style={{marginBottom: "20px"}}>
                                     <IonFab>
-                                        <IonFabButton routerLink="/vacancy-page-for-hr" className="pic-size" style={{height: "34px", width: "34px"}}>
+                                        <IonFabButton routerLink="/create-vacancy" className="pic-size" style={{height: "34px", width: "34px"}}>
                                             <IonIcon icon="../images/add-outline.svg"></IonIcon>
                                         </IonFabButton>
                                     </IonFab>

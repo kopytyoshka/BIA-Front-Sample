@@ -39,7 +39,7 @@ function PopupMenuHr() {
                                 <IonIcon src="../images/calendar-number-outline.svg" slot="start"></IonIcon>
                                 <IonLabel>Статистика</IonLabel>
                             </IonItem>
-                            <IonItem routerLink="/vacancy-page-for-hr">
+                            <IonItem routerLink="/create-vacancy">
                                 <IonIcon src="../images/add-circle-outline.svg" slot="start"></IonIcon>
                                 <IonLabel>Создать вакансию</IonLabel>
                             </IonItem>

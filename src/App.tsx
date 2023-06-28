@@ -26,7 +26,7 @@ import PageCandidateTasks from "./pages/candidate-pages/Page-Candidate-Tasks";
 import PageCandidateTestForm from "./pages/candidate-pages/Page-Candidate-Test-Form";
 import CandidateCardForHR from "./pages/hr-pages/Candidate-Card-For-HR";
 import ListCandidates from "./pages/hr-pages/List-Of-Candidates";
-import VacancyPageForHR from "./pages/hr-pages/Vacancy-Page-For-HR";
+import HR5CreateVacancy from "./pages/hr-pages/HR5-Create-Vacancy";
 import MainPageByRole from "./scripts/MainPageLoader";
 import Registration from "./pages/login-pages/Registration";
 import Login from "./pages/login-pages/Login";
@@ -49,8 +49,8 @@ const App: React.FC = () => (
                 <Route exact path="/hr4-test-page">
                     <HR4TestPage/>
                 </Route>
-                <Route exact path="/vacancy-page-for-hr">
-                    <VacancyPageForHR/>
+                <Route exact path="/create-vacancy">
+                    <HR5CreateVacancy/>
                 </Route>
                 <Route exact path="/register">
                     <Registration/>
