@@ -27,11 +27,11 @@ function PopupMenuHr() {
                 <IonContent className="ion-no-padding">
                     <IonList>
                         <IonMenuToggle>
-                            <IonItem routerLink="/">
+                            <IonItem routerLink="/home">
                                 <IonIcon src="../images/pulse-outline.svg" slot="start"></IonIcon>
-                                <IonLabel>Главная страничка</IonLabel>
+                                <IonLabel>Главная страница</IonLabel>
                             </IonItem>
-                            <IonItem routerLink="/">
+                            <IonItem routerLink="/hr8-all-vacancies">
                                 <IonIcon src="../images/ice-cream-outline.svg" slot="start"></IonIcon>
                                 <IonLabel>Все вакансии</IonLabel>
                             </IonItem>
@@ -39,6 +39,11 @@ function PopupMenuHr() {
                                 <IonIcon src="../images/calendar-number-outline.svg" slot="start"></IonIcon>
                                 <IonLabel>Статистика</IonLabel>
                             </IonItem>
+                            <IonItem routerLink="/vacancy-page-for-hr">
+                                <IonIcon src="../images/add-circle-outline.svg" slot="start"></IonIcon>
+                                <IonLabel>Создать вакансию</IonLabel>
+                            </IonItem>
+
                             <IonItem className="ion-padding-top">
                                 <IonLabel className="ion-padding-top">Дополнительно</IonLabel>
                             </IonItem>
