@@ -18,6 +18,9 @@ import {useHistory} from "react-router";
 const HR8AllVacancies = () => {
     const [vacancy, setVacancy] = useState<any[]>([])
     const history = useHistory();
+    const [query, setQuery] = useState('');
+    const [results, setResults] = useState<any[]>([])
+
     const fetchAllVacancies = () => {
         fetch("/api/vacancy/allVacanciesForHR")
             .then(response => {
@@ -27,6 +30,19 @@ const HR8AllVacancies = () => {
                 setVacancy(data)
             })
     }
+
+    const handleSearch = () => {
+        fetch('/api/vacancy/vacancySpecification', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify([{ key: 'name', value: query, operation: 'LIKE' }]),
+        })
+            .then(response => response.json())
+            .then(data => setResults(data))
+            .catch(error => console.error(error));
+    };
 
     const handleItemClick = (vacancyId: string) => {
         history.push(`/vacancy-card/${vacancyId}`);
@@ -53,10 +69,18 @@ const HR8AllVacancies = () => {
                 <IonContent>
                     <IonGrid>
                         <IonRow>
-                            <IonCol size="3" sizeXs="12" sizeSm="3" sizeMd="3" sizeLg="3" sizeXl="4">
-                                <IonSearchbar searchIcon="public/images/search-outline.svg"
-                                              placeholder="Выбор параметров"></IonSearchbar>
+                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12"
+                                    className="vacancy-cards-list">
+                                <div className="search-button">
+                                    <IonSearchbar
+                                        searchIcon="../images/search-outline.svg"
+                                        placeholder="Поиск по названию"
+                                        value={query ?? ''}
+                                        onIonChange={e => setQuery(e.detail.value!)}
+                                    ></IonSearchbar>
+                                </div>
                             </IonCol>
+
                             <IonCol style={{marginLeft: "20px"}}>
                                 <IonButton
                                     routerLink="/create-vacancy"
