@@ -227,6 +227,18 @@ const HR7EditVacancyCard = () => {
                                                 <br/>
                                             </IonItem>
                                         </IonRadioGroup>
+                                    </IonCardContent>
+                                </IonCard>
+                            </IonCol>
+
+                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
+                                <IonCard style={{borderRadius: '20px'}}>
+                                    <IonCardHeader>
+                                        <IonCardTitle>
+                                            Сфера вакансии
+                                        </IonCardTitle>
+                                    </IonCardHeader>
+                                    <IonCardContent>
                                         <IonRadioGroup  onClick={(e: any) => handleVacancySphereType(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="WithoutExperience">IT</IonRadio>
