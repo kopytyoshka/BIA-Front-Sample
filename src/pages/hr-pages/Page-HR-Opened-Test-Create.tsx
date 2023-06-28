@@ -137,7 +137,7 @@ const CreateQuestion: React.FC = () => {
                         <IonButtons slot="start">
                             <IonMenuButton></IonMenuButton>
                         </IonButtons>
-                        <IonTitle>Создание закрытого теста</IonTitle>
+                        <IonTitle>Создание Открытых вопросов</IonTitle>
                     </IonToolbar>
                 </IonHeader>
                 <IonToast

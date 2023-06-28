@@ -32,6 +32,13 @@ export function formatSphereType(vacancySphere: string): string {
                 "not-documented"
 }
 
+export function formatStageType(type: string): string {
+    return type === "Interview" ? "Интервью" :
+        type === "CloseTest" ? "Закрытые вопросы" :
+            type === "OpenTest" ? "Открытые вопросы" :
+                "not-documented"
+}
+
 export function nullifyAllCookies() {
     const cookies = document.cookie.split(";");
 

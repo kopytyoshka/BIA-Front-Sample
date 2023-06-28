@@ -15,7 +15,7 @@ import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useHistory, useParams} from "react-router";
 
-import {formatWorkExperience, formatWorkStatus, redirectToExternalSite} from "../../scripts/utils";
+import {formatStageType, formatWorkExperience, formatWorkStatus, redirectToExternalSite} from "../../scripts/utils";
 import handleToken from "../../scripts/CookiesToken";
 
 const HR6VacancyCardForView = () => {
@@ -37,7 +37,7 @@ const HR6VacancyCardForView = () => {
             })
             .then(data => {
                 if (data.type == "CloseTest") history.push(`/close-test-editor/${id}`);
-                if (data.type == "OpenTest") history.push(`/open-test-editor/${id}`)
+                if (data.type == "OpenTest") history.push(`/open-test-editor/${id}`);
             })
     };
     const handeNewStageType = (event: any) => {
@@ -241,7 +241,7 @@ const HR6VacancyCardForView = () => {
                                             </IonItem>
                                             <IonItem>
                                                 Тип
-                                                <IonBadge slot="end" color={"danger"}>{stage.type}</IonBadge>
+                                                <IonBadge slot="end" color={"danger"}>{formatStageType(stage.type)}</IonBadge>
                                             </IonItem>
                                             <IonItem>
                                                 <IonText>
