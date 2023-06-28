@@ -1,5 +1,17 @@
 import React, { useState } from 'react';
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonRadio, IonRadioGroup, IonLabel, IonItem, IonTextarea } from '@ionic/react';
+import {
+    IonButton,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardTitle,
+    IonRadio,
+    IonRadioGroup,
+    IonLabel,
+    IonItem,
+    IonTextarea,
+} from '@ionic/react';
 
 interface Question {
     question: string;
@@ -12,40 +24,37 @@ interface Question {
 
 const CreateQuestion: React.FC = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
-    const [currentQuestion, setCurrentQuestion] = useState<Question>({
-        question: '',
-        var1: '',
-        var2: '',
-        var3: '',
-        var4: '',
-        rightChoose: 1,
-    });
 
     const handleCreateQuestion = () => {
-        setQuestions([...questions, currentQuestion]);
-        setCurrentQuestion({
-            question: '',
-            var1: '',
-            var2: '',
-            var3: '',
-            var4: '',
-            rightChoose: 1,
-        });
+        setQuestions((prevState) => [
+            ...prevState,
+            {
+                question: '',
+                var1: '',
+                var2: '',
+                var3: '',
+                var4: '',
+                rightChoose: 1,
+            },
+        ]);
     };
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const { name, value } = event.target;
-        setCurrentQuestion((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }));
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, index: number, field: keyof Question) => {
+        const { value } = event.target;
+        setQuestions((prevState) =>
+            prevState.map((question, i) =>
+                i === index ? { ...question, [field]: value } : question
+            )
+        );
     };
 
-    const handleRadioChange = (event: React.ChangeEvent<HTMLIonRadioGroupElement>) => {
-        setCurrentQuestion((prevState) => ({
-            ...prevState,
-            rightChoose: parseInt(event.target.value, 10),
-        }));
+    const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+        const { value } = event.target;
+        setQuestions((prevState) =>
+            prevState.map((question, i) =>
+                i === index ? { ...question, rightChoose: parseInt(value, 10) } : question
+            )
+        );
     };
 
     const handleSaveQuestion = async (question: Question) => {
@@ -79,28 +88,46 @@ const CreateQuestion: React.FC = () => {
                     <IonCardContent>
                         <IonItem>
                             <IonLabel position="floating">Question</IonLabel>
-                            <IonTextarea name="question" value={question.question} onIonChange={(e: any) => handleInputChange(e)}></IonTextarea>
+                            <IonTextarea
+                                value={question.question}
+                                onIonChange={(e: any) => handleInputChange(e, index, 'question')}
+                            ></IonTextarea>
                         </IonItem>
-                        <IonRadioGroup value={question.rightChoose.toString()} onIonChange={(e: any) => handleInputChange(e)}>
+                        <IonRadioGroup
+                            value={question.rightChoose.toString()}
+                            onIonChange={(e: any) => handleRadioChange(e, index)}
+                        >
                             <IonItem>
                                 <IonLabel>Variant 1</IonLabel>
                                 <IonRadio slot="start" value="1"></IonRadio>
-                                <IonTextarea name="var1" value={question.var1} onIonChange={(e: any) => handleInputChange(e)}></IonTextarea>
+                                <IonTextarea
+                                    value={question.var1}
+                                    onIonChange={(e: any) => handleInputChange(e, index, 'var1')}
+                                ></IonTextarea>
                             </IonItem>
                             <IonItem>
                                 <IonLabel>Variant 2</IonLabel>
                                 <IonRadio slot="start" value="2"></IonRadio>
-                                <IonTextarea name="var2" value={question.var2} onIonChange={(e: any) => handleInputChange(e)}></IonTextarea>
+                                <IonTextarea
+                                    value={question.var2}
+                                    onIonChange={(e: any) => handleInputChange(e, index, 'var2')}
+                                ></IonTextarea>
                             </IonItem>
                             <IonItem>
                                 <IonLabel>Variant 3</IonLabel>
                                 <IonRadio slot="start" value="3"></IonRadio>
-                                <IonTextarea name="var3" value={question.var3} onIonChange={(e: any) => handleInputChange(e)}></IonTextarea>
+                                <IonTextarea
+                                    value={question.var3}
+                                    onIonChange={(e: any) => handleInputChange(e, index, 'var3')}
+                                ></IonTextarea>
                             </IonItem>
                             <IonItem>
                                 <IonLabel>Variant 4</IonLabel>
                                 <IonRadio slot="start" value="4"></IonRadio>
-                                <IonTextarea name="var4" value={question.var4} onIonChange={(e: any) => handleInputChange(e)}></IonTextarea>
+                                <IonTextarea
+                                    value={question.var4}
+                                    onIonChange={(e: any) => handleInputChange(e, index, 'var4')}
+                                ></IonTextarea>
                             </IonItem>
                         </IonRadioGroup>
                         <IonButton onClick={() => handleSaveQuestion(question)}>Save question</IonButton>
