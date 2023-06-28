@@ -52,6 +52,10 @@ const HR8AllVacancies = () => {
         fetchAllVacancies()
     }, [])
 
+    useEffect(() => {
+        handleSearch();
+    }, [query]);
+
     return (
         <>
             <PopupMenuHr/>
@@ -69,7 +73,7 @@ const HR8AllVacancies = () => {
                 <IonContent>
                     <IonGrid>
                         <IonRow>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12"
+                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="8"
                                     className="vacancy-cards-list">
                                 <div className="search-button">
                                     <IonSearchbar
@@ -79,6 +83,7 @@ const HR8AllVacancies = () => {
                                         onIonChange={e => setQuery(e.detail.value!)}
                                     ></IonSearchbar>
                                 </div>
+
                             </IonCol>
 
                             <IonCol style={{marginLeft: "20px"}}>
@@ -93,7 +98,7 @@ const HR8AllVacancies = () => {
 
                     <IonGrid>
                         <IonRow>
-                            {vacancy.map(vac => (
+                            {results.map(vac => (
                                 <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
                                     <IonCard style={{borderRadius: '20px'}}>
                                         <IonCardHeader>
