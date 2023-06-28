@@ -14,7 +14,7 @@ import {
 import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useParams} from "react-router";
-import {formatWorkExperience, formatWorkStatus} from "../../scripts/utils";
+import {formatSphereType, formatWorkExperience, formatWorkStatus} from "../../scripts/utils";
 
 interface RouteParams {
     id: string
@@ -28,6 +28,10 @@ const HR7EditVacancyCard = () => {
     const [vacancy, setVacancy] = useState<any>([]);
     const [stages, setStages] = useState<any[]>([])
     const { id } = useParams<RouteParams>();
+
+    const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVacancyName(event.target.value);
+    };
 
     const fetchVacancyData = () => {
         fetch("/api/vacancy/getVacancyInfo?vacancyId=" + id)
@@ -76,8 +80,7 @@ const HR7EditVacancyCard = () => {
                                     sizeXl="2.5">
                                 <IonItem lines="none" color="transparent">
                                     <IonInput
-                                        style={{marginTop: "20px"}}
-                                        // autoCapitalize="string"
+                                        style={{marginTop: "20px", fontSize: '20px' }}
                                         fill="outline"
                                         labelPlacement="floating"
                                         value={vacancy.vacancyName}
@@ -119,6 +122,11 @@ const HR7EditVacancyCard = () => {
                                                         "warning"
                                             }>
                                                 {formatWorkExperience(vacancy.workExperience)}</IonBadge>
+                                        </IonItem>
+                                        <IonItem>
+                                            Сфера
+                                            <IonBadge slot="end" color="success">
+                                                {formatSphereType(vacancy.sphereType)}</IonBadge>
                                         </IonItem>
                                     </IonCardContent>
                                 </IonCard>
