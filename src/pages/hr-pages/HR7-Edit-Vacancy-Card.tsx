@@ -46,9 +46,9 @@ const HR7EditVacancyCard = () => {
         setVacancyWorkExperience(event.target.value);
     };
 
-    async function saveVacancy(id: string) {
+    async function saveVacancy() {
         try {
-            const vacancyInfo = {
+            const vacancyData = {
                 name: vacancyName,
                 description: vacancyDescription,
                 workExperience: vacancyWorkExperience,
@@ -62,11 +62,11 @@ const HR7EditVacancyCard = () => {
                     'Content-type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify(vacancyInfo),
+                body: JSON.stringify(vacancyData),
             });
 
             if (response.ok) {
-                redirectToExternalSite(`/vacancy-card/${id}`);
+                redirectToExternalSite('/home')
                 return response.json();
             } else {
                 console.log("Error")
@@ -100,7 +100,6 @@ const HR7EditVacancyCard = () => {
     useEffect(() => {
         fetchVacancyData()
         fetchStages()
-        setSelectedStatus(vacancy.vacancyStatus);
     }, [])
 
     return (
@@ -133,7 +132,7 @@ const HR7EditVacancyCard = () => {
                                 </IonItem>
                             </IonCol>
                             <IonCol style={{marginLeft: "20px"}}>
-                                <IonButton fill="outline" onClick={() => saveVacancy(vacancy.vacancyId)}>Сохранить</IonButton>
+                                <IonButton fill="outline" onClick={() => saveVacancy()}>Сохранить</IonButton>
                                 <IonButton fill="outline">Отменить</IonButton>
                             </IonCol>
                         </IonRow>
@@ -232,7 +231,6 @@ const HR7EditVacancyCard = () => {
                                     <IonItem>
                                         <IonTextarea
                                             value={vacancy.description}
-                                            placeholder="Описание"
                                             autoGrow={true}
                                             style={{minHeight: "300px"}}
                                             onInput={(e: any) => handleVacancyDescription(e)}>
