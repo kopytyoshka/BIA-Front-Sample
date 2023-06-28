@@ -107,7 +107,7 @@ const HR8AllVacancies = () => {
                                             </IonTitle>
                                         </IonCardHeader>
                                         <IonCardContent>
-                                            <IonItem>
+                                            <IonItem style={{maxHeight: "100px"}}>
                                                 {vac.description}
                                             </IonItem>
                                             <IonButton

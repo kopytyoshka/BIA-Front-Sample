@@ -14,6 +14,7 @@ import {
 import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useParams} from "react-router";
+import {formatWorkExperience, formatWorkStatus} from "../../scripts/utils";
 
 interface RouteParams {
     id: string
@@ -25,6 +26,7 @@ const HR7EditVacancyCard = () => {
     const [handlerMessage, setHandlerMessage] = useState('');
     const [roleMessage, setRoleMessage] = useState('');
     const [vacancy, setVacancy] = useState<any>([]);
+    const [stages, setStages] = useState<any[]>([])
     const { id } = useParams<RouteParams>();
 
     const fetchVacancyData = () => {
@@ -38,8 +40,19 @@ const HR7EditVacancyCard = () => {
             })
     }
 
+    const fetchStages = () => {
+        fetch('/api/vacancy/getVacancyStages?vacancyId=' + id)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setStages(data)
+            })
+    }
+
     useEffect(() => {
         fetchVacancyData()
+        fetchStages()
     }, [])
 
     return (
@@ -57,20 +70,11 @@ const HR7EditVacancyCard = () => {
                 </IonHeader>
 
                 <IonContent className="ion-padding">
-                    {/*<h1 style={{marginLeft: "20px"}}>{vacancy.vacancyName}</h1>*/}
                     <IonGrid>
                         <IonRow>
                             <IonCol style={{padding: "0"}} size="3" sizeXs="12" sizeSm="3" sizeMd="3" sizeLg="3"
                                     sizeXl="2.5">
                                 <IonItem lines="none" color="transparent">
-                                    {/*<IonInput*/}
-                                    {/*    style={{borderRadius: '20px'}}*/}
-                                    {/*    label={vacancy.vacancyName}*/}
-                                    {/*    labelPlacement="floating"*/}
-                                    {/*    fill="outline"*/}
-                                    {/*    placeholder="Введите название вакансии"*/}
-                                    {/*    onIonChange={(e: any) => setVacancyName(e)}>*/}
-                                    {/*</IonInput>*/}
                                     <IonInput
                                         style={{marginTop: "20px"}}
                                         // autoCapitalize="string"
@@ -80,6 +84,10 @@ const HR7EditVacancyCard = () => {
                                         onIonChange={(e: any) => setVacancyName(e)}>
                                     </IonInput>
                                 </IonItem>
+                            </IonCol>
+                            <IonCol style={{marginLeft: "20px"}}>
+                                <IonButton fill="outline">Сохранить</IonButton>
+                                <IonButton fill="outline">Отменить</IonButton>
                             </IonCol>
                         </IonRow>
                     </IonGrid>
@@ -95,22 +103,25 @@ const HR7EditVacancyCard = () => {
                                     <IonCardContent>
                                         <IonItem>
                                             Статус
-                                            <IonBadge slot="end" color={"warning"}>На модерации</IonBadge>
+                                            <IonBadge slot="end"
+                                                      color={
+                                                          vacancy.vacancyStatus === "Opened" ? "success" :
+                                                              vacancy.vacancyStatus === "OnModeration" ? "warning" :
+                                                                  "danger"
+                                                      }>
+                                                {formatWorkStatus(vacancy.vacancyStatus)}</IonBadge>
                                         </IonItem>
                                         <IonItem>
                                             Опыт работы
-                                            <IonBadge slot="end" color={"danger"}>Без опыта</IonBadge>
-                                        </IonItem>
-                                        <IonItem routerLink="/">
-                                            Этапы
-                                            <IonIcon slot="end" icon="../images/chevron-forward-outline.svg"></IonIcon>
+                                            <IonBadge slot="end" color={
+                                                vacancy.workExperience === "WithoutExperience" ? "success" :
+                                                    vacancy.workExperience === "MoreTwoYears" ? "danger" :
+                                                        "warning"
+                                            }>
+                                                {formatWorkExperience(vacancy.workExperience)}</IonBadge>
                                         </IonItem>
                                     </IonCardContent>
                                 </IonCard>
-                            </IonCol>
-                            <IonCol style={{marginLeft: "20px"}}>
-                                <IonButton fill="outline">Сохранить</IonButton>
-                                <IonButton fill="outline">Отменить</IonButton>
                             </IonCol>
                         </IonRow>
                     </IonGrid>
@@ -120,7 +131,12 @@ const HR7EditVacancyCard = () => {
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="8">
                                 <IonCard style={{borderRadius: '20px'}}>
                                     <IonItem>
-                                        <IonTextarea placeholder="Описание" autoGrow={true} style={{height: "300px"}}></IonTextarea>
+                                        <IonTextarea
+                                            value={vacancy.description}
+                                            placeholder="Описание"
+                                            autoGrow={true}
+                                            style={{minHeight: "300px"}}>
+                                        </IonTextarea>
                                     </IonItem>
                                 </IonCard>
                             </IonCol>
@@ -129,101 +145,78 @@ const HR7EditVacancyCard = () => {
 
                     <IonGrid>
                         <IonRow>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonTitle>
-                                            Тестирование
-                                        </IonTitle>
-                                    </IonCardHeader>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            <IonText>
-                                                До какого числа
-                                            </IonText>
-                                            <IonText slot="end">
-                                                30.07.2023
-                                            </IonText>
-                                        </IonItem>
-                                        <IonItem>
-                                            Статус
-                                            <IonBadge slot="end" color={"danger"}>Недоступно</IonBadge>
-                                        </IonItem>
-                                        <IonItem>
-                                            <IonText>
-                                                Результат
-                                            </IonText>
-                                            <IonText slot="end">
-                                                max: 10
-                                            </IonText>
-                                        </IonItem>
-                                        <IonButton
-                                            expand="block" fill="clear" color="transparent">Перейти к заданию
-                                        </IonButton>
-                                        <IonButton id="present-alert"
-                                                   expand="block" fill="clear" color="transparent">Удалить
-                                        </IonButton>
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
-                            <IonCol>
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonTitle>
-                                            Тестирование
-                                        </IonTitle>
-                                    </IonCardHeader>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            <IonText>
-                                                До какого числа
-                                            </IonText>
-                                            <IonText slot="end">
-                                                30.07.2023
-                                            </IonText>
-                                        </IonItem>
-                                        <IonItem>
-                                            Статус
-                                            <IonBadge slot="end" color={"danger"}>Недоступно</IonBadge>
-                                        </IonItem>
-                                        <IonItem>
-                                            <IonText>
-                                                Результат
-                                            </IonText>
-                                            <IonText slot="end">
-                                                max: 10
-                                            </IonText>
-                                        </IonItem>
-                                        <IonButton
-                                            expand="block" fill="clear" color="transparent">Перейти к заданию
-                                        </IonButton>
-                                        <IonButton id="present-alert"
-                                                   expand="block" fill="clear" color="transparent">Удалить
-                                        </IonButton>
-                                        <IonAlert
-                                            header="Вы действительно хотите удалить?"
-                                            trigger="present-alert"
-                                            buttons={[
-                                                {
-                                                    text: 'Отмена',
-                                                    role: 'cancel',
-                                                    handler: () => {
-                                                        setHandlerMessage('Alert canceled');
-                                                    },
-                                                },
-                                                {
-                                                    text: 'Да',
-                                                    role: 'confirm',
-                                                    handler: () => {
-                                                        setHandlerMessage('Alert confirmed');
-                                                    },
-                                                },
-                                            ]}
-                                            onDidDismiss={({ detail }) => setRoleMessage(`Dismissed with role: ${detail.role}`)}
-                                        ></IonAlert>
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
+                            {stages.map(stage => (
+                                <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
+                                    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
+                                        <IonCardHeader>
+                                            <IonTitle>
+                                                {stage.name}
+                                            </IonTitle>
+                                        </IonCardHeader>
+                                        <IonCardContent>
+                                            <IonItem>
+                                                <IonText>
+                                                    До какого числа
+                                                </IonText>
+                                                <IonText slot="end">
+                                                    {stage.deadline}
+                                                </IonText>
+                                            </IonItem>
+                                            <IonItem>
+                                                <IonText>
+                                                    Результат
+                                                </IonText>
+                                                <IonText slot="end">
+                                                    max: 10
+                                                </IonText>
+                                            </IonItem>
+                                            <IonButton
+                                                expand="block" fill="clear" color="transparent">Редактировать задание
+                                            </IonButton>
+                                            <IonButton id="present-alert"
+                                                       expand="block" fill="clear" color="transparent">Удалить
+                                            </IonButton>
+                                        </IonCardContent>
+                                    </IonCard>
+                                </IonCol>
+                            ))}
+                            {/*<IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">*/}
+                            {/*    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>*/}
+                            {/*        <IonCardHeader>*/}
+                            {/*            <IonTitle>*/}
+                            {/*                Тестирование*/}
+                            {/*            </IonTitle>*/}
+                            {/*        </IonCardHeader>*/}
+                            {/*        <IonCardContent>*/}
+                            {/*            <IonItem>*/}
+                            {/*                <IonText>*/}
+                            {/*                    До какого числа*/}
+                            {/*                </IonText>*/}
+                            {/*                <IonText slot="end">*/}
+                            {/*                    30.07.2023*/}
+                            {/*                </IonText>*/}
+                            {/*            </IonItem>*/}
+                            {/*            <IonItem>*/}
+                            {/*                Статус*/}
+                            {/*                <IonBadge slot="end" color={"danger"}>Недоступно</IonBadge>*/}
+                            {/*            </IonItem>*/}
+                            {/*            <IonItem>*/}
+                            {/*                <IonText>*/}
+                            {/*                    Результат*/}
+                            {/*                </IonText>*/}
+                            {/*                <IonText slot="end">*/}
+                            {/*                    max: 10*/}
+                            {/*                </IonText>*/}
+                            {/*            </IonItem>*/}
+                            {/*            <IonButton*/}
+                            {/*                expand="block" fill="clear" color="transparent">Перейти к заданию*/}
+                            {/*            </IonButton>*/}
+                            {/*            <IonButton id="present-alert"*/}
+                            {/*                       expand="block" fill="clear" color="transparent">Удалить*/}
+                            {/*            </IonButton>*/}
+                            {/*        </IonCardContent>*/}
+                            {/*    </IonCard>*/}
+                            {/*</IonCol>*/}
                             <IonCol>
                                 <IonCard style={{borderRadius: '20px', marginTop: '120px'}}>
                                     <IonCardContent>
