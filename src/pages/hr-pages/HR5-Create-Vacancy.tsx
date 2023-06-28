@@ -34,7 +34,7 @@ import {
 } from "@ionic/react";
 import React, {useState} from "react";
 
-function VacancyPageForHR() {
+function HR5CreateVacancy() {
 
     const [vacancyName, setVacancyName] = useState('');
 
@@ -225,4 +225,4 @@ function VacancyPageForHR() {
     );
 }
 
-export default VacancyPageForHR;
+export default HR5CreateVacancy;
