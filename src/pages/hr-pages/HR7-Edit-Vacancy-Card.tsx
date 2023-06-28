@@ -5,7 +5,7 @@ import {
     IonButtons,
     IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol,
     IonContent, IonFab, IonFabButton, IonGrid,
-    IonHeader, IonIcon, IonItem,
+    IonHeader, IonIcon, IonInput, IonItem,
     IonMenuButton,
     IonPage, IonRow, IonText, IonTextarea,
     IonTitle,
@@ -13,10 +13,34 @@ import {
 } from '@ionic/react';
 import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
+import {useParams} from "react-router";
+
+interface RouteParams {
+    id: string
+}
 
 const HR7EditVacancyCard = () => {
+    const [vacancyName, setVacancyName] = useState('');
+
     const [handlerMessage, setHandlerMessage] = useState('');
     const [roleMessage, setRoleMessage] = useState('');
+    const [vacancy, setVacancy] = useState<any>([]);
+    const { id } = useParams<RouteParams>();
+
+    const fetchVacancyData = () => {
+        fetch("/api/vacancy/getVacancyInfo?vacancyId=" + id)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setVacancy(data)
+                console.log(data)
+            })
+    }
+
+    useEffect(() => {
+        fetchVacancyData()
+    }, [])
 
     return (
         <>
@@ -33,7 +57,32 @@ const HR7EditVacancyCard = () => {
                 </IonHeader>
 
                 <IonContent className="ion-padding">
-                    <h1 style={{marginLeft: "20px"}}>Backend-разработчик на Java</h1>
+                    {/*<h1 style={{marginLeft: "20px"}}>{vacancy.vacancyName}</h1>*/}
+                    <IonGrid>
+                        <IonRow>
+                            <IonCol style={{padding: "0"}} size="3" sizeXs="12" sizeSm="3" sizeMd="3" sizeLg="3"
+                                    sizeXl="2.5">
+                                <IonItem lines="none" color="transparent">
+                                    {/*<IonInput*/}
+                                    {/*    style={{borderRadius: '20px'}}*/}
+                                    {/*    label={vacancy.vacancyName}*/}
+                                    {/*    labelPlacement="floating"*/}
+                                    {/*    fill="outline"*/}
+                                    {/*    placeholder="Введите название вакансии"*/}
+                                    {/*    onIonChange={(e: any) => setVacancyName(e)}>*/}
+                                    {/*</IonInput>*/}
+                                    <IonInput
+                                        style={{marginTop: "20px"}}
+                                        // autoCapitalize="string"
+                                        fill="outline"
+                                        labelPlacement="floating"
+                                        value={vacancy.vacancyName}
+                                        onIonChange={(e: any) => setVacancyName(e)}>
+                                    </IonInput>
+                                </IonItem>
+                            </IonCol>
+                        </IonRow>
+                    </IonGrid>
                     <IonGrid>
                         <IonRow>
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
@@ -114,27 +163,6 @@ const HR7EditVacancyCard = () => {
                                         <IonButton id="present-alert"
                                                    expand="block" fill="clear" color="transparent">Удалить
                                         </IonButton>
-                                        <IonAlert
-                                            header="Вы действительно хотите удалить?"
-                                            trigger="present-alert"
-                                            buttons={[
-                                                {
-                                                    text: 'Отмена',
-                                                    role: 'cancel',
-                                                    handler: () => {
-                                                        setHandlerMessage('Alert canceled');
-                                                    },
-                                                },
-                                                {
-                                                    text: 'Да',
-                                                    role: 'confirm',
-                                                    handler: () => {
-                                                        setHandlerMessage('Alert confirmed');
-                                                    },
-                                                },
-                                            ]}
-                                            onDidDismiss={({ detail }) => setRoleMessage(`Dismissed with role: ${detail.role}`)}
-                                        ></IonAlert>
                                     </IonCardContent>
                                 </IonCard>
                             </IonCol>

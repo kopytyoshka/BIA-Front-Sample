@@ -70,9 +70,6 @@ const App: React.FC = () => (
                 <Route exact path="/candidate-test">
                     <PageCandidateTestForm/>
                 </Route>
-                <Route exact path="/hr7-edit-vacancy-card">
-                    <HR7EditVacancyCard/>
-                </Route>
                 <Route exact path="/hr8-all-vacancies">
                     <HR8AllVacancies/>
                 </Route>
@@ -84,6 +81,7 @@ const App: React.FC = () => (
                 <Route path='/vacancy/:id' component={pageCandidateVacancyInfo}/>
                 <Route path="/list-candidates/:id" component={ListCandidates}/>
                 <Route path="/candidate-card/:id" component={CandidateCardForHR}/>
+                <Route path="/edit-vacancy-card/:id" component={HR7EditVacancyCard}/>
             </IonRouterOutlet>
         </IonReactRouter>
     </IonApp>
