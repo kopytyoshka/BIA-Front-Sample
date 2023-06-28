@@ -103,15 +103,6 @@ function HR5CreateVacancy() {
 
                     <IonGrid>
                         <IonRow>
-                            <IonCol size="3" sizeXs="12" sizeSm="3" sizeMd="3" sizeLg="3" sizeXl="4">
-                                <IonSearchbar searchIcon="public/images/search-outline.svg"
-                                              placeholder="Выбор параметров"></IonSearchbar>
-                            </IonCol>
-                        </IonRow>
-                    </IonGrid>
-
-                    <IonGrid>
-                        <IonRow>
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
                                 <IonCard style={{borderRadius: '20px'}}>
                                     <IonCardHeader>

@@ -41,8 +41,6 @@ const ListCandidates = () => {
     const { id } = useParams<RouteParams>();
     const [candidate, setCandidate] = useState<any[]>([])
     const [data, setData] = useState<any>([]);
-    const [query, setQuery] = useState('');
-    const [results, setResults] = useState<any[]>([])
 
     const history = useHistory();
 
@@ -71,27 +69,10 @@ const ListCandidates = () => {
             })
     }
 
-    const handleSearch = () => {
-        fetch('/api/userInfo/userSpecification', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify([{ key: 'name', value: query, operation: 'LIKE' }]),
-        })
-            .then(response => response.json())
-            .then(data => setResults(data))
-            .catch(error => console.error(error));
-    };
-
     useEffect(() => {
         fetchData()
         fetchVacancyData()
     }, [])
-
-    useEffect(() => {
-        handleSearch();
-    }, [query]);
 
     return (
         <>
@@ -160,44 +141,13 @@ const ListCandidates = () => {
                                         </IonCardContent>
                                     </IonCard>
                                 </IonCol>
-
-                                <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" className="vacancy-cards-list">
-                                    <div className="search-button">
-                                        <IonSearchbar
-                                            searchIcon="../images/search-outline.svg"
-                                            placeholder="Поиск по имени"
-                                            value={query ?? ''}
-                                            onIonChange={e => setQuery(e.detail.value!)}
-                                        ></IonSearchbar>
-                                    </div>
-
-                                </IonCol>
                             </IonRow>
                         </IonGrid>
                     </IonItem>
 
-                    {/*<IonGrid>*/}
-                    {/*    <IonRow>*/}
-                    {/*        <IonCol size="2" sizeXs="8" sizeSm="8" sizeMd="8" sizeLg="2">*/}
-                    {/*            <IonChip>*/}
-                    {/*                <IonIcon icon="../images/calendar-outline.svg"></IonIcon>*/}
-                    {/*                <IonLabel>Java Backend Junior</IonLabel>*/}
-                    {/*                <IonIcon icon="../images/close-circle-outline.svg"></IonIcon>*/}
-                    {/*            </IonChip>*/}
-                    {/*        </IonCol>*/}
-                    {/*        <IonCol size="2" sizeXs="8" sizeSm="8" sizeMd="8" sizeLg="2">*/}
-                    {/*            <IonChip>*/}
-                    {/*                <IonIcon icon="../images/star-outline.svg"></IonIcon>*/}
-                    {/*                <IonLabel>Больше 10</IonLabel>*/}
-                    {/*                <IonIcon icon="../images/close-circle-outline.svg"></IonIcon>*/}
-                    {/*            </IonChip>*/}
-                    {/*        </IonCol>*/}
-                    {/*    </IonRow>*/}
-                    {/*</IonGrid>*/}
-
                     <IonGrid style={{margin: "0px"}}>
                         <IonRow style={{margin: "0px"}}>
-                            {results.map(can => (
+                            {candidate.map(can => (
                                 <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4" key={can.id}>
                                     <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
                                         <IonCardContent>

@@ -13,7 +13,7 @@ import {
 } from '@ionic/react';
 import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
-import {useParams} from "react-router";
+import {useHistory, useParams} from "react-router";
 
 import {formatWorkExperience, formatWorkStatus, redirectToExternalSite} from "../../scripts/utils";
 import handleToken from "../../scripts/CookiesToken";
@@ -23,6 +23,7 @@ const HR6VacancyCardForView = () => {
         vacancyId: string;
     }
 
+    const history = useHistory();
     const [handlerMessage, setHandlerMessage] = useState('');
     const [roleMessage, setRoleMessage] = useState('');
     const [vacancy, setVacancy] = useState<any>([])
@@ -56,6 +57,10 @@ const HR6VacancyCardForView = () => {
                 console.log(data)
             })
     }
+
+    const navigateToPage = (id: string) => {
+        history.push(`/edit-vacancy-card/${id}`);
+    };
 
     async function addNewStage() {
 
@@ -144,7 +149,11 @@ const HR6VacancyCardForView = () => {
                                 </IonCard>
                             </IonCol>
                             <IonCol style={{marginLeft: "20px"}}>
-                                <IonButton fill="outline">Редактировать</IonButton>
+                                <IonButton
+                                    onClick={() => navigateToPage(vacancyId)}
+                                    fill="outline">
+                                    Редактировать
+                                </IonButton>
                                 <IonButton fill="outline">В архив</IonButton>
                             </IonCol>
                         </IonRow>
