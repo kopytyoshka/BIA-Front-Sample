@@ -131,24 +131,24 @@ const HR7EditVacancyCard = () => {
                     <IonGrid>
                         <IonRow>
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                <IonCard>
+                                <IonCard style={{borderRadius: '20px'}}>
                                     <IonCardHeader>
                                         <IonCardTitle>
                                             Статус вакансии
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup value={selectedStatus} onClick={(e: any)=> setSelectedStatus(e)}>
+                                        <IonRadioGroup value={selectedStatus} onIonChange={e => setSelectedStatus(e.detail.value)}>
                                             <IonItem>
-                                                <IonLabel>Активная</IonLabel>
+                                                <IonLabel>Opened</IonLabel>
                                                 <IonRadio slot="start" value="IT" />
                                             </IonItem>
                                             <IonItem>
-                                                <IonLabel>Закрытая</IonLabel>
+                                                <IonLabel>Closed</IonLabel>
                                                 <IonRadio slot="start" value="Medicine" />
                                             </IonItem>
                                             <IonItem>
-                                                <IonLabel>В архиве</IonLabel>
+                                                <IonLabel>In archive</IonLabel>
                                                 <IonRadio slot="start" value="Education" />
                                             </IonItem>
                                         </IonRadioGroup>
