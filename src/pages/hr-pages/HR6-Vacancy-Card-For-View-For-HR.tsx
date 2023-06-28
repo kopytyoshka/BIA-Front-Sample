@@ -155,7 +155,7 @@ const HR6VacancyCardForView = () => {
                 </IonHeader>
 
                 <IonContent className="ion-padding">
-                    <h1 style={{marginLeft: "20px"}}>{vacancy.name}</h1>
+                    <h1 style={{marginLeft: "20px"}}>{vacancy.vacanyName}</h1>
                     <IonGrid>
                         <IonRow>
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
