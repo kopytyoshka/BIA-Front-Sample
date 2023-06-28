@@ -2,44 +2,47 @@ import React, {useEffect, useState} from 'react';
 import '../../styles/Popup-Menu-Style.css'
 import '../../styles/Page-Candidate.css'
 import {
-    IonBadge, IonButton,
-    IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol,
-    IonContent, IonGrid,
+    IonBadge,
+    IonButton,
+    IonButtons,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardTitle,
+    IonCol,
+    IonContent,
+    IonGrid,
     IonHeader,
-    IonItem, IonLabel, IonList,
-    IonMenuButton, IonMenuToggle,
-    IonPage, IonRow, IonThumbnail,
+    IonItem,
+    IonLabel,
+    IonMenuButton,
+    IonPage,
+    IonRow,
     IonTitle,
     IonToolbar
 } from '@ionic/react';
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import moment from 'moment';
-import {AddToCalendarButton} from 'add-to-calendar-button-react';
-import {openExternalSite, redirectToExternalSite} from "../../scripts/utils";
 import handleToken from "../../scripts/CookiesToken";
 
-interface Stage {
-    name: string;
-    id: string;
-    deadline: Date;
-    result: string;
-    additional: null;
-    state: string;
-}
-
-interface Vacancy {
-    responseStatus: string;
-    creationDate: string;
-    vacancyName: string;
-    stages: Stage[];
-    vacancyId: string;
-}
-
-interface Props {
-    data: Vacancy[];
-}
-
 const PageCandidateTasks = () => {
+
+    interface Stage {
+        name: string;
+        id: string;
+        deadline: Date;
+        result: string;
+        additional: null;
+        state: string;
+    }
+
+    interface Vacancy {
+        responseStatus: string;
+        creationDate: string;
+        vacancyName: string;
+        stages: Stage[];
+        vacancyId: string;
+    }
 
 
     const [usersChallenge, setUsersChallenge] = useState<any[]>([])
@@ -72,18 +75,18 @@ const PageCandidateTasks = () => {
                     </IonToolbar>
                 </IonHeader>
                 <IonContent>
-                    {usersChallenge.map((chell: Vacancy) => (
+                    {usersChallenge.map((challenge: Vacancy) => (
                         <div>
-                            <div className="response-vacancy-header" key={chell.vacancyId}>
-                                <h1>{chell.vacancyName}</h1>
+                            <div className="response-vacancy-header" key={challenge.vacancyId}>
+                                <h1>{challenge.vacancyName}</h1>
                             </div>
                             <IonGrid style={{margin: "10px"}}>
                                 <IonRow style={{marginLeft: "0px"}}>
-                                    {chell.stages.length === 0 ? (
+                                    {challenge.stages.length === 0 ? (
                                         <div className="empty-stages-message">
                                             На данный момент по этой вакансии заданий нет
                                         </div>
-                                    ) : (chell.stages).map((stage: Stage) => (
+                                    ) : (challenge.stages).map((stage: Stage) => (
                                         <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
                                                 className="vacancy-cards-list" key={stage.id}>
 
@@ -108,12 +111,12 @@ const PageCandidateTasks = () => {
                                                     <IonButton expand="block" fill="clear" color="transparent"
                                                                style={{fontSize: "13px"}}>Перейти к
                                                         заданию</IonButton>
-                                                    <IonButton expand="block" fill="clear" color="transparent"
-                                                               style={{fontSize: "13px"}}
-                                                               onClick={() => openExternalSite('https://calendar.google.com/calendar/u/0/r/eventedit?text=${stage.name}' +
-                                                                   `&dates=${moment(stage.deadline).subtract(1, 'hour').format('YYYYMMDDTHHmmssZ')}/${moment(stage.deadline).format('YYYYMMDDTHHmmssZ')}` +
-                                                                   '&details=ID этапа: ${stage.id} ')}>Добавить в
-                                                        календарь</IonButton>
+                                                    {/*<IonButton expand="block" fill="clear" color="transparent"*/}
+                                                    {/*           style={{fontSize: "13px"}}*/}
+                                                    {/*           onClick={() => openExternalSite('https://calendar.google.com/calendar/u/0/r/eventedit?text=${stage.name}' +*/}
+                                                    {/*               `&dates=${moment(stage.deadline).subtract(1, 'hour').format('YYYYMMDDTHHmmssZ')}/${moment(stage.deadline).format('YYYYMMDDTHHmmssZ')}` +*/}
+                                                    {/*               '&details=ID этапа: ${stage.id} ')}>Добавить в*/}
+                                                    {/*    календарь</IonButton>*/}
                                                 </IonCardContent>
                                             </IonCard>
                                         </IonCol>

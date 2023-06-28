@@ -2,13 +2,23 @@ import React, {useEffect, useState} from 'react';
 import '../../styles/Popup-Menu-Style.css'
 import '../../styles/Page-Candidate.css'
 import {
-    IonBadge, IonButton,
-    IonButtons, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol,
-    IonContent, IonGrid,
+    IonBadge,
+    IonButtons,
+    IonCard,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardTitle,
+    IonCol,
+    IonContent,
+    IonGrid,
     IonHeader,
-    IonItem, IonLabel, IonList,
-    IonMenuButton, IonMenuToggle,
-    IonPage, IonRadio, IonRadioGroup, IonRow, IonThumbnail,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonMenuButton,
+    IonPage,
+    IonRow,
+    IonThumbnail,
     IonTitle,
     IonToolbar
 } from '@ionic/react';
@@ -17,27 +27,24 @@ import handleToken from "../../scripts/CookiesToken";
 
 function PageCandidate() {
 
-    const [vacancy, setVacancy] = useState<any[]>([])
-    const [otkliki, setOtkliki] = useState<any[]>([])
+    const [response, setResponse] = useState<any[]>([])
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [image, setImage] = useState('')
-    const userId = handleToken();
 
-    const fetchDataOtkliki = () => {
-        fetch('/api/userInfo/getUsersResponses?userId=' + userId)
+    const fetchDataResponses = () => {
+        fetch('/api/userInfo/getUsersResponses?userId=' + handleToken())
             .then(response => {
                 return response.json()
             })
             .then(data => {
-                setOtkliki(data)
-                console.log(vacancy)
+                setResponse(data)
             })
     }
 
     const fetchUserData = () => {
-        fetch("/api/userInfo/getUsersInfo?userId=" + userId)
+        fetch("/api/userInfo/getUsersInfo?userId=" + handleToken())
             .then(response => {
                 return response.json()
             })
@@ -51,7 +58,7 @@ function PageCandidate() {
 
     useEffect(() => {
         fetchUserData()
-        fetchDataOtkliki()
+        fetchDataResponses()
     }, [])
 
     return (
@@ -99,27 +106,29 @@ function PageCandidate() {
 
                     <IonGrid style={{margin: "10px"}}>
                         <IonRow style={{marginLeft: "0px"}}>
-                        {otkliki.map(otkl =>(
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
-                                    className="vacancy-cards-list">
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonCardTitle style={{fontWeight: 600}}>{otkl.vacancyName}</IonCardTitle>
-                                    </IonCardHeader>
-                                    <IonList no-lines>
-                                        <IonItem lines="none">
-                                            <IonItem>
-                                                <IonLabel>Дата подачи:</IonLabel>
-                                                <IonItem lines="none" slot="end">{otkl.creationDate}</IonItem>
+                            {response.map(response => (
+                                <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
+                                        className="vacancy-cards-list">
+                                    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
+                                        <IonCardHeader>
+                                            <IonCardTitle
+                                                style={{fontWeight: 600}}>{response.vacancyName}</IonCardTitle>
+                                        </IonCardHeader>
+                                        <IonList no-lines>
+                                            <IonItem lines="none">
+                                                <IonItem>
+                                                    <IonLabel>Дата подачи:</IonLabel>
+                                                    <IonItem lines="none" slot="end">{response.creationDate}</IonItem>
+                                                </IonItem>
                                             </IonItem>
-                                        </IonItem>
-                                        <IonItem lines="none">
-                                            <IonItem lines="none" slot="start">Статус:</IonItem>
-                                            <IonBadge slot="start"  color="primary">{otkl.responseStatus}</IonBadge>
-                                        </IonItem>
-                                    </IonList>
-                                </IonCard>
-                            </IonCol>
+                                            <IonItem lines="none">
+                                                <IonItem lines="none" slot="start">Статус:</IonItem>
+                                                <IonBadge slot="start"
+                                                          color="primary">{response.responseStatus}</IonBadge>
+                                            </IonItem>
+                                        </IonList>
+                                    </IonCard>
+                                </IonCol>
                             ))}
                         </IonRow>
                     </IonGrid>

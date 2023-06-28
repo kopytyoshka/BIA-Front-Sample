@@ -1,7 +1,6 @@
-import {Redirect, Route, Switch} from 'react-router-dom';
+import {Redirect, Route} from 'react-router-dom';
 import {IonApp, IonRouterOutlet, setupIonicReact} from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
-/* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
 /* Basic CSS for apps built with Ionic */
@@ -19,28 +18,24 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import PageCandidate from "./pages/candidate-pages/Page-Candidate";
 import PageHR from "./pages/hr-pages/Page-HR";
-import React, {useState} from "react";
 import PageCandidateTasks from "./pages/candidate-pages/Page-Candidate-Tasks";
 import PageCandidateTestForm from "./pages/candidate-pages/Page-Candidate-Test-Form";
 import CandidateCardForHR from "./pages/hr-pages/Candidate-Card-For-HR";
-import ListCandidates from "./pages/hr-pages/List-Of-Candidates";
-import HR5CreateVacancy from "./pages/hr-pages/HR5-Create-Vacancy";
+import ListCandidates from "./pages/hr-pages/Page-HR-List-Of-Candidates";
+import PageHRCreateVacancy from "./pages/hr-pages/Page-HR-Create-Vacancy";
 import MainPageByRole from "./scripts/MainPageLoader";
 import Registration from "./pages/login-pages/Registration";
 import Login from "./pages/login-pages/Login";
-import HR6VacancyCardForView from "./pages/hr-pages/HR6-Vacancy-Card-For-View-For-HR";
+import PageHRVacancyCardView from "./pages/hr-pages/Page-HR-Vacancy-Card-View";
 import HR7EditVacancyCard from "./pages/hr-pages/HR7-Edit-Vacancy-Card";
-import HR8AllVacancies from "./pages/hr-pages/HR8-All-Vacancies";
-import handleToken from "./scripts/CookiesToken";
+import PageHRAllVacancies from "./pages/hr-pages/Page-HR-All-Vacancies";
 import PageCandidateVacancyList from "./pages/candidate-pages/Page-Candidate-Vacancy-List";
 import pageCandidateVacancyInfo from "./pages/candidate-pages/Page-Candidate-Vacancy-Info";
-import PageHRClosedTestCreate from "./pages/hr-pages/Page-HR-Closed-Test-Create";
 import pageHRClosedTestCreate from "./pages/hr-pages/Page-HR-Closed-Test-Create";
 import pageHROpenedTestCreate from "./pages/hr-pages/Page-HR-Opened-Test-Create";
+import React from "react";
 
-const userRole = handleToken();
 setupIonicReact();
 const App: React.FC = () => (
 
@@ -48,18 +43,18 @@ const App: React.FC = () => (
     <IonApp>
         <IonReactRouter>
             <IonRouterOutlet>
-                <Route exact path="/create-vacancy"><HR5CreateVacancy/></Route>
+                <Route exact path="/create-vacancy"><PageHRCreateVacancy/></Route>
                 <Route exact path="/register"><Registration/></Route>
                 <Route exact path="/home"><MainPageByRole/></Route>
                 <Route exact path="/hr-page"><PageHR/></Route>
                 <Route exact path="/candidate-tasks"><PageCandidateTasks/></Route>
                 <Route exact path="/"><Redirect to="/home"/></Route>
                 <Route exact path="/candidate-test"><PageCandidateTestForm/></Route>
-                <Route exact path="/hr8-all-vacancies"><HR8AllVacancies/></Route>
+                <Route exact path="/hr8-all-vacancies"><PageHRAllVacancies/></Route>
                 <Route exact path="/candidate-all-vacancies"><PageCandidateVacancyList/></Route>
                 <Route path="/open-test-editor/:id" component={pageHROpenedTestCreate}/>
                 <Route path="/close-test-editor/:id" component={pageHRClosedTestCreate}/>
-                <Route path="/vacancy-card/:vacancyId" component={HR6VacancyCardForView}/>
+                <Route path="/vacancy-card/:vacancyId" component={PageHRVacancyCardView}/>
                 <Route path="/login" component={Login}/>
                 <Route path='/vacancy/:id' component={pageCandidateVacancyInfo}/>
                 <Route path="/list-candidates/:id" component={ListCandidates}/>

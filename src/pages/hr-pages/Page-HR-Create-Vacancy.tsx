@@ -26,7 +26,7 @@ import {
 import React, {useState} from "react";
 import {redirectToExternalSite} from "../../scripts/utils";
 
-function HR5CreateVacancy() {
+function PageHRCreateVacancy() {
 
     const [vacancyName, setVacancyName] = useState('');
     const [vacancyWorkExperience, setVacancyWorkExperience] = useState('');
@@ -138,15 +138,18 @@ function HR5CreateVacancy() {
                                         <IonList>
                                             <IonRadioGroup onClick={(e: any) => handleWorkExperience(e)}>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="WithoutExperience">Нет опыта</IonRadio>
+                                                    <IonRadio justify="space-between" value="WithoutExperience">Нет
+                                                        опыта</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="CoupleOfYears">1-2 года</IonRadio>
+                                                    <IonRadio justify="space-between" value="CoupleOfYears">1-2
+                                                        года</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="MoreTwoYears">Больше двух лет</IonRadio>
+                                                    <IonRadio justify="space-between" value="MoreTwoYears">Больше двух
+                                                        лет</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                             </IonRadioGroup>
@@ -165,11 +168,13 @@ function HR5CreateVacancy() {
                                         <IonList>
                                             <IonRadioGroup onClick={(e: any) => handleVacancyStatus(e)}>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="OnModeration">На модерации</IonRadio>
+                                                    <IonRadio justify="space-between" value="OnModeration">На
+                                                        модерации</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="Opened">Доступная</IonRadio>
+                                                    <IonRadio justify="space-between"
+                                                              value="Opened">Доступная</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
@@ -197,11 +202,13 @@ function HR5CreateVacancy() {
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="Education">Образование</IonRadio>
+                                                    <IonRadio justify="space-between"
+                                                              value="Education">Образование</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="Medicine">Медицина</IonRadio>
+                                                    <IonRadio justify="space-between"
+                                                              value="Medicine">Медицина</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                             </IonRadioGroup>
@@ -220,7 +227,8 @@ function HR5CreateVacancy() {
                                 <IonCard style={{borderRadius: '20px'}}>
                                     <IonItem>
                                         <IonTextarea placeholder="Описание" autoGrow={true}
-                                                     style={{minHeight: "300px"}} onInput={(e: any) => handleVacancyDescription(e)}></IonTextarea>
+                                                     style={{minHeight: "300px"}}
+                                                     onInput={(e: any) => handleVacancyDescription(e)}></IonTextarea>
                                     </IonItem>
                                 </IonCard>
                             </IonCol>
@@ -235,4 +243,4 @@ function HR5CreateVacancy() {
     );
 }
 
-export default HR5CreateVacancy;
+export default PageHRCreateVacancy;

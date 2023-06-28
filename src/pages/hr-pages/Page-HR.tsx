@@ -1,13 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import '../../styles/Page-HR.css'
 import {
-    IonBadge, IonButton,
+    IonBadge,
+    IonButton,
     IonButtons,
-    IonCard, IonCardContent, IonCol,
-    IonContent, IonFab, IonFabButton, IonGrid,
-    IonHeader, IonIcon, IonItem, IonLabel,
-    IonMenuButton, IonMenuToggle,
-    IonPage, IonRow, IonSearchbar, IonThumbnail,
+    IonCard,
+    IonCardContent,
+    IonCol,
+    IonContent,
+    IonFab,
+    IonFabButton,
+    IonGrid,
+    IonHeader,
+    IonIcon,
+    IonItem,
+    IonLabel,
+    IonMenuButton,
+    IonPage,
+    IonRow,
+    IonSearchbar,
+    IonThumbnail,
     IonTitle,
     IonToolbar
 } from '@ionic/react';
@@ -22,10 +34,8 @@ const PageHR = () => {
     const [image, setImage] = useState('')
     const [name, setName] = useState('')
     const [results, setResults] = useState<any[]>([])
-    const [vacancy, setVacancy] = useState<any[]>([])
     const [activeVacancies, setActiveVacancies] = useState<any>([])
     const [activeResponses, setActiveResponses] = useState<any>([])
-
     const history = useHistory();
 
     const navigateToPage = (vacancyId: string) => {
@@ -66,7 +76,7 @@ const PageHR = () => {
     }
 
 
-    const handleItemClick = (vacancyId: string) => {
+    const handleVacancyCard = (vacancyId: string) => {
         history.push(`/vacancy-card/${vacancyId}`);
     };
 
@@ -76,7 +86,7 @@ const PageHR = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify([{ key: 'name', value: query, operation: 'LIKE' }]),
+            body: JSON.stringify([{key: 'name', value: query, operation: 'LIKE'}]),
         })
             .then(response => response.json())
             .then(data => setResults(data))
@@ -151,7 +161,8 @@ const PageHR = () => {
                                     className="vacancy-cards-list">
                                 <div className="hr-card-vacansii-plus_button" style={{marginBottom: "20px"}}>
                                     <IonFab>
-                                        <IonFabButton routerLink="/create-vacancy" className="pic-size" style={{height: "34px", width: "34px"}}>
+                                        <IonFabButton routerLink="/create-vacancy" className="pic-size"
+                                                      style={{height: "34px", width: "34px"}}>
                                             <IonIcon icon="../images/add-outline.svg"></IonIcon>
                                         </IonFabButton>
                                     </IonFab>
@@ -159,27 +170,13 @@ const PageHR = () => {
                             </IonCol>
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12"
                                     className="vacancy-cards-list">
-                                {/*<div className="search-button">*/}
-                                {/*    <IonSearchbar searchIcon="../images/search-outline.svg"*/}
-                                {/*                  placeholder="Поиск по названию"></IonSearchbar>*/}
-                                {/*</div>*/}
-
                                 <div className="search-button">
                                     <IonSearchbar
                                         searchIcon="../images/search-outline.svg"
                                         placeholder="Поиск по названию"
                                         value={query ?? ''}
                                         onIonChange={e => setQuery(e.detail.value!)}
-                                    ></IonSearchbar>
-
-                                    {/*{results.map(result => (*/}
-                                    {/*    */}
-                                    {/*    <div key={result.vacancyId}>*/}
-                                    {/*        <h3>{result.vacancyName}</h3>*/}
-                                    {/*        <p>{result.description}</p>*/}
-
-                                    {/*    </div>*/}
-                                    {/*))}*/}
+                                    />
                                 </div>
 
                             </IonCol>
@@ -214,16 +211,16 @@ const PageHR = () => {
                                             </IonItem>
                                             <IonButton
                                                 onClick={() => navigateToPage(vac.vacancyId)}
-                                                 expand="block" fill="clear" color="transparent">Просмотреть
+                                                expand="block" fill="clear" color="transparent">Просмотреть
                                                 кандидатов</IonButton>
                                             <IonButton
-                                                onClick={() => handleItemClick(vac.vacancyId)}
+                                                onClick={() => handleVacancyCard(vac.vacancyId)}
                                                 expand="block" fill="clear" color="transparent">Просмотреть
                                                 вакансию</IonButton>
                                         </IonCardContent>
                                     </IonCard>
                                 </IonCol>
-                                ))}
+                            ))}
                         </IonRow>
                     </IonGrid>
 

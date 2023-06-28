@@ -1,18 +1,26 @@
 import {
-    IonBadge,
-    IonButtons, IonCard, IonCardHeader, IonCardTitle, IonCol, IonGrid,
-    IonHeader, IonIcon, IonImg, IonInput,
-    IonItem, IonLabel, IonList,
+    IonButtons,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCol,
+    IonGrid,
+    IonHeader,
+    IonItem,
+    IonList,
     IonMenuButton,
-    IonMenuToggle, IonPage,
+    IonMenuToggle,
+    IonPage,
     IonRadio,
-    IonRadioGroup, IonRow, IonTextarea, IonTitle,
+    IonRadioGroup,
+    IonRow,
+    IonTextarea,
+    IonTitle,
     IonToolbar
 } from "@ionic/react";
 import React from "react";
-import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import "../../styles/Test-Form.css"
-import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
+import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 
 function PageCandidateTestForm() {
 
@@ -23,9 +31,9 @@ function PageCandidateTestForm() {
 
     return (
         <>
-            <PopupMenuHr/>
+            <PopupMenuCandidate/>
             <IonPage id="main-content">
-                {/*Header and Timer*/}
+
                 <IonHeader>
                     <IonToolbar>
                         <IonButtons slot="start">

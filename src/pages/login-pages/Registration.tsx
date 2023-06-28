@@ -1,26 +1,31 @@
 import {
-    IonAlert,
-    IonBadge, IonButton,
-    IonButtons, IonCard, IonCardHeader, IonCardTitle, IonCol, IonContent, IonGrid,
-    IonHeader, IonIcon, IonImg, IonInput,
-    IonItem, IonLabel, IonList,
+    IonButton,
+    IonButtons,
+    IonCard,
+    IonCol,
+    IonContent,
+    IonGrid,
+    IonHeader,
+    IonInput,
+    IonItem,
+    IonLabel,
     IonMenuButton,
-    IonMenuToggle, IonPage,
-    IonRadio,
-    IonRadioGroup, IonRoute, IonRouterLink, IonRow, IonTextarea, IonTitle,
+    IonPage,
+    IonRow,
+    IonTitle,
     IonToolbar
 } from "@ionic/react";
 import React, {useState} from "react";
 import "../../styles/Test-Form.css"
-import {openExternalSite, redirectToExternalSite} from "../../scripts/utils";
+import {redirectToExternalSite} from "../../scripts/utils";
+
 function Registration() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [name, setName] = React.useState("");
     const [phone, setPhone] = React.useState("");
-    const [isOpen, setIsOpen] = useState(false);
 
-    const [isTouchedPhone, setIsTouchedPhone] = useState(false);    const [isTouched, setIsTouched] = useState(false);
+    const [isTouched, setIsTouched] = useState(false);
     const [isValid, setIsValid] = useState<boolean>();
     const [isValidPassword, setIsValidPassword] = useState<boolean>();
     const [isValidPhone, setIsValidPhone] = useState<boolean>();
@@ -189,7 +194,7 @@ function Registration() {
                                 <IonCard style={{borderRadius: '20px'}}>
                                     <IonItem style={{margin: '30px 10px'}}>
                                         <IonInput style={{borderRadius: '20px'}}
-                                                  className={`${isValidPhone && 'ion-valid'} ${isValidPhone === false && 'ion-invalid'} ${isTouchedPhone && 'ion-touched'}`}
+                                                  className={`${isValidPhone && 'ion-valid'} ${isValidPhone === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
                                                   fill="solid"
                                                   placeholder="+7"
                                                   label="Phone"

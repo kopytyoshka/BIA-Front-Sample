@@ -1,14 +1,14 @@
 import React from 'react';
 import '../Home.css';
 import {
-    IonBadge,
-    IonButtons,
     IonContent,
-    IonHeader, IonIcon,
-    IonImg, IonItem, IonLabel, IonList,
+    IonHeader,
+    IonIcon,
+    IonItem,
+    IonLabel,
+    IonList,
     IonMenu,
-    IonMenuButton, IonMenuToggle,
-    IonPage,
+    IonMenuToggle,
     IonTitle,
     IonToolbar
 } from '@ionic/react';

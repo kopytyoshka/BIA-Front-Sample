@@ -1,14 +1,25 @@
 import '../../styles/Page-Candidate.css'
-import moment from 'moment';
 import {
-    IonBadge, IonButton,
+    IonBadge,
+    IonButton,
     IonButtons,
     IonCard,
-    IonCardContent, IonChip, IonCol,
-    IonContent, IonGrid,
-    IonHeader, IonIcon, IonItem, IonLabel, IonList,
-    IonMenuButton, IonMenuToggle,
-    IonPage, IonRow, IonSearchbar, IonSelect, IonSelectOption, IonText, IonThumbnail,
+    IonCardContent,
+    IonChip,
+    IonCol,
+    IonContent,
+    IonGrid,
+    IonHeader,
+    IonIcon,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonMenuButton,
+    IonPage,
+    IonRow,
+    IonSelect,
+    IonSelectOption,
+    IonThumbnail,
     IonTitle,
     IonToolbar
 } from "@ionic/react";
@@ -16,29 +27,12 @@ import React, {useEffect, useState} from 'react';
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useHistory, useParams} from "react-router";
 
-interface Stage {
-    name: string;
-    id: string;
-    deadline: Date;
-    result: string;
-    additional: null;
-    state: string;
-}
-
-interface Vacancy {
-    responseStatus: string;
-    creationDate: string;
-    vacancyName: string;
-    stages: Stage[];
-    vacancyId: string;
-}
-
-interface RouteParams {
-    id: string
-}
-
 const ListCandidates = () => {
-    const { id } = useParams<RouteParams>();
+    interface RouteParams {
+        id: string
+    }
+
+    const {id} = useParams<RouteParams>();
     const [candidate, setCandidate] = useState<any[]>([])
     const [data, setData] = useState<any>([]);
 
@@ -179,7 +173,7 @@ const ListCandidates = () => {
                                         </IonCardContent>
                                     </IonCard>
                                 </IonCol>
-                                ))}
+                            ))}
                         </IonRow>
                     </IonGrid>
 

@@ -1,24 +1,31 @@
 import React, {useEffect, useState} from 'react';
 import {
-    IonAlert,
-    IonBadge, IonButton,
+    IonBadge,
+    IonButton,
     IonButtons,
-    IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol,
-    IonContent, IonFab, IonFabButton, IonGrid,
-    IonHeader, IonIcon, IonItem,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCol,
+    IonContent,
+    IonGrid,
+    IonHeader,
+    IonItem,
     IonMenuButton,
-    IonPage, IonRow, IonSelect, IonSelectOption, IonText, IonTextarea,
+    IonPage,
+    IonRow,
+    IonSelect,
+    IonSelectOption,
+    IonText,
     IonTitle,
     IonToolbar
 } from '@ionic/react';
 import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useHistory, useParams} from "react-router";
+import {formatStageType, formatWorkExperience, formatWorkStatus} from "../../scripts/utils";
 
-import {formatStageType, formatWorkExperience, formatWorkStatus, redirectToExternalSite} from "../../scripts/utils";
-import handleToken from "../../scripts/CookiesToken";
-
-const HR6VacancyCardForView = () => {
+const PageHRVacancyCardView = () => {
     interface VacancyParam {
         vacancyId: string;
     }
@@ -241,7 +248,8 @@ const HR6VacancyCardForView = () => {
                                             </IonItem>
                                             <IonItem>
                                                 Тип
-                                                <IonBadge slot="end" color={"danger"}>{formatStageType(stage.type)}</IonBadge>
+                                                <IonBadge slot="end"
+                                                          color={"danger"}>{formatStageType(stage.type)}</IonBadge>
                                             </IonItem>
                                             <IonItem>
                                                 <IonText>
@@ -252,33 +260,13 @@ const HR6VacancyCardForView = () => {
                                                 </IonText>
                                             </IonItem>
                                             <IonButton onClick={() => handleStageRedactor(stage.id)}
-                                                expand="block" fill="clear" color="transparent">Редактировать вопросы
+                                                       expand="block" fill="clear" color="transparent">Редактировать
+                                                вопросы
                                             </IonButton>
                                             <IonButton id="present-alert"
                                                        expand="block" fill="clear" color="transparent"
                                                        onClick={() => deleteStage(stage.id)}>Удалить
                                             </IonButton>
-                                            {/*<IonAlert*/}
-                                            {/*    header="Вы действительно хотите удалить?"*/}
-                                            {/*    trigger="present-alert"*/}
-                                            {/*    buttons={[*/}
-                                            {/*        {*/}
-                                            {/*            text: 'Отмена',*/}
-                                            {/*            role: 'cancel',*/}
-                                            {/*            handler: () => {*/}
-                                            {/*                setHandlerMessage('Alert canceled');*/}
-                                            {/*            },*/}
-                                            {/*        },*/}
-                                            {/*        {*/}
-                                            {/*            text: 'Да',*/}
-                                            {/*            role: 'confirm',*/}
-                                            {/*            handler: () => {*/}
-                                            {/*                setHandlerMessage('Alert confirmed');*/}
-                                            {/*            },*/}
-                                            {/*        },*/}
-                                            {/*    ]}*/}
-                                            {/*    onDidDismiss={({detail}) => setRoleMessage(`Dismissed with role: ${detail.role}`)}*/}
-                                            {/*></IonAlert>*/}
                                         </IonCardContent>
                                     </IonCard>
                                 </IonCol>
@@ -323,4 +311,4 @@ const HR6VacancyCardForView = () => {
     );
 }
 
-export default HR6VacancyCardForView;
+export default PageHRVacancyCardView;

@@ -1,25 +1,31 @@
 import {
-    IonBadge, IonButton,
-    IonButtons, IonCard, IonCardHeader, IonCardTitle, IonCol, IonGrid,
-    IonHeader, IonIcon, IonImg, IonInput,
-    IonItem, IonLabel, IonList,
+    IonButton,
+    IonButtons,
+    IonCard,
+    IonCol,
+    IonGrid,
+    IonHeader,
+    IonInput,
+    IonItem,
+    IonLabel,
     IonMenuButton,
-    IonMenuToggle, IonModal, IonPage,
-    IonRadio,
-    IonRadioGroup, IonRow, IonTextarea, IonTitle, IonToast,
+    IonPage,
+    IonRow,
+    IonTitle,
+    IonToast,
     IonToolbar
 } from "@ionic/react";
-import React, {useEffect, useState} from "react";
-import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
+import React, {useState} from "react";
 import "../../styles/Test-Form.css"
 import {redirectToExternalSite} from "../../scripts/utils";
-import jwtDecode from "jwt-decode";
 
 function Login() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [showErrorPopup, setShowErrorPopup] = useState(false);
     const [message, setMessage] = useState("")
+    const [isTouched, setIsTouched] = useState(false);
+    const [isValid, setIsValid] = useState<boolean>();
 
     const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
@@ -28,12 +34,8 @@ function Login() {
         setPassword(event.target.value);
     };
 
-
-    const [isTouched, setIsTouched] = useState(false);
-    const [isValid, setIsValid] = useState<boolean>();
-
-    const validateEmail = (email: string) => {
-        return email.match(
+    const validateEmail = (em: string) => {
+        return em.match(
             /^(?=.{1,254}$)(?=.{1,64}@)[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
         );
     };

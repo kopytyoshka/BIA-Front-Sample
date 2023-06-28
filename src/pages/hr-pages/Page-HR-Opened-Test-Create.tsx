@@ -4,10 +4,7 @@ import {
     IonCard,
     IonCardContent,
     IonCardHeader,
-    IonCardSubtitle,
     IonCardTitle,
-    IonRadio,
-    IonRadioGroup,
     IonLabel,
     IonItem,
     IonTextarea,
@@ -23,24 +20,23 @@ import {
     IonCol, IonToast,
 } from '@ionic/react';
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
-import {useHistory, useParams} from "react-router";
-
-interface Question {
-    question: string;
-    stageId: string;
-}
+import {useParams} from "react-router";
 
 const CreateQuestion: React.FC = () => {
-    const [questions, setQuestions] = useState<Question[]>([]);
-    const [doneQuestions, setDoneQuestions] = useState<any[]>([]);
-    const [message, setMessage] = useState("");
-    const [showPopup, setShowPopup] = useState(false);
+    interface Question {
+        question: string;
+        stageId: string;
+    }
 
     interface StageParam {
         id: string;
     }
 
     const {id} = useParams<StageParam>();
+    const [questions, setQuestions] = useState<Question[]>([]);
+    const [doneQuestions, setDoneQuestions] = useState<any[]>([]);
+    const [message, setMessage] = useState("");
+    const [showPopup, setShowPopup] = useState(false);
 
     const handleCreateQuestion = () => {
         setQuestions((prevState) => [
@@ -85,7 +81,7 @@ const CreateQuestion: React.FC = () => {
     };
 
     const handleDeleteQuestion = async (questionId: string) => {
-        let deletingQuestion = {
+        let deletingOpenQuestion = {
             stageId: id,
             questionId: questionId,
         }
@@ -95,7 +91,7 @@ const CreateQuestion: React.FC = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(deletingQuestion),
+                body: JSON.stringify(deletingOpenQuestion),
             });
 
             if (response.ok) {
@@ -161,7 +157,8 @@ const CreateQuestion: React.FC = () => {
                                                 ></IonTextarea>
                                             </IonItem>
                                             <IonItem>
-                                                <IonButton slot="end" color="danger" onClick={() => handleDeleteQuestion(done.id)}>Удалить</IonButton>
+                                                <IonButton slot="end" color="danger"
+                                                           onClick={() => handleDeleteQuestion(done.id)}>Удалить</IonButton>
                                             </IonItem>
                                         </IonCardContent>
                                     </IonCard>
@@ -185,7 +182,8 @@ const CreateQuestion: React.FC = () => {
                                                 value={question.question}
                                                 onIonChange={(e: any) => handleInputChange(e, index, 'question')}
                                             ></IonTextarea>
-                                            <IonButton onClick={() => handleSaveQuestion(question)}>Сохранить вопрос</IonButton>
+                                            <IonButton onClick={() => handleSaveQuestion(question)}>Сохранить
+                                                вопрос</IonButton>
                                         </IonCardContent>
                                     </IonCard>
                                 ))}

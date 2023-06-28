@@ -1,8 +1,6 @@
 import React from 'react';
 import '../../styles/Popup-Menu-Style.css';
 import {
-    IonBadge,
-    IonButtons,
     IonContent,
     IonHeader,
     IonIcon,
@@ -10,9 +8,7 @@ import {
     IonLabel,
     IonList,
     IonMenu,
-    IonMenuButton,
     IonMenuToggle,
-    IonPage,
     IonTitle,
     IonToolbar
 } from '@ionic/react';

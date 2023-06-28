@@ -1,12 +1,22 @@
 import {
-    IonBadge, IonButton,
-    IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle,
+    IonBadge,
+    IonButtons,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardTitle,
     IonCol,
-    IonContent, IonGrid,
-    IonHeader, IonInput, IonItem,
-    IonLabel, IonList,
-    IonMenuButton, IonPage, IonRadio, IonRadioGroup,
-    IonRow, IonSearchbar, IonText, IonTextarea,
+    IonContent,
+    IonGrid,
+    IonHeader,
+    IonItem,
+    IonList,
+    IonMenuButton,
+    IonPage,
+    IonRadio,
+    IonRadioGroup,
+    IonRow,
+    IonSearchbar,
     IonTitle,
     IonToolbar
 } from "@ionic/react";
@@ -72,15 +82,18 @@ function PageCandidateVacancyList() {
                                         <IonList>
                                             <IonRadioGroup>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="WithoutExperience">Без опыта</IonRadio>
+                                                    <IonRadio justify="space-between" value="WithoutExperience">Без
+                                                        опыта</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="CoupleOfYears">1-2 года</IonRadio>
+                                                    <IonRadio justify="space-between" value="CoupleOfYears">1-2
+                                                        года</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                                 <IonItem>
-                                                    <IonRadio justify="space-between" value="MoreTwoYears">Больше двух лет</IonRadio>
+                                                    <IonRadio justify="space-between" value="MoreTwoYears">Больше двух
+                                                        лет</IonRadio>
                                                     <br/>
                                                 </IonItem>
                                             </IonRadioGroup>

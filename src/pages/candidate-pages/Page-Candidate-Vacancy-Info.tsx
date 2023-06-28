@@ -1,17 +1,24 @@
 import {
-    IonBadge, IonButton,
-    IonButtons, IonCard, IonCardHeader, IonCardTitle,
+    IonBadge,
+    IonButton,
+    IonButtons,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
     IonCol,
-    IonContent, IonGrid,
-    IonHeader, IonItem,
-    IonLabel, IonList,
-    IonMenuButton, IonPage,
+    IonContent,
+    IonGrid,
+    IonHeader,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonMenuButton,
+    IonPage,
     IonRow,
     IonTitle,
     IonToolbar
 } from "@ionic/react";
 import React, {useEffect, useState} from "react";
-import {warning} from "ionicons/icons";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import {useParams} from "react-router";
 import {formatWorkExperience, redirectToExternalSite} from "../../scripts/utils";
@@ -24,9 +31,8 @@ function PageCandidateVacancyInfo() {
         id: string;
     }
 
-    const { id } = useParams<VacancyParam>();
+    const {id} = useParams<VacancyParam>();
     const [data, setData] = useState<any>([]);
-
 
 
     async function Response() {

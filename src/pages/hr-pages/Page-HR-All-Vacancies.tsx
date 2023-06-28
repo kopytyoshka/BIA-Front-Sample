@@ -1,13 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {
-    IonAlert,
-    IonBadge, IonButton,
+    IonButton,
     IonButtons,
-    IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol,
-    IonContent, IonFab, IonFabButton, IonGrid,
-    IonHeader, IonIcon, IonItem, IonLabel,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCol,
+    IonContent,
+    IonGrid,
+    IonHeader,
+    IonItem,
     IonMenuButton,
-    IonPage, IonRow, IonSearchbar, IonText, IonTextarea,
+    IonPage,
+    IonRow,
+    IonSearchbar,
     IonTitle,
     IonToolbar
 } from '@ionic/react';
@@ -15,21 +21,10 @@ import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useHistory} from "react-router";
 
-const HR8AllVacancies = () => {
-    const [vacancy, setVacancy] = useState<any[]>([])
-    const history = useHistory();
+const PageHRAllVacancies = () => {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<any[]>([])
-
-    const fetchAllVacancies = () => {
-        fetch("/api/vacancy/allVacanciesForHR")
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                setVacancy(data)
-            })
-    }
+    const history = useHistory();
 
     const handleSearch = () => {
         fetch('/api/vacancy/vacancySpecification', {
@@ -37,7 +32,7 @@ const HR8AllVacancies = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify([{ key: 'name', value: query, operation: 'LIKE' }]),
+            body: JSON.stringify([{key: 'name', value: query, operation: 'LIKE'}]),
         })
             .then(response => response.json())
             .then(data => setResults(data))
@@ -47,10 +42,6 @@ const HR8AllVacancies = () => {
     const handleItemClick = (vacancyId: string) => {
         history.push(`/vacancy-card/${vacancyId}`);
     };
-
-    useEffect(() => {
-        fetchAllVacancies()
-    }, [])
 
     useEffect(() => {
         handleSearch();
@@ -126,4 +117,4 @@ const HR8AllVacancies = () => {
     );
 }
 
-export default HR8AllVacancies;
+export default PageHRAllVacancies;

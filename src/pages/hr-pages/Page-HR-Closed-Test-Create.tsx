@@ -4,7 +4,6 @@ import {
     IonCard,
     IonCardContent,
     IonCardHeader,
-    IonCardSubtitle,
     IonCardTitle,
     IonRadio,
     IonRadioGroup,
@@ -23,8 +22,7 @@ import {
     IonCol, IonToast,
 } from '@ionic/react';
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
-import {useHistory, useParams} from "react-router";
-import {reload} from "ionicons/icons";
+import {useParams} from "react-router";
 
 interface Question {
     question: string;
@@ -37,15 +35,14 @@ interface Question {
 }
 
 const CreateQuestion: React.FC = () => {
-    const [questions, setQuestions] = useState<Question[]>([]);
-    const [doneQuestions, setDoneQuestions] = useState<any[]>([]);
-    const [message, setMessage] = useState("");
-    const [showPopup, setShowPopup] = useState(false);
-
     interface StageParam {
         id: string;
     }
 
+    const [questions, setQuestions] = useState<Question[]>([]);
+    const [doneQuestions, setDoneQuestions] = useState<any[]>([]);
+    const [message, setMessage] = useState("");
+    const [showPopup, setShowPopup] = useState(false);
     const {id} = useParams<StageParam>();
 
     const handleCreateQuestion = () => {
@@ -207,7 +204,8 @@ const CreateQuestion: React.FC = () => {
                                                         value={done.var4} disabled
                                                     ></IonTextarea>
                                                 </IonItem>
-                                                <IonButton slot="end" color="danger" onClick={(e: any) => handleDeleteQuestion(done.id)}>Удалить</IonButton>
+                                                <IonButton slot="end" color="danger"
+                                                           onClick={() => handleDeleteQuestion(done.id)}>Удалить</IonButton>
                                             </IonRadioGroup>
                                         </IonCardContent>
                                     </IonCard>
@@ -270,7 +268,8 @@ const CreateQuestion: React.FC = () => {
                                                     ></IonTextarea>
                                                 </IonItem>
                                             </IonRadioGroup>
-                                            <IonButton onClick={() => handleSaveQuestion(question)}>Сохранить вопрос</IonButton>
+                                            <IonButton onClick={() => handleSaveQuestion(question)}>Сохранить
+                                                вопрос</IonButton>
                                         </IonCardContent>
                                     </IonCard>
                                 ))}
