@@ -10,8 +10,9 @@ import {
     IonRadioGroup,
     IonLabel,
     IonItem,
-    IonTextarea,
+    IonTextarea, IonContent, IonPage,
 } from '@ionic/react';
+import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 
 interface Question {
     question: string;
@@ -20,6 +21,7 @@ interface Question {
     var3: string;
     var4: string;
     rightChoose: number;
+    stageId: string;
 }
 
 const CreateQuestion: React.FC = () => {
@@ -34,7 +36,8 @@ const CreateQuestion: React.FC = () => {
                 var2: '',
                 var3: '',
                 var4: '',
-                rightChoose: 1,
+                rightChoose: 0,
+                stageId: '',
             },
         ]);
     };
@@ -78,7 +81,9 @@ const CreateQuestion: React.FC = () => {
     };
 
     return (
-        <div>
+        <IonPage>
+            <PopupMenuHr/>
+            <IonContent>
             <IonButton onClick={handleCreateQuestion}>Create New Question</IonButton>
             {questions.map((question, index) => (
                 <IonCard key={index}>
@@ -134,7 +139,8 @@ const CreateQuestion: React.FC = () => {
                     </IonCardContent>
                 </IonCard>
             ))}
-        </div>
+            </IonContent>
+        </IonPage>
     );
 };
 
