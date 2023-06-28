@@ -38,6 +38,7 @@ import PageCandidateVacancyList from "./pages/candidate-pages/Page-Candidate-Vac
 import pageCandidateVacancyInfo from "./pages/candidate-pages/Page-Candidate-Vacancy-Info";
 import PageHRClosedTestCreate from "./pages/hr-pages/Page-HR-Closed-Test-Create";
 import pageHRClosedTestCreate from "./pages/hr-pages/Page-HR-Closed-Test-Create";
+import pageHROpenedTestCreate from "./pages/hr-pages/Page-HR-Opened-Test-Create";
 
 const userRole = handleToken();
 setupIonicReact();
@@ -56,6 +57,7 @@ const App: React.FC = () => (
                 <Route exact path="/candidate-test"><PageCandidateTestForm/></Route>
                 <Route exact path="/hr8-all-vacancies"><HR8AllVacancies/></Route>
                 <Route exact path="/candidate-all-vacancies"><PageCandidateVacancyList/></Route>
+                <Route path="/open-test-editor/:id" component={pageHROpenedTestCreate}/>
                 <Route path="/close-test-editor/:id" component={pageHRClosedTestCreate}/>
                 <Route path="/vacancy-card/:vacancyId" component={HR6VacancyCardForView}/>
                 <Route path="/login" component={Login}/>
