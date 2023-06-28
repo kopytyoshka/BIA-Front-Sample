@@ -110,7 +110,6 @@ const CreateQuestion: React.FC = () => {
                             <IonTitle>Создание закрытого теста</IonTitle>
                         </IonToolbar>
                     </IonHeader>
-                    <IonButton onClick={handleCreateQuestion}>Добавить новый вопрос</IonButton>
                     <IonGrid style={{margin: "10px"}}>
                         <IonRow style={{marginLeft: "0px"}}>
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="10" sizeXl="10"
@@ -172,6 +171,9 @@ const CreateQuestion: React.FC = () => {
                                     </IonCard>
                                 ))}
                             </IonCol>
+                        </IonRow>
+                        <IonRow>
+                            <IonButton onClick={handleCreateQuestion}>Добавить новый вопрос</IonButton>
                         </IonRow>
                     </IonGrid>
                 </IonContent>
