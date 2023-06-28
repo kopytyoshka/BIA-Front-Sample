@@ -55,6 +55,14 @@ function HR5CreateVacancy() {
         setVacancySphere(event.target.value);
     };
 
+    const handleVacancyDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVacancyDescription(event.target.value);
+    };
+
+    const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVacancySphere(event.target.value);
+    };
+
     async function submitVacancy() {
         try {
             const vacancyInfo = {
@@ -115,7 +123,7 @@ function HR5CreateVacancy() {
                                         label="Введите название вакансии"
                                         labelPlacement="floating" fill="outline"
                                         placeholder="Введите название вакансии"
-                                        onIonChange={(e: any) => setVacancyName(e)}>
+                                        onInput={(e: any) => handleVacancyName(e)}>
                                     </IonInput>
                                 </IonItem>
                             </IonCol>
@@ -221,7 +229,7 @@ function HR5CreateVacancy() {
                                 <IonCard style={{borderRadius: '20px'}}>
                                     <IonItem>
                                         <IonTextarea placeholder="Описание" autoGrow={true}
-                                                     style={{minHeight: "300px"}} onChange={(e: any) => setVacancyDescription(e)}></IonTextarea>
+                                                     style={{minHeight: "300px"}} onInput={(e: any) => handleVacancyDescription(e)}></IonTextarea>
                                     </IonItem>
                                 </IonCard>
                             </IonCol>
