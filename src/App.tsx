@@ -34,9 +34,9 @@ import HR6VacancyCardForView from "./pages/hr-pages/HR6-Vacancy-Card-For-View-Fo
 import HR7EditVacancyCard from "./pages/hr-pages/HR7-Edit-Vacancy-Card";
 import HR8AllVacancies from "./pages/hr-pages/HR8-All-Vacancies";
 import handleToken from "./scripts/CookiesToken";
-import HR4TestPage from "./pages/hr-pages/HR4-Test-Page";
 import PageCandidateVacancyList from "./pages/candidate-pages/Page-Candidate-Vacancy-List";
 import pageCandidateVacancyInfo from "./pages/candidate-pages/Page-Candidate-Vacancy-Info";
+import PageHRClosedTestCreate from "./pages/hr-pages/Page-HR-Closed-Test-Create";
 
 const userRole = handleToken();
 setupIonicReact();
@@ -47,7 +47,7 @@ const App: React.FC = () => (
         <IonReactRouter>
             <IonRouterOutlet>
                 <Route exact path="/hr4-test-page">
-                    <HR4TestPage/>
+                    <PageHRClosedTestCreate/>
                 </Route>
                 <Route exact path="/create-vacancy">
                     <HR5CreateVacancy/>
