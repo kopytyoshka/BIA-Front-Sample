@@ -131,25 +131,21 @@ const HR7EditVacancyCard = () => {
                     <IonGrid>
                         <IonRow>
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                <IonCard>
+                                <IonCard style={{borderRadius: '20px'}}>
                                     <IonCardHeader>
                                         <IonCardTitle>
                                             Статус вакансии
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup value={selectedStatus} onClick={(e: any)=> setSelectedStatus(e)}>
+                                        <IonRadioGroup value={selectedStatus} onIonChange={e => setSelectedStatus(e.detail.value)}>
                                             <IonItem>
                                                 <IonLabel>Активная</IonLabel>
-                                                <IonRadio slot="start" value="IT" />
+                                                <IonRadio slot="start" value="Opened" />
                                             </IonItem>
                                             <IonItem>
                                                 <IonLabel>Закрытая</IonLabel>
-                                                <IonRadio slot="start" value="Medicine" />
-                                            </IonItem>
-                                            <IonItem>
-                                                <IonLabel>В архиве</IonLabel>
-                                                <IonRadio slot="start" value="Education" />
+                                                <IonRadio slot="start" value="Closed" />
                                             </IonItem>
                                         </IonRadioGroup>
                                     </IonCardContent>
