@@ -29,7 +29,6 @@ const HR7EditVacancyCard = () => {
     const [vacancySphereType, setVacancySphereType] = useState('');
     const [vacancy, setVacancy] = useState<any>([]);
     const [stages, setStages] = useState<any[]>([])
-    const [selectedStatus, setSelectedStatus] = useState('');
     const { id } = useParams<RouteParams>();
 
     const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
