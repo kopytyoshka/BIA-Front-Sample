@@ -78,7 +78,7 @@ function PageCandidateClosedTestForm() {
         const data = {
             stageId: id,
             customerId: handleToken(),
-            answers: answers.filter(answer => answer !== '') // Remove any empty answers
+            answers: answers.map(answer => answer !== '' ? answer : '0')
         };
 
         fetch("/api/stageResult/saveUserAnswersToStage", {
