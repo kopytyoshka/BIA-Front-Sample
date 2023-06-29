@@ -79,8 +79,8 @@ function HR7EditVacancyCard(){
         try {
             const vacancyData = {
                 vacancyId: id,
-                vacancyName: vacancyName,
-                description: vacancyDescription,
+                vacancyName: vacancy.vacancyName,
+                description: vacancy.vacancyDescription,
                 vacancyStatus: vacancyStatus,
                 workExperience: vacancyWorkExperience,
                 sphere: vacancySphereType,
