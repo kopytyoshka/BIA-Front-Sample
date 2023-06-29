@@ -26,10 +26,12 @@ import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useParams} from "react-router";
 import {redirectToExternalSite} from "../../scripts/utils";
+
+interface RouteParams {
+    id: string
+}
+
 const HR7EditVacancyCard = () => {
-    interface RouteParams {
-        id: string
-    }
 
     const [vacancyName, setVacancyName] = useState('');
     const [vacancyWorkExperience, setVacancyWorkExperience] = useState('');
@@ -40,8 +42,15 @@ const HR7EditVacancyCard = () => {
     const [stages, setStages] = useState<any[]>([])
     const {id} = useParams<RouteParams>();
 
-    const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setVacancyName(event.target.value);
+    // const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setVacancyName(event.target.value);
+    // };
+
+    const handleVacancyName = (e: any) => {
+        setVacancy((prevVacancy: any) => ({
+            ...prevVacancy,
+            vacancyName: e.target.value
+        }));
     };
 
     const handleVacancyWorkExperience = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,7 +91,7 @@ const HR7EditVacancyCard = () => {
             });
 
             if (response.ok) {
-                redirectToExternalSite('/home')
+                redirectToExternalSite(`/vacancy-card/${id}`)
                 return response.json();
             } else {
                 console.log("Error")
@@ -98,8 +107,6 @@ const HR7EditVacancyCard = () => {
                 return response.json()
             })
             .then(data => {
-                // setVacancyId(data.vacancyId)
-                // setVacancySphereType(data.sphereType)
                 setVacancy(data)
                 console.log(data)
             })
@@ -155,41 +162,6 @@ const HR7EditVacancyCard = () => {
                             </IonCol>
                         </IonRow>
                     </IonGrid>
-                    {/*<IonGrid>*/}
-                    {/*    <IonRow>*/}
-                    {/*        <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">*/}
-                    {/*            <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>*/}
-                    {/*                <IonCardHeader>*/}
-                    {/*                    <IonTitle>*/}
-                    {/*                        Информация о вакансии*/}
-                    {/*                    </IonTitle>*/}
-                    {/*                </IonCardHeader>*/}
-                    {/*                <IonCardContent>*/}
-                    {/*                    <IonItem>*/}
-                    {/*                        Статус*/}
-                    {/*                        <IonBadge slot="end"*/}
-                    {/*                                  color={*/}
-                    {/*                                      vacancy.vacancyStatus === "Opened" ? "success" :*/}
-                    {/*                                          vacancy.vacancyStatus === "OnModeration" ? "warning" :*/}
-                    {/*                                              "danger"*/}
-                    {/*                                  }>*/}
-                    {/*                            {formatWorkStatus(vacancy.vacancyStatus)}</IonBadge>*/}
-                    {/*                    </IonItem>*/}
-                    {/*                    <IonItem>*/}
-                    {/*                        Опыт работы*/}
-                    {/*                        <IonBadge slot="end" color={*/}
-                    {/*                            vacancy.workExperience === "WithoutExperience" ? "success" :*/}
-                    {/*                                vacancy.workExperience === "MoreTwoYears" ? "danger" :*/}
-                    {/*                                    "warning"*/}
-                    {/*                        }>*/}
-                    {/*                            {formatWorkExperience(vacancy.workExperience)}</IonBadge>*/}
-                    {/*                    </IonItem>*/}
-                    {/*                </IonCardContent>*/}
-                    {/*            </IonCard>*/}
-                    {/*        </IonCol>*/}
-                    {/*    </IonRow>*/}
-                    {/*</IonGrid>*/}
-
                     <IonGrid>
                         <IonRow>
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
@@ -291,93 +263,6 @@ const HR7EditVacancyCard = () => {
                             </IonCol>
                         </IonRow>
                     </IonGrid>
-
-                    <IonGrid>
-                        <IonRow>
-                            {stages.map(stage => (
-                                <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                        <IonCardHeader>
-                                            <IonTitle>
-                                                {stage.name}
-                                            </IonTitle>
-                                        </IonCardHeader>
-                                        <IonCardContent>
-                                            <IonItem>
-                                                <IonText>
-                                                    До какого числа
-                                                </IonText>
-                                                <IonText slot="end">
-                                                    {stage.deadline}
-                                                </IonText>
-                                            </IonItem>
-                                            <IonItem>
-                                                <IonText>
-                                                    Результат
-                                                </IonText>
-                                                <IonText slot="end">
-                                                    max: 10
-                                                </IonText>
-                                            </IonItem>
-                                            <IonButton
-                                                expand="block" fill="clear" color="transparent">Редактировать задание
-                                            </IonButton>
-                                            <IonButton id="present-alert"
-                                                       expand="block" fill="clear" color="transparent">Удалить
-                                            </IonButton>
-                                        </IonCardContent>
-                                    </IonCard>
-                                </IonCol>
-                            ))}
-                            {/*<IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">*/}
-                            {/*    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>*/}
-                            {/*        <IonCardHeader>*/}
-                            {/*            <IonTitle>*/}
-                            {/*                Тестирование*/}
-                            {/*            </IonTitle>*/}
-                            {/*        </IonCardHeader>*/}
-                            {/*        <IonCardContent>*/}
-                            {/*            <IonItem>*/}
-                            {/*                <IonText>*/}
-                            {/*                    До какого числа*/}
-                            {/*                </IonText>*/}
-                            {/*                <IonText slot="end">*/}
-                            {/*                    30.07.2023*/}
-                            {/*                </IonText>*/}
-                            {/*            </IonItem>*/}
-                            {/*            <IonItem>*/}
-                            {/*                Статус*/}
-                            {/*                <IonBadge slot="end" color={"danger"}>Недоступно</IonBadge>*/}
-                            {/*            </IonItem>*/}
-                            {/*            <IonItem>*/}
-                            {/*                <IonText>*/}
-                            {/*                    Результат*/}
-                            {/*                </IonText>*/}
-                            {/*                <IonText slot="end">*/}
-                            {/*                    max: 10*/}
-                            {/*                </IonText>*/}
-                            {/*            </IonItem>*/}
-                            {/*            <IonButton*/}
-                            {/*                expand="block" fill="clear" color="transparent">Перейти к заданию*/}
-                            {/*            </IonButton>*/}
-                            {/*            <IonButton id="present-alert"*/}
-                            {/*                       expand="block" fill="clear" color="transparent">Удалить*/}
-                            {/*            </IonButton>*/}
-                            {/*        </IonCardContent>*/}
-                            {/*    </IonCard>*/}
-                            {/*</IonCol>*/}
-                            <IonCol>
-                                <IonCard style={{borderRadius: '20px', marginTop: '120px'}}>
-                                    <IonCardContent>
-                                        <IonButton
-                                            expand="block" fill="clear" color="transparent">Добавить этап
-                                        </IonButton>
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
-                        </IonRow>
-                    </IonGrid>
-
                 </IonContent>
             </IonPage>
         </>
