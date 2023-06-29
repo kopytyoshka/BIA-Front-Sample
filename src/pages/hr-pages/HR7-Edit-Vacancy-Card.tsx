@@ -79,11 +79,11 @@ function HR7EditVacancyCard(){
         try {
             const vacancyData = {
                 vacancyId: id,
-                vacancyName: vacancy.vacancyName,
+                name: vacancy.vacancyName,
                 description: vacancy.description,
                 vacancyStatus: vacancyStatus,
                 workExperience: vacancyWorkExperience,
-                sphere: vacancySphereType,
+                sphereType: vacancySphereType,
             };
 
             const response = await fetch('/api/vacancy/updateVacancyInfo', {
