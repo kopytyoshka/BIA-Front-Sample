@@ -33,7 +33,7 @@ interface RouteParams {
 
 const HR7EditVacancyCard = () => {
 
-    // const [vacancyName, setVacancyName] = useState('');
+    const [vacancyName, setVacancyName] = useState('');
     const [vacancyWorkExperience, setVacancyWorkExperience] = useState('');
     const [vacancyStatus, setVacancyStatus] = useState('');
     const [vacancyDescription, setVacancyDescription] = useState('');
@@ -46,14 +46,14 @@ const HR7EditVacancyCard = () => {
     // };
 
     const handleVacancyName = (e: any) => {
-        setVacancyName((prevVacancy: any) => ({
+        setVacancy((prevVacancy: any) => ({
             ...prevVacancy,
             vacancyName: e.target.value
         }));
     };
 
     const handleVacancyDescription = (e: any) => {
-        setVacancyDescription((prevVacancy: any) => ({
+        setVacancy((prevVacancy: any) => ({
             ...prevVacancy,
             vacancyDescription: e.target.value
         }));
@@ -146,7 +146,7 @@ const HR7EditVacancyCard = () => {
                                         style={{marginTop: "20px", fontSize: '20px'}}
                                         fill="outline"
                                         labelPlacement="floating"
-                                        value={vacancyName.vacancyName}
+                                        value={vacancy.vacancyName}
                                         onIonChange={(e: any) => handleVacancyName(e)}>
                                     </IonInput>
                                 </IonItem>
@@ -167,7 +167,7 @@ const HR7EditVacancyCard = () => {
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup defaultValue={vacancyName.vacancyStatus} onClick={(e: any) => handleVacancyStatus(e)}>
+                                        <IonRadioGroup defaultValue={vacancy.vacancyStatus} onClick={(e: any) => handleVacancyStatus(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="OnModeration">На
                                                     модерации</IonRadio>
@@ -190,7 +190,7 @@ const HR7EditVacancyCard = () => {
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup defaultValue={vacancyName.workExperience} onClick={(e: any) => handleVacancyWorkExperience(e)}>
+                                        <IonRadioGroup defaultValue={vacancy.workExperience} onClick={(e: any) => handleVacancyWorkExperience(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="WithoutExperience">Нет
                                                     опыта</IonRadio>
@@ -219,7 +219,7 @@ const HR7EditVacancyCard = () => {
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup defaultValue={vacancyName.sphere} onClick={(e: any) => handleVacancySphereType(e)}>
+                                        <IonRadioGroup defaultValue={vacancy.sphere} onClick={(e: any) => handleVacancySphereType(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between"
                                                           value="IT">IT</IonRadio>
@@ -248,7 +248,7 @@ const HR7EditVacancyCard = () => {
                                 <IonCard style={{borderRadius: '20px'}}>
                                     <IonItem>
                                         <IonTextarea
-                                            value={vacancyName.description}
+                                            value={vacancy.description}
                                             autoGrow={true}
                                             style={{minHeight: "300px"}}
                                             onIonChange={(e: any) => handleVacancyDescription(e)}>
