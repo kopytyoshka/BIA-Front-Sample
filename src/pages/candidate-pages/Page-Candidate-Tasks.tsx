@@ -40,6 +40,7 @@ const PageCandidateTasks = () => {
     }
 
     interface Vacancy {
+        responseId: string;
         responseStatus: string;
         creationDate: string;
         vacancyName: string;
@@ -63,8 +64,8 @@ const PageCandidateTasks = () => {
 
     const history = useHistory();
 
-    const navigateToPage = (id: string) => {
-        history.push(`/test-solve/${id}`);
+    const navigateToPage = (responseId: string, stageId: string) => {
+        history.push(`/test-solve/${responseId}/${stageId}`);
     };
 
     return (
@@ -125,7 +126,7 @@ const PageCandidateTasks = () => {
                                                         fill="clear"
                                                         color="transparent"
                                                         style={{fontSize: "13px"}}
-                                                        onClick={() => navigateToPage(stage.id)}
+                                                        onClick={() => navigateToPage(stage.id, challenge.responseId)}
                                                     >Перейти к заданию</IonButton>
                                                 </IonCardContent>
                                             </IonCard>
