@@ -39,7 +39,6 @@ const HR7EditVacancyCard = () => {
     const [vacancyDescription, setVacancyDescription] = useState('');
     const [vacancySphereType, setVacancySphereType] = useState('');
     const [vacancy, setVacancy] = useState<any>([]);
-    const [stages, setStages] = useState<any[]>([])
     const {id} = useParams<RouteParams>();
 
     // const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,9 +46,16 @@ const HR7EditVacancyCard = () => {
     // };
 
     const handleVacancyName = (e: any) => {
-        setVacancy((prevVacancy: any) => ({
+        setVacancyName((prevVacancy: any) => ({
             ...prevVacancy,
             vacancyName: e.target.value
+        }));
+    };
+
+    const handleVacancyDescription = (e: any) => {
+        setVacancyDescription((prevVacancy: any) => ({
+            ...prevVacancy,
+            vacancyDescription: e.target.value
         }));
     };
 
@@ -61,9 +67,9 @@ const HR7EditVacancyCard = () => {
         setVacancyStatus(event.target.value);
     };
 
-    const handleVacancyDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setVacancyDescription(event.target.value);
-    };
+    // const handleVacancyDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setVacancyDescription(event.target.value);
+    // };
 
     const handleVacancySphereType = (event: React.ChangeEvent<HTMLInputElement>) => {
         setVacancySphereType(event.target.value);
@@ -112,19 +118,8 @@ const HR7EditVacancyCard = () => {
             })
     }
 
-    const fetchStages = () => {
-        fetch('/api/vacancy/getVacancyStages?vacancyId=' + id)
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                setStages(data)
-            })
-    }
-
     useEffect(() => {
         fetchVacancyData()
-        fetchStages()
     }, [])
 
     return (
