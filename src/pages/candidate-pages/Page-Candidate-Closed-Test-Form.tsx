@@ -55,7 +55,7 @@ function PageCandidateClosedTestForm() {
             .then(response => response.json())
             .then(data => {
                 setQuestions(data);
-                setAnswers(new Array(data.length).fill(''));
+                setAnswers(new Array(data.length).fill('0'));
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -78,7 +78,7 @@ function PageCandidateClosedTestForm() {
         const data = {
             stageId: id,
             customerId: handleToken(),
-            answers: answers.map(answer => answer !== '' ? answer : '0')
+            answers: answers
         };
 
         fetch("/api/stageResult/saveUserAnswersToStage", {
