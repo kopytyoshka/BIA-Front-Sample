@@ -39,11 +39,10 @@ function HR7EditVacancyCard(){
     const [vacancyDescription, setVacancyDescription] = useState('');
     const [vacancySphereType, setVacancySphereType] = useState('');
     const [vacancy, setVacancy] = useState<any>([]);
+    const [defaultStatus, setDefaultStatus] = useState('');
+    const [defaultWorkExp, setDefaultWorkExp] = useState('');
+    const [defaultSphere, setDefaultSphere] = useState('');
     const {id} = useParams<RouteParams>();
-
-    // const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setVacancyName(event.target.value);
-    // };
 
     const handleVacancyName = (e: any) => {
         setVacancy((prevVacancy: any) => ({
@@ -66,10 +65,6 @@ function HR7EditVacancyCard(){
     const handleVacancyStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
         setVacancyStatus(event.target.value);
     };
-
-    // const handleVacancyDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setVacancyDescription(event.target.value);
-    // };
 
     const handleVacancySphereType = (event: React.ChangeEvent<HTMLInputElement>) => {
         setVacancySphereType(event.target.value);
@@ -114,6 +109,9 @@ function HR7EditVacancyCard(){
             })
             .then(data => {
                 setVacancy(data)
+                setDefaultStatus(data.vacancyStatus)
+                setDefaultWorkExp(data.workExperience)
+                setDefaultSphere(data.sphere)
                 console.log(data)
             })
     }
@@ -167,7 +165,7 @@ function HR7EditVacancyCard(){
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup defaultValue={vacancy.vacancyStatus} onClick={(e: any) => handleVacancyStatus(e)}>
+                                        <IonRadioGroup defaultValue={defaultStatus.toString()} onClick={(e: any) => handleVacancyStatus(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="OnModeration">На
                                                     модерации</IonRadio>
@@ -190,7 +188,7 @@ function HR7EditVacancyCard(){
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup defaultValue={vacancy.workExperience} onClick={(e: any) => handleVacancyWorkExperience(e)}>
+                                        <IonRadioGroup defaultValue={defaultWorkExp} onClick={(e: any) => handleVacancyWorkExperience(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="WithoutExperience">Нет
                                                     опыта</IonRadio>
@@ -216,7 +214,7 @@ function HR7EditVacancyCard(){
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup defaultValue={vacancy.sphere} onClick={(e: any) => handleVacancySphereType(e)}>
+                                        <IonRadioGroup defaultValue={defaultSphere} onClick={(e: any) => handleVacancySphereType(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between"
                                                           value="IT">IT</IonRadio>
