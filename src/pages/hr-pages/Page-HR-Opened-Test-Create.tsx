@@ -21,6 +21,7 @@ import {
 } from '@ionic/react';
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useParams} from "react-router";
+import handleToken from "../../scripts/CookiesToken";
 
 const CreateQuestion: React.FC = () => {
     interface Question {
@@ -95,7 +96,7 @@ const CreateQuestion: React.FC = () => {
             });
 
             if (response.ok) {
-                fetchQuestions()
+                fetchOpenQuestions()
                 setMessage('Вопрос удалён!')
                 setShowPopup(true);
             } else {
@@ -107,8 +108,20 @@ const CreateQuestion: React.FC = () => {
         }
     };
 
-    const fetchQuestions = () => {
-        fetch("/api/stage/getQuestionsForCertainStage?stageId=" + id)
+    const fetchOpenQuestions = () => {
+        let openedStageInfo = {
+            stageId: id,
+            userId: handleToken(),
+        }
+        fetch("/api/stage/getQuestionsForCertainStage", {
+            method: 'POST',
+            headers: {
+                'Origin': '*',
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(openedStageInfo),
+        })
             .then(response => {
                 return response.json()
             })
@@ -118,9 +131,8 @@ const CreateQuestion: React.FC = () => {
             })
     }
 
-
     useEffect(() => {
-        fetchQuestions()
+        fetchOpenQuestions()
     }, [])
 
     return (

@@ -23,6 +23,7 @@ import {
 } from '@ionic/react';
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useParams} from "react-router";
+import handleToken from "../../scripts/CookiesToken";
 
 interface Question {
     question: string;
@@ -127,7 +128,19 @@ const CreateQuestion: React.FC = () => {
         }
     };
     const fetchQuestions = () => {
-        fetch("/api/stage/getQuestionsForCertainStage?stageId=" + id)
+        let stageInfo = {
+            stageId: id,
+            userId: handleToken(),
+        }
+        fetch("/api/stage/getQuestionsForCertainStage", {
+            method: 'POST',
+            headers: {
+                'Origin': '*',
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(stageInfo),
+        })
             .then(response => {
                 return response.json()
             })
