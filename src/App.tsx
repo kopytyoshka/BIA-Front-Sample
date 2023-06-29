@@ -20,7 +20,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import PageHR from "./pages/hr-pages/Page-HR";
 import PageCandidateTasks from "./pages/candidate-pages/Page-Candidate-Tasks";
-import PageCandidateTestForm from "./pages/candidate-pages/Page-Candidate-Test-Form";
+import PageCandidateClosedTestForm from "./pages/candidate-pages/Page-Candidate-Closed-Test-Form";
 import CandidateCardForHR from "./pages/hr-pages/Candidate-Card-For-HR";
 import ListCandidates from "./pages/hr-pages/Page-HR-List-Of-Candidates";
 import PageHRCreateVacancy from "./pages/hr-pages/Page-HR-Create-Vacancy";
@@ -35,6 +35,8 @@ import pageCandidateVacancyInfo from "./pages/candidate-pages/Page-Candidate-Vac
 import pageHRClosedTestCreate from "./pages/hr-pages/Page-HR-Closed-Test-Create";
 import pageHROpenedTestCreate from "./pages/hr-pages/Page-HR-Opened-Test-Create";
 import React from "react";
+import pageCandidateTestForm from "./pages/candidate-pages/Page-Candidate-Closed-Test-Form";
+import pageCandidateClosedTestForm from "./pages/candidate-pages/Page-Candidate-Closed-Test-Form";
 
 setupIonicReact();
 const App: React.FC = () => (
@@ -49,13 +51,14 @@ const App: React.FC = () => (
                 <Route exact path="/hr-page"><PageHR/></Route>
                 <Route exact path="/candidate-tasks"><PageCandidateTasks/></Route>
                 <Route exact path="/"><Redirect to="/home"/></Route>
-                <Route exact path="/candidate-test"><PageCandidateTestForm/></Route>
+                <Route exact path="/candidate-test"><PageCandidateClosedTestForm/></Route>
                 <Route exact path="/hr8-all-vacancies"><PageHRAllVacancies/></Route>
                 <Route exact path="/candidate-all-vacancies"><PageCandidateVacancyList/></Route>
                 <Route path="/open-test-editor/:id" component={pageHROpenedTestCreate}/>
                 <Route path="/close-test-editor/:id" component={pageHRClosedTestCreate}/>
                 <Route path="/vacancy-card/:vacancyId" component={PageHRVacancyCardView}/>
                 <Route path="/login" component={Login}/>
+                <Route path='/test-solve/:id' component={pageCandidateClosedTestForm}/>
                 <Route path='/vacancy/:id' component={pageCandidateVacancyInfo}/>
                 <Route path="/list-candidates/:id" component={ListCandidates}/>
                 <Route path="/candidate-card/:id" component={CandidateCardForHR}/>

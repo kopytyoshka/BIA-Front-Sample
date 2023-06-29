@@ -22,8 +22,10 @@ import {
     IonToolbar
 } from '@ionic/react';
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
-import moment from 'moment';
+import moment, {duration, Duration} from 'moment';
 import handleToken from "../../scripts/CookiesToken";
+import {formatStageType} from "../../scripts/utils";
+import {useHistory, useParams} from "react-router";
 
 const PageCandidateTasks = () => {
 
@@ -33,7 +35,8 @@ const PageCandidateTasks = () => {
         deadline: Date;
         result: string;
         additional: null;
-        state: string;
+        type: string;
+        duration: Duration;
     }
 
     interface Vacancy {
@@ -43,7 +46,6 @@ const PageCandidateTasks = () => {
         stages: Stage[];
         vacancyId: string;
     }
-
 
     const [usersChallenge, setUsersChallenge] = useState<any[]>([])
     const fetchDataVacancyCards = () => {
@@ -59,6 +61,11 @@ const PageCandidateTasks = () => {
         fetchDataVacancyCards()
     }, [])
 
+    const history = useHistory();
+
+    const navigateToPage = (id: string) => {
+        history.push(`/test-solve/${id}`);
+    };
 
     return (
         <>
@@ -97,26 +104,29 @@ const PageCandidateTasks = () => {
                                                 <IonCardContent>
                                                     <IonItem>
                                                         <IonLabel>Дедлайн</IonLabel>
-                                                        <IonItem>{moment(stage.deadline).format('DD.MM.YY HH:mm')}</IonItem>
+                                                        <IonItem>{stage.deadline === null ? "Не установлен" : moment(stage.deadline).format('DD.MM.YY HH:mm')}</IonItem>
                                                     </IonItem>
                                                     <IonItem>
-                                                        <IonLabel>Статус</IonLabel>
-                                                        <IonBadge color="warning" slot="end">{stage.state}</IonBadge>
+                                                        <IonLabel>Тип</IonLabel>
+                                                        <IonBadge color="warning"
+                                                                  slot="end">{formatStageType(stage.type)}</IonBadge>
+                                                    </IonItem>
+                                                    <IonItem>
+                                                        <IonLabel>Время на прохождение:</IonLabel>
+                                                        <IonBadge color="warning" slot="end">to-be-done</IonBadge>
                                                     </IonItem>
                                                     <IonItem>
                                                         <IonLabel>Результат</IonLabel>
                                                         <IonLabel color="medium"
-                                                                  slot="end"><i>{stage.result}</i></IonLabel>
+                                                                  slot="end"><i>to-be-done</i></IonLabel>
                                                     </IonItem>
-                                                    <IonButton expand="block" fill="clear" color="transparent"
-                                                               style={{fontSize: "13px"}}>Перейти к
-                                                        заданию</IonButton>
-                                                    {/*<IonButton expand="block" fill="clear" color="transparent"*/}
-                                                    {/*           style={{fontSize: "13px"}}*/}
-                                                    {/*           onClick={() => openExternalSite('https://calendar.google.com/calendar/u/0/r/eventedit?text=${stage.name}' +*/}
-                                                    {/*               `&dates=${moment(stage.deadline).subtract(1, 'hour').format('YYYYMMDDTHHmmssZ')}/${moment(stage.deadline).format('YYYYMMDDTHHmmssZ')}` +*/}
-                                                    {/*               '&details=ID этапа: ${stage.id} ')}>Добавить в*/}
-                                                    {/*    календарь</IonButton>*/}
+                                                    <IonButton
+                                                        expand="block"
+                                                        fill="clear"
+                                                        color="transparent"
+                                                        style={{fontSize: "13px"}}
+                                                        onClick={() => navigateToPage(stage.id)}
+                                                    >Перейти к заданию</IonButton>
                                                 </IonCardContent>
                                             </IonCard>
                                         </IonCol>
