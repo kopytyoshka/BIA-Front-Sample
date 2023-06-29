@@ -55,7 +55,7 @@ function HR7EditVacancyCard(){
     const handleVacancyDescription = (e: any) => {
         setVacancy((prevVacancy: any) => ({
             ...prevVacancy,
-            vacancyDescription: e.target.value
+            description: e.target.value
         }));
     };
 
@@ -80,7 +80,7 @@ function HR7EditVacancyCard(){
             const vacancyData = {
                 vacancyId: id,
                 vacancyName: vacancy.vacancyName,
-                description: vacancy.vacancyDescription,
+                description: vacancy.description,
                 vacancyStatus: vacancyStatus,
                 workExperience: vacancyWorkExperience,
                 sphere: vacancySphereType,
@@ -194,17 +194,14 @@ function HR7EditVacancyCard(){
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="WithoutExperience">Нет
                                                     опыта</IonRadio>
-                                                <br/>
                                             </IonItem>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="CoupleOfYears">1-2
                                                     года</IonRadio>
-                                                <br/>
                                             </IonItem>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="MoreTwoYears">Больше двух
                                                     лет</IonRadio>
-                                                <br/>
                                             </IonItem>
                                         </IonRadioGroup>
                                     </IonCardContent>
@@ -223,17 +220,14 @@ function HR7EditVacancyCard(){
                                             <IonItem>
                                                 <IonRadio justify="space-between"
                                                           value="IT">IT</IonRadio>
-                                                <br/>
                                             </IonItem>
                                             <IonItem>
                                                 <IonRadio justify="space-between"
                                                           value="Medicine">Медицина</IonRadio>
-                                                <br/>
                                             </IonItem>
                                             <IonItem>
                                                 <IonRadio justify="space-between"
                                                           value="Education">Образование</IonRadio>
-                                                <br/>
                                             </IonItem>
                                         </IonRadioGroup>
                                     </IonCardContent>
