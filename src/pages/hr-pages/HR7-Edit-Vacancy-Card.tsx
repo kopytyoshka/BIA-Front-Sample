@@ -38,8 +38,7 @@ const HR7EditVacancyCard = () => {
     const [vacancyStatus, setVacancyStatus] = useState('');
     const [vacancyDescription, setVacancyDescription] = useState('');
     const [vacancySphereType, setVacancySphereType] = useState('');
-    const [vacancyName, setVacancyName] = useState<any>([]);
-    // const [stages, setStages] = useState<any[]>([])
+    const [vacancy, setVacancy] = useState<any>([]);
     const {id} = useParams<RouteParams>();
 
     // const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -119,19 +118,8 @@ const HR7EditVacancyCard = () => {
             })
     }
 
-    // const fetchStages = () => {
-    //     fetch('/api/vacancy/getVacancyStages?vacancyId=' + id)
-    //         .then(response => {
-    //             return response.json()
-    //         })
-    //         .then(data => {
-    //             setStages(data)
-    //         })
-    // }
-
     useEffect(() => {
         fetchVacancyData()
-        // fetchStages()
     }, [])
 
     return (
