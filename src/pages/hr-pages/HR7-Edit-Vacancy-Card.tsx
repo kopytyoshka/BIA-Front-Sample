@@ -33,13 +33,13 @@ interface RouteParams {
 
 const HR7EditVacancyCard = () => {
 
-    const [vacancyName, setVacancyName] = useState('');
+    // const [vacancyName, setVacancyName] = useState('');
     const [vacancyWorkExperience, setVacancyWorkExperience] = useState('');
     const [vacancyStatus, setVacancyStatus] = useState('');
     const [vacancyDescription, setVacancyDescription] = useState('');
     const [vacancySphereType, setVacancySphereType] = useState('');
-    const [vacancy, setVacancy] = useState<any>([]);
-    const [stages, setStages] = useState<any[]>([])
+    const [vacancyName, setVacancyName] = useState<any>([]);
+    // const [stages, setStages] = useState<any[]>([])
     const {id} = useParams<RouteParams>();
 
     // const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,9 +47,16 @@ const HR7EditVacancyCard = () => {
     // };
 
     const handleVacancyName = (e: any) => {
-        setVacancy((prevVacancy: any) => ({
+        setVacancyName((prevVacancy: any) => ({
             ...prevVacancy,
             vacancyName: e.target.value
+        }));
+    };
+
+    const handleVacancyDescription = (e: any) => {
+        setVacancyDescription((prevVacancy: any) => ({
+            ...prevVacancy,
+            vacancyDescription: e.target.value
         }));
     };
 
@@ -61,9 +68,9 @@ const HR7EditVacancyCard = () => {
         setVacancyStatus(event.target.value);
     };
 
-    const handleVacancyDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setVacancyDescription(event.target.value);
-    };
+    // const handleVacancyDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setVacancyDescription(event.target.value);
+    // };
 
     const handleVacancySphereType = (event: React.ChangeEvent<HTMLInputElement>) => {
         setVacancySphereType(event.target.value);
@@ -107,24 +114,24 @@ const HR7EditVacancyCard = () => {
                 return response.json()
             })
             .then(data => {
-                setVacancy(data)
+                setVacancyName(data)
                 console.log(data)
             })
     }
 
-    const fetchStages = () => {
-        fetch('/api/vacancy/getVacancyStages?vacancyId=' + id)
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                setStages(data)
-            })
-    }
+    // const fetchStages = () => {
+    //     fetch('/api/vacancy/getVacancyStages?vacancyId=' + id)
+    //         .then(response => {
+    //             return response.json()
+    //         })
+    //         .then(data => {
+    //             setStages(data)
+    //         })
+    // }
 
     useEffect(() => {
         fetchVacancyData()
-        fetchStages()
+        // fetchStages()
     }, [])
 
     return (
@@ -151,7 +158,7 @@ const HR7EditVacancyCard = () => {
                                         style={{marginTop: "20px", fontSize: '20px'}}
                                         fill="outline"
                                         labelPlacement="floating"
-                                        value={vacancy.vacancyName}
+                                        value={vacancyName.vacancyName}
                                         onIonChange={(e: any) => handleVacancyName(e)}>
                                     </IonInput>
                                 </IonItem>
@@ -172,7 +179,7 @@ const HR7EditVacancyCard = () => {
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup value={vacancy.vacancyStatus} onClick={(e: any) => handleVacancyStatus(e)}>
+                                        <IonRadioGroup defaultValue={vacancyName.vacancyStatus} onClick={(e: any) => handleVacancyStatus(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="OnModeration">На
                                                     модерации</IonRadio>
@@ -195,7 +202,7 @@ const HR7EditVacancyCard = () => {
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup value={vacancy.workExperience} onClick={(e: any) => handleVacancyWorkExperience(e)}>
+                                        <IonRadioGroup defaultValue={vacancyName.workExperience} onClick={(e: any) => handleVacancyWorkExperience(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="WithoutExperience">Нет
                                                     опыта</IonRadio>
@@ -224,7 +231,7 @@ const HR7EditVacancyCard = () => {
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup value={vacancy.sphere} onClick={(e: any) => handleVacancySphereType(e)}>
+                                        <IonRadioGroup defaultValue={vacancyName.sphere} onClick={(e: any) => handleVacancySphereType(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between"
                                                           value="IT">IT</IonRadio>
@@ -253,7 +260,7 @@ const HR7EditVacancyCard = () => {
                                 <IonCard style={{borderRadius: '20px'}}>
                                     <IonItem>
                                         <IonTextarea
-                                            value={vacancy.description}
+                                            value={vacancyName.description}
                                             autoGrow={true}
                                             style={{minHeight: "300px"}}
                                             onIonChange={(e: any) => handleVacancyDescription(e)}>
