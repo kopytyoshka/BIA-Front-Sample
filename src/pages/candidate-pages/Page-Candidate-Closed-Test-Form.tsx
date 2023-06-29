@@ -19,12 +19,11 @@ import {
     IonTitle,
     IonToolbar
 } from "@ionic/react";
-import React, {useEffect, useState} from "react";
-import "../../styles/Test-Form.css"
+import React, { useEffect, useState } from "react";
+import "../../styles/Test-Form.css";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
-import {useParams} from "react-router";
+import { useParams } from "react-router";
 import handleToken from "../../scripts/CookiesToken";
-
 
 interface Question {
     question: string;
@@ -38,48 +37,69 @@ interface Question {
 
 function PageCandidateClosedTestForm() {
     const [questions, setQuestions] = useState<Question[]>([]);
-    const [checked, setChecked] = React.useState("");
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setChecked(event.target.value);
-    };
-
-    interface RouteParams {
-        id: string
-    }
-
-    const {id} = useParams<RouteParams>();
-
+    const [answers, setAnswers] = useState<string[]>([]);
+    const { id } = useParams<{ id: string }>();
 
     const fetchQuestions = () => {
         let userStageInfo = {
             stageId: id,
             userId: handleToken(),
-        }
+        };
         fetch("/api/stage/getQuestionsForCertainStage", {
             method: 'POST',
             headers: {
-                'Origin': '*',
-                'Content-type': 'application/json',
-                'Accept': 'application/json'
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(userStageInfo),
         })
-            .then(response => {
-                return response.json()
-            })
+            .then(response => response.json())
             .then(data => {
-                setQuestions(data)
-                console.log(data)
+                setQuestions(data);
+                setAnswers(new Array(data.length).fill(''));
             })
-    }
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    };
 
     useEffect(() => {
-        fetchQuestions()
-    }, [])
+        fetchQuestions();
+    }, []);
+
+    const handleChange = (questionIndex: number, selectedAnswer: string) => {
+        setAnswers(prevAnswers => {
+            const updatedAnswers = [...prevAnswers];
+            updatedAnswers[questionIndex] = selectedAnswer;
+            return updatedAnswers;
+        });
+    };
+
+    const sendAnswers = () => {
+        const data = {
+            stageId: id,
+            customerId: handleToken(),
+            answers: answers.filter(answer => answer !== '') // Remove any empty answers
+        };
+
+        fetch("/api/stageResult/saveUserAnswersToStage", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                // Handle errors
+                console.error('Error:', error);
+            });
+    };
 
     return (
         <>
-            <PopupMenuCandidate/>
+            <PopupMenuCandidate />
             <IonPage id="main-content">
 
                 <IonHeader>
@@ -90,7 +110,7 @@ function PageCandidateClosedTestForm() {
                         <IonButtons slot="end">
                             <IonMenuToggle>
                                 <IonItem lines="none">
-                                    <img src={"../images/alarm-outline.svg"} alt="timer"/>
+                                    <img src={"../images/alarm-outline.svg"} alt="timer" />
                                     <IonItem>Время</IonItem>
                                 </IonItem>
                             </IonMenuToggle>
@@ -99,36 +119,55 @@ function PageCandidateClosedTestForm() {
                     </IonToolbar>
                 </IonHeader>
 
-
-                {/*Questions*/}
-                <IonGrid style={{margin: "10px"}}>
-                    <IonRow style={{marginLeft: "0px"}}>
-                        {/*Closed question*/}
-                        <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="10" sizeXl="10"
-                                className="vacancy-cards-list">
-                            {questions.map(question => (
-                                <IonCard style={{borderRadius: '20px'}}>
+                {/* Questions */}
+                <IonGrid style={{ margin: "10px" }}>
+                    <IonRow style={{ marginLeft: "0px" }}>
+                        {/* Closed question */}
+                        <IonCol
+                            size="12"
+                            sizeXs="12"
+                            sizeSm="12"
+                            sizeMd="12"
+                            sizeLg="10"
+                            sizeXl="10"
+                            className="vacancy-cards-list"
+                        >
+                            {questions.map((question, index) => (
+                                <IonCard style={{ borderRadius: '20px' }} key={index}>
                                     <IonCardHeader>
-                                        <IonCardTitle style={{fontWeight: 600}}>Вопрос 1</IonCardTitle>
+                                        <IonCardTitle style={{ fontWeight: 600 }}>
+                                            Вопрос {index + 1}
+                                        </IonCardTitle>
                                     </IonCardHeader>
                                     <IonItem lines="none">{question.question}</IonItem>
                                     <IonList>
-                                        <IonRadioGroup onClick={(e: any) => handleChange(e)}>
+                                        <IonRadioGroup
+                                            value={answers[index]}
+                                            onIonChange={e => handleChange(index, e.detail.value)}
+                                        >
                                             <IonItem>
-                                                <IonRadio justify="space-between" value="1">{question.var1}</IonRadio>
-                                                <br/>
+                                                <IonRadio justify="space-between" value="1">
+                                                    {question.var1}
+                                                </IonRadio>
+                                                <br />
                                             </IonItem>
                                             <IonItem>
-                                                <IonRadio justify="space-between" value="2">{question.var2}</IonRadio>
-                                                <br/>
+                                                <IonRadio justify="space-between" value="2">
+                                                    {question.var2}
+                                                </IonRadio>
+                                                <br />
                                             </IonItem>
                                             <IonItem>
-                                                <IonRadio justify="space-between" value="3">{question.var3}</IonRadio>
-                                                <br/>
+                                                <IonRadio justify="space-between" value="3">
+                                                    {question.var3}
+                                                </IonRadio>
+                                                <br />
                                             </IonItem>
                                             <IonItem>
-                                                <IonRadio justify="space-between" value="4">{question.var4}</IonRadio>
-                                                <br/>
+                                                <IonRadio justify="space-between" value="4">
+                                                    {question.var4}
+                                                </IonRadio>
+                                                <br />
                                             </IonItem>
                                         </IonRadioGroup>
                                     </IonList>
@@ -136,16 +175,16 @@ function PageCandidateClosedTestForm() {
                             ))}
                         </IonCol>
                         <IonItem>
-                            <IonButton>Отправить результаты</IonButton>
+                            <IonButton onClick={sendAnswers}>Отправить результаты</IonButton>
                         </IonItem>
-                        {/*Opened question*/}
+                        {/* Opened question */}
                         {/*<IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="10" sizeXl="10"*/}
                         {/*        className="vacancy-cards-list">*/}
                         {/*    <IonCard style={{borderRadius: '20px'}}>*/}
                         {/*        <IonCardHeader>*/}
                         {/*            <IonCardTitle style={{fontWeight: 600}}>Вопрос 2</IonCardTitle>*/}
                         {/*        </IonCardHeader>*/}
-                        {/*        <IonItem lines="none">Что сделать если мы выигарем хакатон?</IonItem>*/}
+                        {/*        <IonItem lines="none">Что сделать если мы выиграем хакатон?</IonItem>*/}
                         {/*        <IonItem>*/}
                         {/*            <IonTextarea autoGrow={true} placeholder="Введите ваш ответ здесь"*/}
                         {/*                         onInput={(e: any) => handleChange(e)}></IonTextarea>*/}
