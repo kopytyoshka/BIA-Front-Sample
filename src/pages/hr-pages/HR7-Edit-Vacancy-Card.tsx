@@ -41,23 +41,23 @@ const HR7EditVacancyCard = () => {
     const [vacancy, setVacancy] = useState<any>([]);
     const {id} = useParams<RouteParams>();
 
-    const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setVacancyName(event.target.value);
+    // const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setVacancyName(event.target.value);
+    // };
+
+    const handleVacancyName = (e: any) => {
+        setVacancy((prevVacancy: any) => ({
+            ...prevVacancy,
+            vacancyName: e.target.value
+        }));
     };
 
-    // const handleVacancyName = (e: any) => {
-    //     setVacancy((prevVacancy: any) => ({
-    //         ...prevVacancy,
-    //         vacancyName: e.target.value
-    //     }));
-    // };
-    //
-    // const handleVacancyDescription = (e: any) => {
-    //     setVacancy((prevVacancy: any) => ({
-    //         ...prevVacancy,
-    //         vacancyDescription: e.target.value
-    //     }));
-    // };
+    const handleVacancyDescription = (e: any) => {
+        setVacancy((prevVacancy: any) => ({
+            ...prevVacancy,
+            vacancyDescription: e.target.value
+        }));
+    };
 
     const handleVacancyWorkExperience = (event: React.ChangeEvent<HTMLInputElement>) => {
         setVacancyWorkExperience(event.target.value);
@@ -67,9 +67,9 @@ const HR7EditVacancyCard = () => {
         setVacancyStatus(event.target.value);
     };
 
-    const handleVacancyDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setVacancyDescription(event.target.value);
-    };
+    // const handleVacancyDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setVacancyDescription(event.target.value);
+    // };
 
     const handleVacancySphereType = (event: React.ChangeEvent<HTMLInputElement>) => {
         setVacancySphereType(event.target.value);
