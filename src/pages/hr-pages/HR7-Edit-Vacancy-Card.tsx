@@ -31,14 +31,14 @@ interface RouteParams {
     id: string
 }
 
-function HR7EditVacancyCard() {
+function HR7EditVacancyCard(){
 
     const [vacancyName, setVacancyName] = useState('');
     const [vacancyWorkExperience, setVacancyWorkExperience] = useState('');
     const [vacancyStatus, setVacancyStatus] = useState('');
     const [vacancyDescription, setVacancyDescription] = useState('');
     const [vacancySphereType, setVacancySphereType] = useState('');
-    const [vacancy, setVacancy] = useState<any>({ vacancyName: "", vacancyDescription: "" });
+    const [vacancy, setVacancy] = useState<any>([]);
     const {id} = useParams<RouteParams>();
 
     // const handleVacancyName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,7 +113,7 @@ function HR7EditVacancyCard() {
                 return response.json()
             })
             .then(data => {
-                setVacancyName(data)
+                setVacancy(data)
                 console.log(data)
             })
     }
