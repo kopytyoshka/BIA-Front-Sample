@@ -24,6 +24,7 @@ import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useHistory, useParams} from "react-router";
 import {formatStageType, formatWorkExperience, formatWorkStatus} from "../../scripts/utils";
+import handleToken from "../../scripts/CookiesToken";
 
 const PageHRVacancyCardView = () => {
     interface VacancyParam {
@@ -37,8 +38,20 @@ const PageHRVacancyCardView = () => {
     const [stages, setStages] = useState<any[]>([])
     const history = useHistory();
 
-    const handleStageRedactor = (id: string) => {
-        fetch('/api/stage/getStageById?stageId=' + id)
+    const handleStageRedactor = async (id: string) => {
+        let stageInfo = {
+            stageId: id,
+            userId: handleToken(),
+        }
+        await fetch('/api/stage/getStageById', {
+            method: 'POST',
+            headers: {
+                'Origin': '*',
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(stageInfo),
+        })
             .then(response => {
                 return response.json()
             })
