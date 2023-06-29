@@ -25,13 +25,13 @@ import {
 import '../../styles/Page-HR.css'
 import PopupMenuHr from "../sidebar-menu/PopupMenuHr";
 import {useParams} from "react-router";
-import {formatSphereType, formatWorkExperience, formatWorkStatus, redirectToExternalSite} from "../../scripts/utils";
+import {redirectToExternalSite} from "../../scripts/utils";
 const HR7EditVacancyCard = () => {
     interface RouteParams {
         id: string
     }
 
-    const [vacancyId, setVacancyId] = useState('');
+    const [selectedSphere, setSelectedSphere] = useState('');
     const [vacancyName, setVacancyName] = useState('');
     const [vacancyWorkExperience, setVacancyWorkExperience] = useState('');
     const [vacancyStatus, setVacancyStatus] = useState('');
@@ -50,15 +50,15 @@ const HR7EditVacancyCard = () => {
     };
 
     const handleVacancyStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setVacancyWorkExperience(event.target.value);
+        setVacancyStatus(event.target.value);
     };
 
     const handleVacancyDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setVacancyWorkExperience(event.target.value);
+        setVacancyDescription(event.target.value);
     };
 
     const handleVacancySphereType = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setVacancyWorkExperience(event.target.value);
+        setVacancySphereType(event.target.value);
     };
 
     async function saveVacancy() {
@@ -201,7 +201,7 @@ const HR7EditVacancyCard = () => {
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup onClick={(e: any) => handleVacancyStatus(e)}>
+                                        <IonRadioGroup value={vacancy.vacancyStatus.toString()} onClick={(e: any) => handleVacancyStatus(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="OnModeration">На
                                                     модерации</IonRadio>
@@ -224,7 +224,7 @@ const HR7EditVacancyCard = () => {
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup onClick={(e: any) => handleVacancyWorkExperience(e)}>
+                                        <IonRadioGroup value={vacancy.vacancyWorkExperience.toString()} onClick={(e: any) => handleVacancyWorkExperience(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="WithoutExperience">Нет
                                                     опыта</IonRadio>
@@ -253,20 +253,20 @@ const HR7EditVacancyCard = () => {
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup onClick={(e: any) => handleVacancySphereType(e)}>
+                                        <IonRadioGroup value={vacancy.sphereType.toString()} onClick={(e: any) => handleVacancySphereType(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between"
-                                                          value="WithoutExperience">IT</IonRadio>
+                                                          value="IT">IT</IonRadio>
                                                 <br/>
                                             </IonItem>
                                             <IonItem>
                                                 <IonRadio justify="space-between"
-                                                          value="CoupleOfYears">Медицина</IonRadio>
+                                                          value="Medicine">Медицина</IonRadio>
                                                 <br/>
                                             </IonItem>
                                             <IonItem>
                                                 <IonRadio justify="space-between"
-                                                          value="MoreTwoYears">Образование</IonRadio>
+                                                          value="Education">Образование</IonRadio>
                                                 <br/>
                                             </IonItem>
                                         </IonRadioGroup>
@@ -285,7 +285,7 @@ const HR7EditVacancyCard = () => {
                                             value={vacancy.description}
                                             autoGrow={true}
                                             style={{minHeight: "300px"}}
-                                            onInput={(e: any) => handleVacancyDescription(e)}>
+                                            onIonChange={(e: any) => handleVacancyDescription(e)}>
                                         </IonTextarea>
                                     </IonItem>
                                 </IonCard>
