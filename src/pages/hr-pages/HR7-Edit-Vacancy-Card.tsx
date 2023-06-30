@@ -158,8 +158,8 @@ function HR7EditVacancyCard(){
                                     </IonCardHeader>
                                     <IonCardContent>
                                         <IonRadioGroup
-                                            defaultValue={vacancy.vacancyStatus}
-                                            onIonChange={(e: any) => handleVacancyStatus(e)}>
+                                            value={vacancy.vacancyStatus}
+                                            onChange={(e: any) => handleVacancyStatus(e)}>
                                             <IonItem>
                                                 <IonRadio
                                                     justify="space-between"
@@ -185,6 +185,42 @@ function HR7EditVacancyCard(){
                                     </IonCardContent>
                                 </IonCard>
                             </IonCol>
+                            {/*<IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">*/}
+                            {/*    <IonCard style={{borderRadius: '20px'}}>*/}
+                            {/*        <IonCardHeader>*/}
+                            {/*            <IonCardTitle>*/}
+                            {/*                Статус вакансии*/}
+                            {/*            </IonCardTitle>*/}
+                            {/*        </IonCardHeader>*/}
+                            {/*        <IonCardContent>*/}
+                            {/*            <IonRadioGroup*/}
+                            {/*                defaultValue={vacancy.vacancyStatus}*/}
+                            {/*                onIonChange={(e: any) => handleVacancyStatus(e)}>*/}
+                            {/*                <IonItem>*/}
+                            {/*                    <IonRadio*/}
+                            {/*                        justify="space-between"*/}
+                            {/*                        value="OnModeration">*/}
+                            {/*                        На модерации*/}
+                            {/*                    </IonRadio>*/}
+                            {/*                </IonItem>*/}
+                            {/*                <IonItem>*/}
+                            {/*                    <IonRadio*/}
+                            {/*                        justify="space-between"*/}
+                            {/*                        value="Opened">*/}
+                            {/*                        Доступная*/}
+                            {/*                    </IonRadio>*/}
+                            {/*                </IonItem>*/}
+                            {/*                <IonItem>*/}
+                            {/*                    <IonRadio*/}
+                            {/*                        justify="space-between"*/}
+                            {/*                        value="Closed">*/}
+                            {/*                        Архивная*/}
+                            {/*                    </IonRadio>*/}
+                            {/*                </IonItem>*/}
+                            {/*            </IonRadioGroup>*/}
+                            {/*        </IonCardContent>*/}
+                            {/*    </IonCard>*/}
+                            {/*</IonCol>*/}
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
                                 <IonCard style={{borderRadius: '20px'}}>
                                     <IonCardHeader>
