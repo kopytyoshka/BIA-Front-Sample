@@ -168,7 +168,7 @@ function HR7EditVacancyCard(){
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup value={vacancy.vacancyStatus} onClick={(e: any) => handleVacancyStatus(e)}>
+                                        <IonRadioGroup value={vacancy.vacancyStatus} onIonChange={(e: any) => handleVacancyStatus(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="OnModeration">На
                                                     модерации</IonRadio>
@@ -191,7 +191,7 @@ function HR7EditVacancyCard(){
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup value={vacancy.workExperience} onClick={(e: any) => handleVacancyWorkExperience(e)}>
+                                        <IonRadioGroup value={vacancy.workExperience} onIonChange={(e: any) => handleVacancyWorkExperience(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="WithoutExperience">Нет
                                                     опыта</IonRadio>
@@ -217,7 +217,7 @@ function HR7EditVacancyCard(){
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup value={vacancy.sphere} onClick={(e: any) => handleVacancySphereType(e)}>
+                                        <IonRadioGroup value={vacancy.sphere} onIonChange={(e: any) => handleVacancySphereType(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between"
                                                           value="IT">IT</IonRadio>
