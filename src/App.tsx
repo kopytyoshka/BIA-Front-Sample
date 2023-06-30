@@ -33,7 +33,7 @@ import PageCandidateVacancyList from "./pages/candidate-pages/Page-Candidate-Vac
 import pageCandidateVacancyInfo from "./pages/candidate-pages/Page-Candidate-Vacancy-Info";
 import pageHRClosedTestCreate from "./pages/hr-pages/Page-HR-Closed-Test-Create";
 import pageHROpenedTestCreate from "./pages/hr-pages/Page-HR-Opened-Test-Create";
-import React from "react";
+import React, {useEffect} from "react";
 import pageCandidateClosedTestForm from "./pages/candidate-pages/Page-Candidate-Closed-Test-Form";
 import {refresh, reload} from "ionicons/icons";
 import PageCandidateClosedTestForm from "./pages/candidate-pages/Page-Candidate-Closed-Test-Form";

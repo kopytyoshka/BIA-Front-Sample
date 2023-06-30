@@ -66,6 +66,8 @@ const PageCandidateTasks = () => {
             stageId: stageId,
             responseId: responseId,
         };
+
+        let num = 0;
         fetch("/api/stageResult/countTestResult", {
             method: 'POST',
             headers: {
@@ -75,12 +77,12 @@ const PageCandidateTasks = () => {
         })
             .then(response => response.json())
             .then(data => {
-                setResult(data.num)
+                num = data;
             })
             .catch(error => {
                 console.error('Error:', error);
             });
-        return result;
+        return num.toString();
     };
 
 
