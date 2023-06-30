@@ -168,7 +168,7 @@ function HR7EditVacancyCard(){
                                         </IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>
-                                        <IonRadioGroup value={vacancy.vacancyStatus.toString()} onClick={(e: any) => handleVacancyStatus(e)}>
+                                        <IonRadioGroup value={vacancy.vacancyStatus} onClick={(e: any) => handleVacancyStatus(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="OnModeration">На
                                                     модерации</IonRadio>
