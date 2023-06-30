@@ -36,14 +36,18 @@ import pageHROpenedTestCreate from "./pages/hr-pages/Page-HR-Opened-Test-Create"
 import React from "react";
 import pageCandidateClosedTestForm from "./pages/candidate-pages/Page-Candidate-Closed-Test-Form";
 import {refresh, reload} from "ionicons/icons";
+import PageCandidateClosedTestForm from "./pages/candidate-pages/Page-Candidate-Closed-Test-Form";
+import PageHRClosedTestCreate from "./pages/hr-pages/Page-HR-Closed-Test-Create";
 
 setupIonicReact();
 const App: React.FC = () => (
 
 
     <IonApp>
-        <IonReactRouter forceRefresh={true}>
+        <IonReactRouter>
             <IonRouterOutlet>
+                <Route exact path="/"><Redirect to="/home"/></Route>
+                <Route exact path="/home"><MainPageByRole/></Route>
                 <Route exact path="/create-vacancy"><PageHRCreateVacancy/></Route>
                 <Route exact path="/register"><Registration/></Route>
                 <Route exact path="/hr-page"><PageHR/></Route>
@@ -51,22 +55,16 @@ const App: React.FC = () => (
                 <Route exact path="/hr8-all-vacancies"><PageHRAllVacancies/></Route>
                 <Route exact path="/candidate-all-vacancies"><PageCandidateVacancyList/></Route>
                 <Route path="/open-test-editor/:id" component={pageHROpenedTestCreate}/>
-                <Route path="/close-test-editor/:id" component={pageHRClosedTestCreate}/>
+                <Route path="/close-test-editor/:id" render={(): JSX.Element => <PageHRClosedTestCreate/>}/>
                 <Route path="/vacancy-card/:vacancyId" component={PageHRVacancyCardView}/>
                 <Route path="/login" component={Login}/>
-                <Route path='/test-solve/:id/:responseId' component={pageCandidateClosedTestForm}/>
+                <Route path='/test-solve/:id/:responseId' render={(): JSX.Element => <PageCandidateClosedTestForm/>}/>
                 <Route path='/vacancy/:id' component={pageCandidateVacancyInfo}/>
                 <Route path="/list-candidates/:id" component={ListCandidates}/>
                 <Route path="/candidate-card/:id" component={CandidateCardForHR}/>
                 <Route path="/edit-vacancy-card/:id" component={HR7EditVacancyCard}/>
             </IonRouterOutlet>
         </IonReactRouter>
-        {/*<IonReactRouter>*/}
-        {/*    <IonRouterOutlet>*/}
-        {/*        <Route exact path="/"><Redirect to="/home"/></Route>*/}
-        {/*        <Route exact path="/home"><MainPageByRole/></Route>*/}
-        {/*    </IonRouterOutlet>*/}
-        {/*</IonReactRouter>*/}
     </IonApp>
 );
 
