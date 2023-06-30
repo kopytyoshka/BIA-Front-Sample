@@ -77,7 +77,7 @@ const PageCandidateTasks = () => {
         })
             .then(response => response.json())
             .then(data => {
-                num = data;
+                num = data.num;
             })
             .catch(error => {
                 console.error('Error:', error);
