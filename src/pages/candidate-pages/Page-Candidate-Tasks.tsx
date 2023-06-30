@@ -67,7 +67,7 @@ const PageCandidateTasks = () => {
             responseId: responseId,
         };
         fetch("/api/stageResult/countTestResult", {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
