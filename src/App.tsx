@@ -51,15 +51,15 @@ const App: React.FC = () => (
                 <Route exact path="/"><Redirect to="/home"/></Route>
                 <Route exact path="/hr8-all-vacancies"><PageHRAllVacancies/></Route>
                 <Route exact path="/candidate-all-vacancies"><PageCandidateVacancyList/></Route>
-                <Route path="/open-test-editor/:id" render={pageHROpenedTestCreate}/>
-                <Route path="/close-test-editor/:id" render={pageHRClosedTestCreate}/>
-                <Route path="/vacancy-card/:vacancyId" render={PageHRVacancyCardView}/>
+                <Route path="/open-test-editor/:id" component={pageHROpenedTestCreate}/>
+                <Route path="/close-test-editor/:id" component={pageHRClosedTestCreate}/>
+                <Route path="/vacancy-card/:vacancyId" component={PageHRVacancyCardView}/>
                 <Route path="/login" component={Login}/>
-                <Route path='/test-solve/:id/:responseId' render={pageCandidateClosedTestForm}/>
-                <Route path='/vacancy/:id' render={pageCandidateVacancyInfo}/>
-                <Route path="/list-candidates/:id" render={ListCandidates}/>
-                <Route path="/candidate-card/:id" render={CandidateCardForHR}/>
-                <Route path="/edit-vacancy-card/:id" render={HR7EditVacancyCard}/>
+                <Route path='/test-solve/:id/:responseId' component={pageCandidateClosedTestForm}/>
+                <Route path='/vacancy/:id' component={pageCandidateVacancyInfo}/>
+                <Route path="/list-candidates/:id" component={ListCandidates}/>
+                <Route path="/candidate-card/:id" component={CandidateCardForHR}/>
+                <Route path="/edit-vacancy-card/:id" component={HR7EditVacancyCard}/>
             </IonRouterOutlet>
         </IonReactRouter>
     </IonApp>
