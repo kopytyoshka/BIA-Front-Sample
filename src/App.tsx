@@ -41,17 +41,15 @@ const App: React.FC = () => (
 
 
     <IonApp>
-        <IonReactRouter forceRefresh={false}>
-            <Route exact path="/home"><MainPageByRole/></Route>
-        </IonReactRouter>
-        <IonReactRouter forceRefresh={true}>
+        <IonReactRouter>
             <IonRouterOutlet>
                 <Route exact path="/create-vacancy"><PageHRCreateVacancy/></Route>
                 <Route exact path="/register"><Registration/></Route>
-                {/*<Route exact path="/hr-page"><PageHR/></Route>*/}
+                <Route exact path="/hr-page"><PageHR/></Route>
                 <Route exact path="/candidate-tasks"><PageCandidateTasks/></Route>
                 <Route exact path="/"><Redirect to="/home"/></Route>
                 <Route exact path="/hr8-all-vacancies"><PageHRAllVacancies/></Route>
+                <Route exact path="/home"><MainPageByRole/></Route>
                 <Route exact path="/candidate-all-vacancies"><PageCandidateVacancyList/></Route>
                 <Route path="/open-test-editor/:id" component={pageHROpenedTestCreate}/>
                 <Route path="/close-test-editor/:id" component={pageHRClosedTestCreate}/>
