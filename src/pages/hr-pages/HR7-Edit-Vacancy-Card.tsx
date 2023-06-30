@@ -158,15 +158,29 @@ function HR7EditVacancyCard(){
                                     </IonCardHeader>
                                     <IonCardContent>
                                         <IonRadioGroup
-                                            value={vacancy.vacancyStatus}
+                                            defaultValue={vacancy.vacancyStatus}
                                             onIonChange={(e: any) => handleVacancyStatus(e)}>
-                                                <IonRadio justify="space-between" value="OnModeration">На модерации</IonRadio>
-                                            <br />
-
-                                                <IonRadio justify="space-between" value="Opened">Доступная</IonRadio>
-                                            <br />
-
-                                                <IonRadio justify="space-between" value="Closed">Архивная</IonRadio>
+                                            <IonItem>
+                                                <IonRadio
+                                                    justify="space-between"
+                                                    value="OnModeration">
+                                                    На модерации
+                                                </IonRadio>
+                                            </IonItem>
+                                            <IonItem>
+                                                <IonRadio
+                                                    justify="space-between"
+                                                    value="Opened">
+                                                    Доступная
+                                                </IonRadio>
+                                            </IonItem>
+                                            <IonItem>
+                                                <IonRadio
+                                                    justify="space-between"
+                                                    value="Closed">
+                                                    Архивная
+                                                </IonRadio>
+                                            </IonItem>
                                         </IonRadioGroup>
                                     </IonCardContent>
                                 </IonCard>
@@ -181,18 +195,27 @@ function HR7EditVacancyCard(){
                                     <IonCardContent>
                                         <IonRadioGroup
                                             value={vacancy.workExperience}
-                                            onClick={(e: any) => handleVacancyWorkExperience(e)}>
+                                            onIonChange={(e: any) => handleVacancyWorkExperience(e)}>
                                             <IonItem>
-                                                <IonRadio justify="space-between" value="WithoutExperience">Нет
-                                                    опыта</IonRadio>
+                                                <IonRadio
+                                                    justify="space-between"
+                                                    value="WithoutExperience">
+                                                    Нет опыта
+                                                </IonRadio>
                                             </IonItem>
                                             <IonItem>
-                                                <IonRadio justify="space-between" value="CoupleOfYears">1-2
-                                                    года</IonRadio>
+                                                <IonRadio
+                                                    justify="space-between"
+                                                    value="CoupleOfYears">
+                                                    1-2 года
+                                                </IonRadio>
                                             </IonItem>
                                             <IonItem>
-                                                <IonRadio justify="space-between" value="MoreTwoYears">Больше двух
-                                                    лет</IonRadio>
+                                                <IonRadio
+                                                    justify="space-between"
+                                                    value="MoreTwoYears">
+                                                    Больше двух лет
+                                                </IonRadio>
                                             </IonItem>
                                         </IonRadioGroup>
                                     </IonCardContent>
@@ -211,16 +234,25 @@ function HR7EditVacancyCard(){
                                             value={vacancy.sphere}
                                             onIonChange={(e: any) => handleVacancySphereType(e)}>
                                             <IonItem>
-                                                <IonRadio justify="space-between"
-                                                          value="IT">IT</IonRadio>
+                                                <IonRadio
+                                                    justify="space-between"
+                                                    value="IT">
+                                                    IT
+                                                </IonRadio>
                                             </IonItem>
                                             <IonItem>
-                                                <IonRadio justify="space-between"
-                                                          value="Medicine">Медицина</IonRadio>
+                                                <IonRadio
+                                                    justify="space-between"
+                                                    value="Medicine">
+                                                    Медицина
+                                                </IonRadio>
                                             </IonItem>
                                             <IonItem>
-                                                <IonRadio justify="space-between"
-                                                          value="Education">Образование</IonRadio>
+                                                <IonRadio
+                                                    justify="space-between"
+                                                    value="Education">
+                                                    Образование
+                                                </IonRadio>
                                             </IonItem>
                                         </IonRadioGroup>
                                     </IonCardContent>
