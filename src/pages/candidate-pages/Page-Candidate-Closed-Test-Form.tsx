@@ -24,6 +24,7 @@ import "../../styles/Test-Form.css";
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import { useParams } from "react-router";
 import handleToken from "../../scripts/CookiesToken";
+import {redirectToExternalSite} from "../../scripts/utils";
 
 interface Question {
     question: string;
@@ -91,6 +92,7 @@ function PageCandidateClosedTestForm() {
         })
             .then(response => {
                 console.log(response)
+                redirectToExternalSite('/candidate-tasks/')
             })
             .catch(error => {
                 // Handle errors
@@ -175,9 +177,6 @@ function PageCandidateClosedTestForm() {
                                 </IonCard>
                             ))}
                         </IonCol>
-                        <IonItem>
-                            <IonButton onClick={sendAnswers}>Отправить результаты</IonButton>
-                        </IonItem>
                         {/* Opened question */}
                         {/*<IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="10" sizeXl="10"*/}
                         {/*        className="vacancy-cards-list">*/}
@@ -193,6 +192,9 @@ function PageCandidateClosedTestForm() {
                         {/*    </IonCard>*/}
                         {/*</IonCol>*/}
                     </IonRow>
+                    <IonItem color="transparent">
+                        <IonButton onClick={sendAnswers}>Отправить результаты</IonButton>
+                    </IonItem>
                 </IonGrid>
             </IonPage>
         </>
