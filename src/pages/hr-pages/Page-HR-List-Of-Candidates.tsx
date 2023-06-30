@@ -86,7 +86,7 @@ const ListCandidates = () => {
                     <IonItem color="transparent" lines="none">
                         <IonGrid>
                             <IonRow>
-                                <IonCol>
+                                <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
                                     <IonCard style={{borderRadius: '20px'}}>
                                         <IonCardContent>
                                             <IonList>
