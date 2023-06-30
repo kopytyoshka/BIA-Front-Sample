@@ -90,6 +90,7 @@ function HR7EditVacancyCard(){
                 },
                 body: JSON.stringify(vacancyData),
             });
+
             if (response.ok) {
                 redirectToExternalSite(`/vacancy-card/${id}`)
                 return response.json();
