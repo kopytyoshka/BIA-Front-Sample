@@ -160,16 +160,14 @@ function HR7EditVacancyCard(){
                                         <IonRadioGroup
                                             value={vacancy.vacancyStatus}
                                             onIonChange={(e: any) => handleVacancyStatus(e)}>
-                                            <IonItem>
-                                                <IonRadio justify="space-between" value="OnModeration">На
-                                                    модерации</IonRadio>
-                                            </IonItem>
-                                            <IonItem>
+                                                <IonRadio justify="space-between" value="OnModeration">На модерации</IonRadio>
+                                            <br />
+
                                                 <IonRadio justify="space-between" value="Opened">Доступная</IonRadio>
-                                            </IonItem>
-                                            <IonItem>
+                                            <br />
+
                                                 <IonRadio justify="space-between" value="Closed">Архивная</IonRadio>
-                                            </IonItem>
+
                                         </IonRadioGroup>
                                     </IonCardContent>
                                 </IonCard>
