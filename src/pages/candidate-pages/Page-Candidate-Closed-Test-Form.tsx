@@ -38,7 +38,7 @@ interface Question {
 function PageCandidateClosedTestForm() {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [answers, setAnswers] = useState<string[]>([]);
-    const { id } = useParams<{ id: string }>();
+    const { id, responseId } = useParams<{ id: string, responseId: string }>();
 
     const fetchQuestions = () => {
         let userStageInfo = {
@@ -78,6 +78,7 @@ function PageCandidateClosedTestForm() {
         const data = {
             stageId: id,
             customerId: handleToken(),
+            responseId: responseId,
             answers: answers
         };
 

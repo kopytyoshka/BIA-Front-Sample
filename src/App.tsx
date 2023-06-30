@@ -55,7 +55,7 @@ const App: React.FC = () => (
                 <Route path="/close-test-editor/:id" component={pageHRClosedTestCreate}/>
                 <Route path="/vacancy-card/:vacancyId" component={PageHRVacancyCardView}/>
                 <Route path="/login" component={Login}/>
-                <Route path='/test-solve/:id' component={pageCandidateClosedTestForm}/>
+                <Route path='/test-solve/:id/:responseId' component={pageCandidateClosedTestForm}/>
                 <Route path='/vacancy/:id' component={pageCandidateVacancyInfo}/>
                 <Route path="/list-candidates/:id" component={ListCandidates}/>
                 <Route path="/candidate-card/:id" component={CandidateCardForHR}/>

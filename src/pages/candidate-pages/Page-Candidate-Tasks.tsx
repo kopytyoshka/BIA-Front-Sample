@@ -64,8 +64,8 @@ const PageCandidateTasks = () => {
 
     const history = useHistory();
 
-    const navigateToPage = (responseId: string, stageId: string) => {
-        history.push(`/test-solve/${responseId}/${stageId}`);
+    const navigateToPage = (id: string, responseId: string) => {
+        history.push(`/test-solve/${id}/${responseId}`);
     };
 
     return (
