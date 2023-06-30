@@ -61,12 +61,12 @@ const App: React.FC = () => (
                 <Route path="/edit-vacancy-card/:id" component={HR7EditVacancyCard}/>
             </IonRouterOutlet>
         </IonReactRouter>
-        <IonReactRouter>
-            <IonRouterOutlet>
-                <Route exact path="/"><Redirect to="/home"/></Route>
-                <Route exact path="/home"><MainPageByRole/></Route>
-            </IonRouterOutlet>
-        </IonReactRouter>
+        {/*<IonReactRouter>*/}
+        {/*    <IonRouterOutlet>*/}
+        {/*        <Route exact path="/"><Redirect to="/home"/></Route>*/}
+        {/*        <Route exact path="/home"><MainPageByRole/></Route>*/}
+        {/*    </IonRouterOutlet>*/}
+        {/*</IonReactRouter>*/}
     </IonApp>
 );
 
