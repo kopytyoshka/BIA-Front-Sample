@@ -167,7 +167,6 @@ function HR7EditVacancyCard(){
                                             <br />
 
                                                 <IonRadio justify="space-between" value="Closed">Архивная</IonRadio>
-
                                         </IonRadioGroup>
                                     </IonCardContent>
                                 </IonCard>
