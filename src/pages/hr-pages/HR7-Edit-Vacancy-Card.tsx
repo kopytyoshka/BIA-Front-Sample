@@ -90,7 +90,6 @@ function HR7EditVacancyCard(){
                 },
                 body: JSON.stringify(vacancyData),
             });
-
             if (response.ok) {
                 redirectToExternalSite(`/vacancy-card/${id}`)
                 return response.json();
@@ -114,6 +113,9 @@ function HR7EditVacancyCard(){
                 setDefaultSphere(data.sphere)
                 console.log(data)
             })
+        console.log(defaultStatus);
+        console.log(defaultWorkExp);
+        console.log(defaultSphere);
     }
 
     useEffect(() => {
