@@ -41,7 +41,7 @@ const App: React.FC = () => (
 
 
     <IonApp>
-        <IonReactRouter>
+        <IonReactRouter forceRefresh={true}>
             <IonRouterOutlet>
                 <Route exact path="/create-vacancy"><PageHRCreateVacancy/></Route>
                 <Route exact path="/register"><Registration/></Route>
