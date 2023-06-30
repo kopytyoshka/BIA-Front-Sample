@@ -61,7 +61,7 @@ const PageCandidateTasks = () => {
             })
     }
 
-    const getResult = (stageId: string, responseId: string): string => {
+    const getResult = (stageId: string, responseId: string): number => {
         let userStageInfo = {
             stageId: stageId,
             responseId: responseId,
@@ -82,7 +82,7 @@ const PageCandidateTasks = () => {
             .catch(error => {
                 console.error('Error:', error);
             });
-        return num.toString();
+        return num;
     };
 
 
