@@ -24,8 +24,9 @@ import {
 import PopupMenuCandidate from "../sidebar-menu/Popup-Menu-Candidate";
 import moment, {duration, Duration} from 'moment';
 import handleToken from "../../scripts/CookiesToken";
-import {formatStageType} from "../../scripts/utils";
+import {formatStageType, redirectToExternalSite} from "../../scripts/utils";
 import {useHistory, useParams} from "react-router";
+import {number} from "yup";
 
 const PageCandidateTasks = () => {
 
@@ -49,6 +50,7 @@ const PageCandidateTasks = () => {
     }
 
     const [usersChallenge, setUsersChallenge] = useState<any[]>([])
+    const [result, setResult] = useState<any>()
     const fetchDataVacancyCards = () => {
         fetch('/api/userInfo/getUsersResponses?userId=' + handleToken())
             .then(response => {
@@ -58,6 +60,30 @@ const PageCandidateTasks = () => {
                 setUsersChallenge(data)
             })
     }
+
+    const getResult = (stageId: string, responseId: string): string => {
+        let userStageInfo = {
+            stageId: stageId,
+            responseId: responseId,
+        };
+        fetch("/api/stageResult/countTestResult", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userStageInfo),
+        })
+            .then(response => response.json())
+            .then(data => {
+                setResult(data.num)
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        return result;
+    };
+
+
     useEffect(() => {
         fetchDataVacancyCards()
     }, [])
@@ -119,7 +145,7 @@ const PageCandidateTasks = () => {
                                                     <IonItem>
                                                         <IonLabel>Результат</IonLabel>
                                                         <IonLabel color="medium"
-                                                                  slot="end"><i>to-be-done</i></IonLabel>
+                                                                  slot="end">{getResult(stage.id, challenge.responseId)}</IonLabel>
                                                     </IonItem>
                                                     <IonButton
                                                         expand="block"
