@@ -35,21 +35,22 @@ import pageHRClosedTestCreate from "./pages/hr-pages/Page-HR-Closed-Test-Create"
 import pageHROpenedTestCreate from "./pages/hr-pages/Page-HR-Opened-Test-Create";
 import React from "react";
 import pageCandidateClosedTestForm from "./pages/candidate-pages/Page-Candidate-Closed-Test-Form";
+import {refresh, reload} from "ionicons/icons";
 
 setupIonicReact();
 const App: React.FC = () => (
 
 
     <IonApp>
-        <IonReactRouter>
+        <IonReactRouter forceRefresh={true}>
             <IonRouterOutlet>
                 <Route exact path="/create-vacancy"><PageHRCreateVacancy/></Route>
                 <Route exact path="/register"><Registration/></Route>
                 <Route exact path="/hr-page"><PageHR/></Route>
                 <Route exact path="/candidate-tasks"><PageCandidateTasks/></Route>
-                <Route exact path="/"><Redirect to="/home"/></Route>
+                {/*<Route exact path="/"><Redirect to="/home"/></Route>*/}
                 <Route exact path="/hr8-all-vacancies"><PageHRAllVacancies/></Route>
-                <Route exact path="/home"><MainPageByRole/></Route>
+                {/*<Route exact path="/home"><MainPageByRole/></Route>*/}
                 <Route exact path="/candidate-all-vacancies"><PageCandidateVacancyList/></Route>
                 <Route path="/open-test-editor/:id" component={pageHROpenedTestCreate}/>
                 <Route path="/close-test-editor/:id" component={pageHRClosedTestCreate}/>
@@ -60,6 +61,11 @@ const App: React.FC = () => (
                 <Route path="/list-candidates/:id" component={ListCandidates}/>
                 <Route path="/candidate-card/:id" component={CandidateCardForHR}/>
                 <Route path="/edit-vacancy-card/:id" component={HR7EditVacancyCard}/>
+            </IonRouterOutlet>
+        </IonReactRouter>
+        <IonReactRouter forceRefresh={false}>
+            <IonRouterOutlet>
+                <Route exact path="/home"><MainPageByRole/></Route>
             </IonRouterOutlet>
         </IonReactRouter>
     </IonApp>
