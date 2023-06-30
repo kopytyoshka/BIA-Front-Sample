@@ -184,7 +184,7 @@ function HR7EditVacancyCard(){
                                     <IonCardContent>
                                         <IonRadioGroup
                                             value={vacancy.workExperience}
-                                            onIonChange={(e: any) => handleVacancyWorkExperience(e)}>
+                                            onClick={(e: any) => handleVacancyWorkExperience(e)}>
                                             <IonItem>
                                                 <IonRadio justify="space-between" value="WithoutExperience">Нет
                                                     опыта</IonRadio>
@@ -241,7 +241,7 @@ function HR7EditVacancyCard(){
                                             value={vacancy.description}
                                             autoGrow={true}
                                             style={{minHeight: "300px"}}
-                                            onClick={(e: any) => handleVacancyDescription(e)}>
+                                            onIonChange={(e: any) => handleVacancyDescription(e)}>
                                         </IonTextarea>
                                     </IonItem>
                                 </IonCard>
